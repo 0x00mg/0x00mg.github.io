@@ -221,3 +221,7 @@ blockquote {
 margin: unset;
     font-size: 12px;
 }
+@media (max-width: 768px) {
+  .profile-photo {
+    display: none;
+}
