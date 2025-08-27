@@ -12,7 +12,7 @@ permalink: /about_me/
 <style>
   body {
     background-color: #0d0d0d;
-    color: #33ff33;
+    color: #00cc66;
     font-family: "Courier New", monospace;
     padding: 20px;
   }
@@ -29,7 +29,7 @@ permalink: /about_me/
   .cursor {
     display: inline-block;
     width: 10px;
-    background-color: #33ff33;
+    background-color: #00cc66;
     animation: blink 1s step-start infinite;
     vertical-align: bottom;
     margin-left: 2px;
