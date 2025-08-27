@@ -1,7 +1,7 @@
 ---
 layout: page
-title: "*About Me"
-permalink: /aboout_me/
+title: "About Me"
+permalink: /about_me/
 ---
 
 # Miroslav Genšor
