@@ -24,6 +24,18 @@ permalink: /about_me/
     max-width: 800px;
     margin: auto;
     white-space: pre-wrap;
+    position: relative;
+  }
+  .cursor {
+    display: inline-block;
+    width: 10px;
+    background-color: #33ff33;
+    animation: blink 1s step-start infinite;
+    vertical-align: bottom;
+    margin-left: 2px;
+  }
+  @keyframes blink {
+    50% { background-color: transparent; }
   }
 </style>
 </head>
@@ -54,16 +66,19 @@ const lines = [
 ];
 
 let lineIndex = 0;
+let cursor = document.createElement('span');
+cursor.className = 'cursor';
+terminal.appendChild(cursor);
 
 function typeLine(line, callback) {
   let charIndex = 0;
   function typeChar() {
     if (charIndex < line.length) {
-      terminal.innerHTML += line.charAt(charIndex);
+      cursor.insertAdjacentText('beforebegin', line.charAt(charIndex));
       charIndex++;
       setTimeout(typeChar, 30);
     } else {
-      terminal.innerHTML += '\n';
+      cursor.insertAdjacentText('beforebegin', '\n');
       callback();
     }
   }
@@ -83,4 +98,5 @@ typeNextLine();
 </script>
 </body>
 </html>
+
 
