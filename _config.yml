@@ -1,0 +1,30 @@
+# Site settings
+title: "0x4d47"
+bye_message: "Thx!"
+baseurl: ""
+url: "https://0x4d47.github.io"
+disqus: setuid
+
+# Header settings
+nick: "0x4d47"
+fullname: "miroslav.gensor"
+hackthebox:
+    server: "app.hackthebox.com"
+    profile: "1002284"
+linkedin:
+    server: "linkedin.com"
+    profile: "miroslav-genšor-a8224811b"
+mail:
+    domain: "proton"
+    ext: "me"
+source_code:
+    server: "github.com"
+    nick: "0x4d47"
+blog:
+    server: "wordpress.com"
+    nick: "0x4d47"
+fingerprint_key: "5E12 9ABC C2A9 564B C048  2DF9 D327 0D10 BC71 CF75"
+
+# Build settings
+markdown: kramdown
+permalink: /:categories/:title/
