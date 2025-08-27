@@ -1,61 +1,22 @@
 <header class="row">
-  <div class="col-lg-8 col-lg-offset-2">
-    <h1 class="">miroslav.gensor</h1>
-    <!--nick-->
-    <p>
-      <span class="reserved">char</span> nick[<span class="number">6</span>] = 
-      <span class="string">"{{ site.nick }}"</span>;
-    </p>
-    <!--fullname-->
-    <p>
-      <span class="reserved">char</span> fullname[<span class="number">15</span>] = 
-      <span class="string">"{{ site.fullname }}"</span>;
-    </p>
-    <!--HTB-->
-    <p>
-      printf(
-        <a href="https://{{ site.hackthebox.server }}/profile/{{ site.hackthebox.profile }}" target="_blank">
-          <span class="string">
-            "https://{{ site.hackthebox.server }}/<span class="reserved">%s\n</span>"
-          </span>
-        </a>,nick);
-    </p>
-    <!--linkedin-->
-    <p>
-      printf(
-      <a href="https://{{ site.linkedin.server }}/in/{{ site.linkedin.profile }}" target="_blank">
-        <span class="string">
-          "https://{{ site.linkedin.server }}/in/<span class="reserved">%s\n</span>
-        </span>  
-      </a>,fullname);
-    </p>
+  <div class="col-lg-8 col-lg-offset-2" style="display:flex; align-items:flex-start; gap:20px;">
+    <div class="header-text" style="flex:1;">
+      <h1 class="">miroslav.gensor</h1>
+      <p><span class="reserved">char</span> nick[<span class="number">6</span>] = <span class="string">"{{ site.nick }}"</span>;</p>
+      <p><span class="reserved">char</span> fullname[<span class="number">15</span>] = <span class="string">"{{ site.fullname }}"</span>;</p>
+      <p>printf(<a href="https://{{ site.hackthebox.server }}/profile/{{ site.hackthebox.profile }}" target="_blank"><span class="string">"https://{{ site.hackthebox.server }}/<span class="reserved">%s\n</span>"</span></a>,nick);</p>
+      <p>printf(<a href="https://{{ site.linkedin.server }}/in/{{ site.linkedin.profile }}" target="_blank"><span class="string">"https://{{ site.linkedin.server }}/in/<span class="reserved">%s\n</span>"</span></a>,fullname);</p>
+      <p>printf(<a href="https://{{ site.source_code.server }}/{{ site.source_code.nick }}" target="_blank"><span class="string">"https://{{ site.source_code.server }}/<span class="reserved">%s\n</span>"</span></a>,nick);</p>
+      <p>printf(<a href="mailto:{{ site.fullname }}@{{ site.mail.domain }}.{{ site.mail.ext }}"><span class="string">"<span class="reserved">%s\x40</span>{{ site.mail.domain }}<span class="reserved">\x2e</span>{{ site.mail.ext }}<span class="reserved">\n</span>"</span></a>,fullname );</p>
+      <p>puts(<a href="{{ site.baseurl }}misc/pubkey.gpg.txt" target="_blank"><span class="string">"5E12 9ABC C2A9 564B C048  2DF9 D327 0D10 BC71 CF75"</span></a>);</p>
+    </div>
 
-
-    <!--github-->
-    <p>
-    printf(
-      <a href="https://{{ site.source_code.server }}/{{ site.source_code.nick }}" target="_blank">
-        <span class="string">
-          "https://{{ site.source_code.server }}/<span class="reserved">%s\n</span>"</span>
-      </a>,nick);
-    </p>
-    <!--mail-->
-    <p>
-      printf(
-        <a href="mailto:{{ site.fullname }}@{{ site.mail.domain }}.{{ site.mail.ext }}">
-          <span class="string">
-            "<span class="reserved">%s\x40</span>{{ site.mail.domain }}<span class="reserved">\x2e</span>{{ site.mail.ext }}<span class="reserved">\n</span>"
-          </span>
-        </a>,fullname );     
-    <!--printf(<span class="string">"<span class="reserved">%s\x40</span>{{ site.mail.domain }}<span class="reserved">\x2e\\\b</span>{{ site.mail.ext }}<span class="reserved">\n</span>"</span>,fullname); -->
-    </p>
-    <!-- <p>
-            printf(<a href="https://{{ site.blog.nick }}.{{ site.blog.server }}" target="_blank"><span class="string">"https://<span class="reserved">%s</span>.{{ site.blog.server }}<span class="reserved">\n</span>"</span></a>,nick);
-        </p> -->
-    <p>
-    puts(<a href="{{ site.baseurl }}misc/pubkey.gpg.txt" target="_blank"><span class="string">"5E12 9ABC C2A9 564B C048  2DF9 D327 0D10 BC71 CF75"</span></a>);
-    </p>
+    <!-- Fotka napravo -->
+    <div class="header-image">
+      <img src="{{ site.baseurl }}/images/profile.jpg" alt="Miroslav Gensor" style="width:auto; height:calc(7 * 1.5em); object-fit:cover; border-radius:4px;">
+    </div>
   </div>
 </header>
+
 
 {% include menu.html %}
