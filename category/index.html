@@ -1,0 +1,13 @@
+---
+layout: default
+---
+
+<h1>Kategórie</h1>
+<ul>
+  {% for category in site.categories %}
+    <li>
+      <a href="/category/{{ category[0] }}/">{{ category[0] }}</a>
+      ({{ category[1] | size }})
+    </li>
+  {% endfor %}
+</ul>
