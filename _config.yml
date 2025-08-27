@@ -15,8 +15,8 @@ linkedin:
     server: "linkedin.com"
     profile: "miroslav-genšor-a8224811b"
 mail:
-    domain: "proton"
-    ext: "me"
+    domain: "protonmail"
+    ext: "com"
 source_code:
     server: "github.com"
     nick: "0x4d47"
