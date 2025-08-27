@@ -4,7 +4,7 @@ title: Home
 ---
 
 
-
+blog in progress....
 
 <div class="home">
   <h1>Najnovšie články</h1>
