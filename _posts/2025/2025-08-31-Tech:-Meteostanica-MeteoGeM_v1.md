@@ -1,6 +1,6 @@
 ---
 layout: post
-title:	"Tech: Meteostanica: MeteoGeM_v1"
+title:	"Tech: Meteostanica - MeteoGeM_v1"
 date:	2025-08-31 10:00:00 +0200 
 author: "0x4d47"
 categories:
