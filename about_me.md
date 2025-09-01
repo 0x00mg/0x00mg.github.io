@@ -66,3 +66,33 @@ function typeNextLine() {
 // spusti animáciu po načítaní stránky
 document.addEventListener('DOMContentLoaded', typeNextLine);
 </script>
+
+<style>
+#terminal {
+  background-color: #000;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 0 10px #00ff00;
+  max-width: 800px;
+  margin: 50px auto;
+  white-space: pre-wrap;
+  position: relative;
+  min-height: 400px;
+  color: #00cc66;
+  font-family: monospace;
+  overflow: hidden;
+}
+
+.cursor {
+  display: inline-block;
+  width: 10px;
+  background-color: #00cc66;
+  animation: blink 1s step-start infinite;
+  vertical-align: bottom;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  50% { background-color: transparent; }
+}
+</style>
