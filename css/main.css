@@ -123,9 +123,14 @@ pre {
   50% { background-color: transparent; }
 }
 
-/* Kategórie (tags) */
+/* --- Štýl pre kategórie (tags) --- */
 a.reserved {
   color: #A18913 !important;
+  
 }
 
+a.reserved:hover {
+  color: #A18913 !important; /* aby sa nemenilo pri hoveri */
+  
+}
 
