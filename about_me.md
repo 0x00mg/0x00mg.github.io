@@ -3,7 +3,9 @@ layout: page
 title: "About Me"
 permalink: /about_me/
 ---
+<div id="terminal"></div>
 
+<script>
 const terminal = document.getElementById('terminal');
 
 const lines = [
@@ -63,3 +65,4 @@ function typeNextLine() {
 
 // spusti animáciu po načítaní stránky
 document.addEventListener('DOMContentLoaded', typeNextLine);
+</script>
