@@ -4,7 +4,7 @@ title: "Notes"
 permalink: /notes/
 ---
 
-<h3>Notes</h3>
+
 <ul>
   {% for note in site.notes %}
     <li>
