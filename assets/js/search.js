@@ -1,27 +1,29 @@
-(function(){
+(function() {
   const searchJsonUrl = '/search.json';
   let postsCache = null;
 
-  async function loadIndex(){
+  async function loadIndex() {
     if (postsCache) return postsCache;
     try {
-      const res = await fetch(searchJsonUrl, {cache: 'no-store'});
+      console.log('Fetching search.json from:', searchJsonUrl);
+      const res = await fetch(searchJsonUrl, { cache: 'no-store' });
       if (!res.ok) throw new Error('fetch failed ' + res.status);
       postsCache = await res.json();
+      console.log('Loaded posts:', postsCache);
       return postsCache;
     } catch (err) {
-      console.error('Chyba pri načítaní search.json:', err);
+      console.error('Error loading search.json:', err);
       postsCache = [];
       return postsCache;
     }
   }
 
-  function clearResults(resultsEl){
+  function clearResults(resultsEl) {
     resultsEl.innerHTML = '';
     resultsEl.style.display = 'none';
   }
 
-  function renderLoading(resultsEl){
+  function renderLoading(resultsEl) {
     resultsEl.innerHTML = '';
     const li = document.createElement('li');
     li.textContent = '...';
@@ -30,7 +32,7 @@
     resultsEl.style.display = 'block';
   }
 
-  function renderResults(results, resultsEl){
+  function renderResults(results, resultsEl) {
     resultsEl.innerHTML = '';
     if (!results || results.length === 0) {
       const li = document.createElement('li');
@@ -40,50 +42,40 @@
       resultsEl.style.display = 'block';
       return;
     }
-
     results.forEach(r => {
       const li = document.createElement('li');
-      li.style.listStyle = 'none';
       const a = document.createElement('a');
       a.href = r.url;
       a.textContent = r.title;
       li.appendChild(a);
       resultsEl.appendChild(li);
     });
-
     resultsEl.style.display = 'block';
   }
 
-  async function doSearch(query, resultsEl){
+  async function doSearch(query, resultsEl) {
     const q = (query || '').trim().toLowerCase();
-    if (!q) {
-      clearResults(resultsEl);
-      return;
-    }
-
+    if (!q) { clearResults(resultsEl); return; }
     renderLoading(resultsEl);
-
     const posts = await loadIndex();
     const results = posts.filter(p => {
       const t = (p.title || '').toLowerCase();
       const c = (p.content || '').toLowerCase();
       return t.includes(q) || c.includes(q);
     });
-
     renderResults(results, resultsEl);
   }
 
-  function positionResults(input, resultsEl){
+  function positionResults(input, resultsEl) {
     const rect = input.getBoundingClientRect();
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-  
     resultsEl.style.width = rect.width + 'px';
     resultsEl.style.top = (rect.bottom + scrollTop) + 'px';
     resultsEl.style.left = (rect.left + scrollLeft) + 'px';
   }
 
-  function bindSearchInput(searchId, resultsId){
+  function bindSearchInput(searchId, resultsId) {
     const input = document.getElementById(searchId);
     const resultsEl = document.getElementById(resultsId);
     if (!input || !resultsEl) return;
@@ -91,19 +83,16 @@
     // initial positioning
     positionResults(input, resultsEl);
 
-    // update positioning on resize
+    // update on resize
     window.addEventListener('resize', () => positionResults(input, resultsEl));
 
     let debounce = null;
-
-    input.addEventListener('input', function(){
+    input.addEventListener('input', () => {
       clearTimeout(debounce);
-      debounce = setTimeout(function(){
-        doSearch(input.value, resultsEl);
-      }, 150);
+      debounce = setTimeout(() => doSearch(input.value, resultsEl), 150);
     });
 
-    input.addEventListener('keydown', async function(e){
+    input.addEventListener('keydown', async e => {
       if (e.key === 'Enter') {
         e.preventDefault();
         await doSearch(input.value, resultsEl);
@@ -114,14 +103,14 @@
       }
     });
 
-    document.addEventListener('click', function(e){
+    document.addEventListener('click', e => {
       if (!input.contains(e.target) && !resultsEl.contains(e.target)) {
         resultsEl.style.display = 'none';
       }
     });
   }
 
-  document.addEventListener('DOMContentLoaded', function(){
+  document.addEventListener('DOMContentLoaded', () => {
     bindSearchInput('searchBox','results');
   });
 })();
