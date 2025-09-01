@@ -95,3 +95,17 @@ pre {
 @media (max-width: 768px) {
   .profile-photo { display: none; }
 }
+
+.cursor {
+  display: inline-block;
+  width: 10px;
+  background-color: #00cc66;
+  animation: blink 1s step-start infinite;
+  vertical-align: bottom;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  50% { background-color: transparent; }
+}
+
