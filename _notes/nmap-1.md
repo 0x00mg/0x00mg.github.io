@@ -12,7 +12,7 @@ Target Specification
 | Switch | Example | Description |
 |--------|------------------|-------------|
 | |nmap 192.168.1.1| Sken jednej IP adresy |
-|  |  nmap 192.168.1.1 192.168.2.1 |  Sken konkrétnych IP adries |
+|  |  nmap 192.168.1.1 192.168.2.1   |  Sken konkrétnych IP adries |
 |  |  nmap 192.168.1.1-254 |  Sken rozsahu |
 |  |  nmap scanme.nmap.org |  Sken domény |
 |  |  nmap 192.168.1.0/24 |  Sken pomocou CIDR zápisu |
@@ -25,7 +25,7 @@ Scan Techniques
 ---------------
 
 | Switch | Example | Description  |
-|----|-----|----|
+|----|------------------|----|
 |  -sS |  nmap 192.168.1.1 -sS |  TCP SYN sken portov (predvolené) |
 |  -sT |  nmap 192.168.1.1 -sT | TCP connect sken portov<br />(predvolené bez root práv)|
 |  -sU |  nmap 192.168.1.1 -sU |  UDP sken portov |
@@ -38,7 +38,7 @@ Host Discovery
 --------------
 
 | Switch | Example | Description  |
-|----|-----|----|
+|----|------------------|----|
 |  -sL |  nmap 192.168.1.1-3 -sL |  Bez skenu. Iba vypíše ciele |
 |  -sn |  nmap 192.168.1.1/24 -sn | Zakáže sken portov. Len zisťovanie hostiteľov.<br /> |
 |  -Pn |  nmap 192.168.1.1-5 -Pn | Zakáže zisťovanie hostiteľov. Iba sken portov. <br />|  -PS |  nmap 192.168.1.1-5 -PS22-25,80 | TCP SYN zisťovanie na porte x. Predvolene port 80|
@@ -52,7 +52,7 @@ Port Specification
 ------------------
 
 | Switch | Example | Description  |
-|----|-----|----|
+|----|------------------|----|
 |  -p |  nmap 192.168.1.1 -p 21 |  Sken portu x |
 |  -p |  nmap 192.168.1.1 -p 21-100 |  Rozsah portov |
 |  -p |  nmap 192.168.1.1 -p U:53,T:21-25,80 |  Sken viacerých TCP a UDP portov |
@@ -70,7 +70,7 @@ Service and Version Detection
 
 
 | Switch | Example | Description  |
-|----|-----|----|
+|----|------------------|----|
 |  -sV |  nmap 192.168.1.1 -sV |  Pokus o zistenie verzie služby bežiacej na porte |
 |  -sV --version-intensity |  nmap 192.168.1.1 -sV --version-intensity 8 |  Úroveň intenzity 0 až 9. Vyššie číslo zvyšuje presnosť |
 |  -sV --version-light |  nmap 192.168.1.1 -sV --version-light |  Zapne ľahký režim. Nižšia presnosť, rýchlejšie |
@@ -83,7 +83,7 @@ OS Detection
 
 
 | Switch | Example | Description  |
-|----|-----|----|
+|----|------------------|----|
 |  -O |  nmap 192.168.1.1 -O | Vzdialená detekcia OS pomocou TCP/IP<br />fingerprintingu |
 |  -O --osscan-limit |  nmap 192.168.1.1 -O --osscan-limit | Ak sa nenájde aspoň jeden otvorený a jeden zatvorený<br />TCP port, nebude sa skúšať detekcia OS |
 |  -O --osscan-guess |  nmap 192.168.1.1 -O --osscan-guess |  Núti Nmap hádať agresívnejšie |
@@ -96,7 +96,7 @@ Timing and Performance
 
 
 | Switch | Example | Description  |
-|----|-----|----|
+|----|------------------|----|
 |  -T0 |  nmap 192.168.1.1 -T0 | Paranoid (0) obchádzanie IDS systémov |
 |  -T1 |  nmap 192.168.1.1 -T1 | Sneaky (1) obchádzanie IDS systémov |
 |  -T2 |  nmap 192.168.1.1 -T2 | Polite (2) spomalí sken aby využíval<br />menej šírky pásma a zdrojov cieľa |
@@ -107,7 +107,7 @@ Timing and Performance
 
 
 | Switch | Example input | Description  |
-|----|-----|----|
+|----|------------------|----|
 |  --host-timeout &lt;time&gt; |  1s; 4m; 2h |  Vzdá sa cieľa po uplynutí času |
 |  --min-rtt-timeout/max-rtt-timeout/initial-rtt-timeout &lt;time&gt; |  1s; 4m; 2h |  Nastaví čas odozvy sondy |
 |  --min-hostgroup/max-hostgroup &lt;size&lt;size&gt; |  50; 1024 | Veľkosť paralelne skenovanej skupiny hostiteľov |
@@ -123,7 +123,7 @@ NSE Scripts
 
 
 | Switch | Example | Description  |
-|----|-----|----|
+|----|------------------|----|
 |  -sC |  nmap 192.168.1.1 -sC |  Sken s predvolenými NSE skriptmi. Považované za bezpečné a užitočné |
 |  --script default |  nmap 192.168.1.1 --script default |  Sken s predvolenými NSE skriptmi. Považované za bezpečné a užitočné |
 |  --script |  nmap 192.168.1.1 --script=banner |  Sken s jedným skriptom. Príklad banner |
@@ -137,7 +137,7 @@ Useful NSE Script Examples
 
 
 | Command | Description  |
-|----|-----|
+|------------------|-----|
 |  nmap -Pn --script=http-sitemap-generator scanme.nmap.org |  Generátor mapy webu |
 |  nmap -n -Pn -p 80 --open -sV -vvv --script banner,http-title -iR 1000 |  Rýchle vyhľadávanie náhodných web serverov |
 |  nmap -Pn --script=dns-brute domain.com |  Hrubá sila DNS mien (hádanie subdomén) |
@@ -152,7 +152,7 @@ Firewall / IDS Evasion and Spoofing
 
 
 | Switch | Example | Description  |
-|----|-----|----|
+|----|------------------|----|
 |  -f |  nmap 192.168.1.1 -f |  Sken používa malé fragmentované IP pakety. Ťažšie odhaliteľné filtrom |
 |  --mtu |  nmap 192.168.1.1 --mtu 32 |  Nastavenie vlastnej veľkosti offsetu |
 |  -D | nmap -D 192.168.1.101,192.168.1.102, <br />192.168.1.103,192.168.1.23 192.168.1.1|  Posiela skeny z falošných IP |
@@ -172,7 +172,7 @@ Output
 ------
 
 | Switch | Example | Description  |
-|----|-----|----|
+|----|------------------|----|
 |  -oN |  nmap 192.168.1.1 -oN normal.file |  Normálny výstup do súboru normal.file |
 |  -oX |  nmap 192.168.1.1 -oX xml.file |  XML výstup do súboru xml.file |
 |  -oG |  nmap 192.168.1.1 -oG grep.file |  Grepovateľný výstup do súboru grep.file |
@@ -193,7 +193,7 @@ Helpful Nmap Output examples
 
 
 | Command | Description  |
-|----|-----|
+|------------------|-----|
 |  nmap -p80 -sV -oG - --open 192.168.1.1/24 | grep open |  Sken web serverov a grep na zobrazenie IP, ktoré bežia |
 |  nmap -iR 10 -n -oX out.xml | grep &quot;Nmap&quot; | cut -d &quot; &quot; -f5 &gt; live-hosts.txt |  Vygeneruje zoznam IP živých hostiteľov |
 |  nmap -iR 10 -n -oX out2.xml | grep &quot;Nmap&quot; | cut -d &quot; &quot; -f5 &gt;&gt; live-hosts.txt |  Pridá IP do zoznamu živých hostiteľov |
@@ -206,7 +206,7 @@ Miscellaneous Options
 ---------------------
 
 | Switch | Example | Description  |
-|----|-----|----|
+|----|------------------|----|
 |  -6 |  nmap -6 2607:f0d0:1002:51::4 |  Povoliť IPv6 skenovanie |
 |  -h |  nmap -h |  nmap nápoveda |
 
@@ -217,7 +217,7 @@ Other Useful Nmap Commands
 
 
 | Command | Description  |
-|----|-----|
+|------------------|-----|
 |  nmap -iR 10 -PS22-25,80,113,1050,35000 -v -sn |  Zisťovanie len na portoch x, bez skenu portov |
 |  nmap 192.168.1.1-1/24 -PR -sn -vv |  Arp zisťovanie len v lokálnej sieti, bez skenu portov |
 |  nmap -iR 10 -sn -traceroute |  Traceroute na náhodné ciele, bez skenu portov |
