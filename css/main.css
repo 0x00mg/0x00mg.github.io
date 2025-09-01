@@ -125,12 +125,12 @@ pre {
 
 /* --- Štýl pre kategórie (tags) --- */
 a.reserved {
-  color: #A18913 !important;
+  color: #7A670C !important;
   
 }
 
 a.reserved:hover {
-  color: #A18913 !important; /* aby sa nemenilo pri hoveri */
+  color: #7A670C !important; /* aby sa nemenilo pri hoveri */
   
 }
 
