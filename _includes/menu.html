@@ -28,21 +28,5 @@
   </div>
 </div>
 
+<!-- Vyhľadávací skript -->
 <script src="{{ site.baseurl }}/assets/js/search.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', function(){
-    if (window.simpleSearch && window.simpleSearch.bindSearchInput) {
-      window.simpleSearch.bindSearchInput('searchBox','results');
-    }
-
-    document.addEventListener('click', function(e){
-      const searchBox = document.getElementById('searchBox');
-      const results = document.getElementById('results');
-      if (!searchBox.contains(e.target) && !results.contains(e.target)) {
-        results.style.display = 'none';
-      }
-    });
-  });
-</script>
-
-
