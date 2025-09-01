@@ -3,6 +3,7 @@ layout: page
 title: "About Me"
 permalink: /about_me/
 ---
+
 <div id="terminal"></div>
 
 <script>
@@ -26,7 +27,7 @@ const lines = [
   "[*] Elektronika a technicke experimenty",
   "----------------------------------------",
   "Profile loaded successfully.",
-  "Type 'exit' to logout..."
+  "Type 'help' for commands or 'exit' to logout..."
 ];
 
 let lineIndex = 0;
@@ -34,7 +35,7 @@ let lineIndex = 0;
 // vytvoríme kurzor
 let cursor = document.createElement('span');
 cursor.className = 'cursor';
-terminal.appendChild(cursor);
+terminal.appendChild(cursor); // kurzor je stále posledný element
 
 function typeLine(line, callback) {
   let charIndex = 0;
@@ -42,7 +43,7 @@ function typeLine(line, callback) {
     if (charIndex < line.length) {
       cursor.insertAdjacentText('beforebegin', line.charAt(charIndex));
       charIndex++;
-      setTimeout(typeChar, 30); // rýchlosť písania
+      setTimeout(typeChar, 30);
     } else {
       cursor.insertAdjacentText('beforebegin', '\n');
       callback();
@@ -55,15 +56,50 @@ function typeNextLine() {
   if (lineIndex < lines.length) {
     typeLine(lines[lineIndex], () => {
       lineIndex++;
-      setTimeout(typeNextLine, 200); // pauza medzi riadkami
+      setTimeout(typeNextLine, 200);
     });
   } else {
-    // kurzor zostáva blikať na konci
-    terminal.appendChild(cursor);
+    enableInput(); // po dokončení animácie zapneme vstup
   }
 }
 
-// spusti animáciu po načítaní stránky
+// jednoduchý shell
+function enableInput() {
+  const input = document.createElement('span');
+  input.setAttribute('contenteditable', 'true');
+  input.className = 'terminal-input';
+  terminal.appendChild(input);
+  input.focus();
+
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const command = input.textContent.trim();
+      processCommand(command);
+      input.textContent = '';
+    }
+  });
+}
+
+function processCommand(cmd) {
+  let output = '';
+  switch(cmd.toLowerCase()) {
+    case 'help':
+      output = "Available commands: help, whoami, exit";
+      break;
+    case 'whoami':
+      output = "Miroslav Gensor";
+      break;
+    case 'exit':
+      output = "Logging out... goodbye!";
+      break;
+    default:
+      output = "Unknown command: " + cmd;
+  }
+  terminal.insertBefore(document.createTextNode(output + '\n'), cursor);
+  terminal.scrollTop = terminal.scrollHeight;
+}
+
 document.addEventListener('DOMContentLoaded', typeNextLine);
 </script>
 
@@ -80,7 +116,7 @@ document.addEventListener('DOMContentLoaded', typeNextLine);
   min-height: 400px;
   color: #00cc66;
   font-family: monospace;
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 .cursor {
@@ -90,6 +126,13 @@ document.addEventListener('DOMContentLoaded', typeNextLine);
   animation: blink 1s step-start infinite;
   vertical-align: bottom;
   margin-left: 2px;
+}
+
+.terminal-input {
+  outline: none;
+  display: inline-block;
+  min-width: 10px;
+  color: #00cc66;
 }
 
 @keyframes blink {
