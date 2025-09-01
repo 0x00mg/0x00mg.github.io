@@ -65,7 +65,7 @@
     });
     renderResults(results, resultsEl);
   }
-
+/***
   function positionResults(input, resultsEl) {
     const rect = input.getBoundingClientRect();
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -73,8 +73,9 @@
     resultsEl.style.width = rect.width + 'px';
     resultsEl.style.top = (rect.bottom + scrollTop) + 'px';
     resultsEl.style.left = (rect.left + scrollLeft) + 'px';
+  
   }
-
+***/
   function bindSearchInput(searchId, resultsId) {
     const input = document.getElementById(searchId);
     const resultsEl = document.getElementById(resultsId);
