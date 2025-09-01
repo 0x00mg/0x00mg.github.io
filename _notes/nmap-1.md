@@ -10,7 +10,7 @@ Target Specification
 ---------------------------------------------------
 
 | Switch | Example | Description |
-|--------|---------|-------------|
+|--------|------------------|-------------|
 | |nmap 192.168.1.1| Sken jednej IP adresy |
 |  |  nmap 192.168.1.1 192.168.2.1 |  Sken konkrétnych IP adries |
 |  |  nmap 192.168.1.1-254 |  Sken rozsahu |
