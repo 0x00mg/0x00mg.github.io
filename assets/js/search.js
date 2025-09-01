@@ -24,7 +24,7 @@
     resultsEl.innerHTML = '';
     resultsEl.style.display = 'none';
   }
-
+// tri bodky //
   function renderLoading(resultsEl){
     resultsEl.innerHTML = '';
     const li = document.createElement('li');
@@ -69,9 +69,9 @@
       return;
     }
 
-    // najskôr zobrazíme "..." (loading/placeholder)
+  // najskôr zobrazíme "..." (loading/placeholder)
     renderLoading(resultsEl);
-
+    
     const posts = await loadIndex();
     const results = posts.filter(p => {
       const t = (p.title || '').toLowerCase();
