@@ -1,3 +1,9 @@
+---
+layout: page
+title: "About Me"
+permalink: /about_me/
+---
+
 const terminal = document.getElementById('terminal');
 
 const lines = [
@@ -23,25 +29,23 @@ const lines = [
 
 let lineIndex = 0;
 
-// kurzor bude vždy na konci
+// vytvoríme kurzor
 let cursor = document.createElement('span');
 cursor.className = 'cursor';
 terminal.appendChild(cursor);
 
 function typeLine(line, callback) {
   let charIndex = 0;
-
   function typeChar() {
     if (charIndex < line.length) {
       cursor.insertAdjacentText('beforebegin', line.charAt(charIndex));
       charIndex++;
-      setTimeout(typeChar, 30);
+      setTimeout(typeChar, 30); // rýchlosť písania
     } else {
       cursor.insertAdjacentText('beforebegin', '\n');
       callback();
     }
   }
-
   typeChar();
 }
 
@@ -49,12 +53,13 @@ function typeNextLine() {
   if (lineIndex < lines.length) {
     typeLine(lines[lineIndex], () => {
       lineIndex++;
-      setTimeout(typeNextLine, 200);
+      setTimeout(typeNextLine, 200); // pauza medzi riadkami
     });
   } else {
-    // kurzor je stále na konci, animácia blink sa aplikuje cez CSS
+    // kurzor zostáva blikať na konci
     terminal.appendChild(cursor);
   }
 }
 
-typeNextLine();
+// spusti animáciu po načítaní stránky
+document.addEventListener('DOMContentLoaded', typeNextLine);
