@@ -85,12 +85,21 @@ function enableInput() {
 
 function processCommand(cmd) {
   if(cmd.toLowerCase() === 'exit') {
-    // vymažeme celý obsah terminálu, ale kurzor zostane
-    terminal.textContent = '';
-    terminal.appendChild(cursor);
+    // vypíšeme správu logout
+    const msg = "Logging out... goodbye!\n";
+    terminal.insertBefore(document.createTextNode(msg), cursor);
+    terminal.scrollTop = terminal.scrollHeight;
+
+    // po 3 sekundách vymažeme obsah, kurzor zostane
+    setTimeout(() => {
+      terminal.textContent = '';
+      terminal.appendChild(cursor);
+    }, 3000);
+
     return;
   }
 
+    
   let output = '';
   switch(cmd.toLowerCase()) {
     case 'help':
