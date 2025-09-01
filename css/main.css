@@ -128,7 +128,6 @@ table a {
     text-align: left;
     position: absolute;
     z-index: 1000;
-    width: 300px; /* nastav podľa potreby */
     max-height: 300px;
     overflow-y: auto;
     padding: 0;
@@ -151,10 +150,12 @@ table a {
 #results li a:visited,
 #results li a:active {
     display: block;
-    color: #000 !important;
+    color: #000 !important; /* čierny text */
     font-size: 14px;
     padding: 6px 8px;
+    text-decoration: none;
 }
+
 #results li a:hover {
     background: #f0f0f0;
     color: #000 !important;
