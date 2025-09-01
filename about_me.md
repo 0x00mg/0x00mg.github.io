@@ -1,3 +1,6 @@
+<div id="terminal"></div>
+
+<script>
 const terminal = document.getElementById('terminal');
 
 const lines = [
@@ -52,9 +55,10 @@ function typeNextLine() {
       setTimeout(typeNextLine, 200);
     });
   } else {
-    // po dokončení pridáme stále blikajúci kurzor na konci
+    // po dokončení stále blikajúci kurzor
     cursor.classList.add('blink');
   }
 }
 
 typeNextLine();
+</script>
