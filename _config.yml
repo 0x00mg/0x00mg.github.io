@@ -25,6 +25,12 @@ blog:
     nick: "0x4d47"
 fingerprint_key: "5E12 9ABC C2A9 564B C048  2DF9 D327 0D10 BC71 CF75"
 
+collections:
+  notes:
+    output: true
+    permalink: /notes/:title/
+
+
 # Build settings
 markdown: kramdown
 permalink: /:categories/:title/
