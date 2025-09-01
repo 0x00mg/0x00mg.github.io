@@ -1,5 +1,7 @@
 async function searchPosts() {
-  const query = document.getElementById("searchBox").value.toLowerCase();
+  const searchBox = document.getElementById("searchBox");
+  const query = searchBox.value.toLowerCase();
+
   const response = await fetch("/search.json");
   const posts = await response.json();
 
@@ -10,6 +12,11 @@ async function searchPosts() {
 
   let resultList = document.getElementById("results");
   resultList.innerHTML = "";
+
+  if (query.trim() === "") {
+    return; // ak je prázdne pole, nič nezobrazi
+  }
+
   results.forEach(r => {
     let item = document.createElement("li");
     item.innerHTML = `<a href="${r.url}">${r.title}</a>`;
@@ -17,22 +24,22 @@ async function searchPosts() {
   });
 }
 
-// Napojenie udalostí po načítaní stránky
+// Udalosti po načítaní stránky
 document.addEventListener("DOMContentLoaded", () => {
   const searchBox = document.getElementById("searchBox");
 
   if (searchBox) {
-    // Spustí vyhľadávanie pri stlačení Enter
+    // Enter – zastaví defaultné správanie formulára a spustí vyhľadávanie
     searchBox.addEventListener("keypress", (e) => {
       if (e.key === "Enter") {
+        e.preventDefault();   // zabráni reloadu stránky
         searchPosts();
       }
     });
 
-    // Spustí vyhľadávanie aj počas písania (živé výsledky)
+    // Živé vyhľadávanie počas písania
     searchBox.addEventListener("input", () => {
       searchPosts();
     });
   }
 });
-
