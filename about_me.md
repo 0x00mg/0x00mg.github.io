@@ -1,48 +1,3 @@
----
-layout: page
-title: "About Me"
-permalink: /about_me/
----
-
-<!DOCTYPE html>
-<html lang="sk">
-<head>
-<meta charset="UTF-8">
-<title>About Me - Hacker Style</title>
-<style>
-  body {
-    background-color: #0d0d0d;
-    color: #00cc66;
-    font-family: "Courier New", monospace;
-    padding: 20px;
-  }
-  #terminal {
-    background-color: #000;
-    padding: 20px;
-    border-radius: 4px;
-    box-shadow: 0 0 10px #00ff00;
-    max-width: 800px;
-    margin: auto;
-    white-space: pre-wrap;
-    position: relative;
-  }
-  .cursor {
-    display: inline-block;
-    width: 10px;
-    background-color: #00cc66;
-    animation: blink 1s step-start infinite;
-    vertical-align: bottom;
-    margin-left: 2px;
-  }
-  @keyframes blink {
-    50% { background-color: transparent; }
-  }
-</style>
-</head>
-<body>
-<div id="terminal"></div>
-
-<script>
 const terminal = document.getElementById('terminal');
 
 const lines = [
@@ -67,10 +22,13 @@ const lines = [
 ];
 
 let lineIndex = 0;
+
+// kurzor
 let cursor = document.createElement('span');
 cursor.className = 'cursor';
 terminal.appendChild(cursor);
 
+// Funkcia pre písanie jedného riadku
 function typeLine(line, callback) {
   let charIndex = 0;
   function typeChar() {
@@ -86,18 +44,17 @@ function typeLine(line, callback) {
   typeChar();
 }
 
+// Funkcia pre písanie všetkých riadkov
 function typeNextLine() {
   if (lineIndex < lines.length) {
     typeLine(lines[lineIndex], () => {
       lineIndex++;
       setTimeout(typeNextLine, 200);
     });
+  } else {
+    // po dokončení pridáme stále blikajúci kurzor na konci
+    cursor.classList.add('blink');
   }
 }
 
 typeNextLine();
-</script>
-</body>
-</html>
-
-
