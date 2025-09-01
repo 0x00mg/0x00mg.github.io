@@ -1,9 +1,5 @@
 (function(){
-  // Vyhľadávanie pre Jekyll/GitHub Pages
-
-  // Fix: vždy načítaj search.json z rootu
   const searchJsonUrl = '/search.json';
-
   let postsCache = null;
 
   async function loadIndex(){
@@ -24,7 +20,7 @@
     resultsEl.innerHTML = '';
     resultsEl.style.display = 'none';
   }
-// tri bodky //
+
   function renderLoading(resultsEl){
     resultsEl.innerHTML = '';
     const li = document.createElement('li');
@@ -51,10 +47,6 @@
       const a = document.createElement('a');
       a.href = r.url;
       a.textContent = r.title;
-      a.style.display = 'block';
-      a.style.padding = '6px 8px';
-      a.style.textDecoration = 'none';
-      
       li.appendChild(a);
       resultsEl.appendChild(li);
     });
@@ -69,16 +61,24 @@
       return;
     }
 
-  // najskôr zobrazíme "..." (loading/placeholder)
     renderLoading(resultsEl);
-    
+
     const posts = await loadIndex();
     const results = posts.filter(p => {
       const t = (p.title || '').toLowerCase();
       const c = (p.content || '').toLowerCase();
-      return (t.includes(q) || c.includes(q));
+      return t.includes(q) || c.includes(q);
     });
+
     renderResults(results, resultsEl);
+  }
+
+  function positionResults(input, resultsEl){
+    const rect = input.getBoundingClientRect();
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    resultsEl.style.width = rect.width + 'px';
+    resultsEl.style.top = (rect.bottom + scrollTop) + 'px';
+    resultsEl.style.left = rect.left + 'px';
   }
 
   function bindSearchInput(searchId, resultsId){
@@ -86,7 +86,12 @@
     const resultsEl = document.getElementById(resultsId);
     if (!input || !resultsEl) return;
 
-    // debounce aby sa nevolalo príliš často
+    // initial positioning
+    positionResults(input, resultsEl);
+
+    // update positioning on resize
+    window.addEventListener('resize', () => positionResults(input, resultsEl));
+
     let debounce = null;
 
     input.addEventListener('input', function(){
@@ -101,15 +106,12 @@
         e.preventDefault();
         await doSearch(input.value, resultsEl);
         const firstLink = resultsEl.querySelector('a');
-        if (firstLink) {
-          window.location.href = firstLink.href;
-        }
+        if (firstLink) window.location.href = firstLink.href;
       } else if (e.key === 'Escape') {
         clearResults(resultsEl);
       }
     });
 
-    // klik mimo skryje výsledky
     document.addEventListener('click', function(e){
       if (!input.contains(e.target) && !resultsEl.contains(e.target)) {
         resultsEl.style.display = 'none';
@@ -120,5 +122,4 @@
   document.addEventListener('DOMContentLoaded', function(){
     bindSearchInput('searchBox','results');
   });
-
 })();
