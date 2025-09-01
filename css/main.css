@@ -232,25 +232,29 @@ margin: unset;
 /* Výsledky vyhľadávania */
 #results {
   background: #fff;
-  color: #000;
-  text-align: left;         /* nech nie je centrované ako body */
+  text-align: left;
 }
 
 #results li {
   border-bottom: 1px solid #eee;
+  background: #fff;              /* fix pozadia */
 }
 
 #results li:last-child {
   border-bottom: none;
 }
 
-#results li a {
+#results li a,
+#results li a:visited,
+#results li a:active {
   display: block;
-  color: #000 !important;   /* čierny text */
+  color: #000 !important;        /* čierny text */
   font-size: 14px;
   padding: 6px 8px;
 }
 
 #results li a:hover {
-  background: #f0f0f0;      /* hover efekt */
+  background: #f0f0f0;
+  color: #000 !important;        /* nech hover nespôsobí zmenu */
 }
+
