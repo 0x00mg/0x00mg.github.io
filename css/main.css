@@ -225,3 +225,32 @@ margin: unset;
   .profile-photo {
     display: none;
 }
+
+}
+
+/* ------------------- */
+/* Výsledky vyhľadávania */
+#results {
+  background: #fff;
+  color: #000;
+  text-align: left;         /* nech nie je centrované ako body */
+}
+
+#results li {
+  border-bottom: 1px solid #eee;
+}
+
+#results li:last-child {
+  border-bottom: none;
+}
+
+#results li a {
+  display: block;
+  color: #000 !important;   /* čierny text */
+  font-size: 14px;
+  padding: 6px 8px;
+}
+
+#results li a:hover {
+  background: #f0f0f0;      /* hover efekt */
+}
