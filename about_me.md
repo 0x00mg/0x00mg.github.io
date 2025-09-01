@@ -39,6 +39,7 @@ terminal.appendChild(cursor); // kurzor je stále posledný element
 
 function typeLine(line, callback) {
   let charIndex = 0;
+
   function typeChar() {
     if (charIndex < line.length) {
       cursor.insertAdjacentText('beforebegin', line.charAt(charIndex));
@@ -49,6 +50,7 @@ function typeLine(line, callback) {
       callback();
     }
   }
+
   typeChar();
 }
 
@@ -82,6 +84,13 @@ function enableInput() {
 }
 
 function processCommand(cmd) {
+  if(cmd.toLowerCase() === 'exit') {
+    // vymažeme celý obsah terminálu, ale kurzor zostane
+    terminal.textContent = '';
+    terminal.appendChild(cursor);
+    return;
+  }
+
   let output = '';
   switch(cmd.toLowerCase()) {
     case 'help':
@@ -90,12 +99,10 @@ function processCommand(cmd) {
     case 'whoami':
       output = "Miroslav Gensor";
       break;
-    case 'exit':
-      output = "Logging out... goodbye!";
-      break;
     default:
       output = "Unknown command: " + cmd;
   }
+
   terminal.insertBefore(document.createTextNode(output + '\n'), cursor);
   terminal.scrollTop = terminal.scrollHeight;
 }
