@@ -76,9 +76,11 @@
   function positionResults(input, resultsEl){
     const rect = input.getBoundingClientRect();
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+  
     resultsEl.style.width = rect.width + 'px';
     resultsEl.style.top = (rect.bottom + scrollTop) + 'px';
-    resultsEl.style.left = rect.left + 'px';
+    resultsEl.style.left = (rect.left + scrollLeft) + 'px';
   }
 
   function bindSearchInput(searchId, resultsId){
