@@ -1,18 +1,8 @@
 (function(){
-  // Robust search for Jekyll/GitHub Pages. Slovak comments.
-  // Zistí, odkiaľ sa načítal tento skript a podľa toho zostaví URL na search.json
-  const scripts = document.getElementsByTagName('script');
-  let selfScript = null;
-  for (let i = scripts.length - 1; i >= 0; i--) {
-    const s = scripts[i];
-    if (!s.src) continue;
-    if (s.src.indexOf('assets/js/search.js') !== -1 || s.src.indexOf('/assets/js/search.js') !== -1) {
-      selfScript = s;
-      break;
-    }
-  }
+  // Vyhľadávanie pre Jekyll/GitHub Pages
 
-  const searchJsonUrl = selfScript ? new URL('../search.json', selfScript.src).href : '/search.json';
+  // Fix: vždy načítaj search.json z rootu
+  const searchJsonUrl = '/search.json';
 
   let postsCache = null;
 
@@ -73,7 +63,7 @@
     const results = posts.filter(p => {
       const t = (p.title || '').toLowerCase();
       const c = (p.content || '').toLowerCase();
-      return (t.indexOf(q) !== -1) || (c.indexOf(q) !== -1);
+      return (t.includes(q) || c.includes(q));
     });
     renderResults(results, resultsEl);
   }
@@ -83,7 +73,7 @@
     const resultsEl = document.getElementById(resultsId);
     if (!input || !resultsEl) return;
 
-    // debounce to avoid many fetches
+    // debounce aby sa nevolalo príliš často
     let debounce = null;
 
     input.addEventListener('input', function(){
@@ -97,30 +87,21 @@
       if (e.key === 'Enter') {
         e.preventDefault();
         await doSearch(input.value, resultsEl);
-        // ak sú výsledky, otvoriť prvý výsledok (časté očakávanie používateľov)
         const firstLink = resultsEl.querySelector('a');
         if (firstLink) {
           window.location.href = firstLink.href;
         }
       } else if (e.key === 'Escape') {
-        // Esc skryje výsledky
         clearResults(resultsEl);
       }
     });
 
-    // ak klikne používateľ mimo, skryť výsledky (menu.html má tiež rovnakú logiku)
+    // klik mimo skryje výsledky
     document.addEventListener('click', function(e){
       if (!input.contains(e.target) && !resultsEl.contains(e.target)) {
         resultsEl.style.display = 'none';
       }
     });
-
-    // expose API kompatibilné s existujúcim kódom v menu.html
-    window.simpleSearch = window.simpleSearch || {};
-    window.simpleSearch.bindSearchInput = function(sid, rid){ bindSearchInput(sid, rid); };
-
-    // initial bind: ak niekto volá bindSearchInput z menu.html, nech to funguje
-    // (menu.html volá window.simpleSearch.bindSearchInput('searchBox','results');)
   }
 
   document.addEventListener('DOMContentLoaded', function(){
