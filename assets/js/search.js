@@ -54,7 +54,7 @@
       a.style.display = 'block';
       a.style.padding = '6px 8px';
       a.style.textDecoration = 'none';
-      a.style.color = 'inherit';
+      
       li.appendChild(a);
       resultsEl.appendChild(li);
     });
