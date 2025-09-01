@@ -56,41 +56,37 @@ pre {
 }
 
 /* Výsledky vyhľadávania */
+.search-container {
+  position: relative;
+}
+
 #results {
-    position: absolute;
-    top: 100%; /* presne pod input */
-    left: 0;
-    width: 100%;
-    max-height: 300px; /* výška dropdownu */
-    overflow-y: auto;  /* scrollbar, ak je veľa výsledkov */
-    background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 0;
-    margin: 2px 0 0 0; /* malý odstup od input */
-    list-style: none;
-    display: none;
-    z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 250px;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0;
+  margin: 2px 0 0 0;
+  list-style: none;
+  display: none;
+  z-index: 1000;
 }
-
-#results li {
-    border-bottom: 1px solid #eee;
-}
-
-#results li:last-child { border-bottom: none; }
 
 #results li a {
-    display: block;
-    color: #000;
-    font-size: 14px;
-    padding: 6px 8px;
-    text-decoration: none;
+  display: block;
+  padding: 6px 8px;
+  color: #000;
+  text-decoration: none;
 }
 
 #results li a:hover {
-    background: #f0f0f0;
-    color: #000;
+  background: #f0f0f0;
+  color: #000;
 }
 
 /* Responsive */
