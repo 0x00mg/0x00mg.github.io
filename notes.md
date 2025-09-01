@@ -4,7 +4,9 @@ title: "Notes"
 permalink: /notes/
 ---
 
-# Notes
+Notes sa pripravuje ....
+
+## Notes
 
 * nmap
 * ftp
