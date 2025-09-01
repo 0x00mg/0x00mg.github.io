@@ -51,6 +51,7 @@ const lines = [
   "Username: Miroslav Gensor",
   "Education: Mechanik elektrotechnik, cislicova a riadiaca technika",
   "Location: Bratislava",
+  "Company: IFT - InForm Technologies a.s.",
   "----------------------------------------",
   "Loading profession modules...",
   "[OK] RIS & SCADA systems specialist loaded",
