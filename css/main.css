@@ -123,4 +123,12 @@ pre {
   50% { background-color: transparent; }
 }
 
+/* --- Category styling --- */
+.category,
+.post-category,
+a.category,
+a.post-category {
+  color: #A18913 !important;
+}
+
 
