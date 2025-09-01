@@ -25,6 +25,15 @@
     resultsEl.style.display = 'none';
   }
 
+  function renderLoading(resultsEl){
+    resultsEl.innerHTML = '';
+    const li = document.createElement('li');
+    li.textContent = '...';
+    li.style.padding = '6px 8px';
+    resultsEl.appendChild(li);
+    resultsEl.style.display = 'block';
+  }
+
   function renderResults(results, resultsEl){
     resultsEl.innerHTML = '';
     if (!results || results.length === 0) {
@@ -59,6 +68,10 @@
       clearResults(resultsEl);
       return;
     }
+
+    // najskôr zobrazíme "..." (loading/placeholder)
+    renderLoading(resultsEl);
+
     const posts = await loadIndex();
     const results = posts.filter(p => {
       const t = (p.title || '').toLowerCase();
