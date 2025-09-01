@@ -5,11 +5,8 @@
   async function loadIndex() {
     if (postsCache) return postsCache;
     try {
-      console.log('Fetching search.json from:', searchJsonUrl);
       const res = await fetch(searchJsonUrl, { cache: 'no-store' });
-      if (!res.ok) throw new Error('fetch failed ' + res.status);
       postsCache = await res.json();
-      console.log('Loaded posts:', postsCache);
       return postsCache;
     } catch (err) {
       console.error('Error loading search.json:', err);
@@ -23,40 +20,27 @@
     resultsEl.style.display = 'none';
   }
 
-  function renderLoading(resultsEl) {
-    resultsEl.innerHTML = '';
-    const li = document.createElement('li');
-    li.textContent = '...';
-    li.style.padding = '6px 8px';
-    resultsEl.appendChild(li);
-    resultsEl.style.display = 'block';
-  }
-
   function renderResults(results, resultsEl) {
     resultsEl.innerHTML = '';
-    if (!results || results.length === 0) {
-      const li = document.createElement('li');
-      li.textContent = 'Nenašlo sa nič.';
-      li.style.padding = '6px 8px';
-      resultsEl.appendChild(li);
-      resultsEl.style.display = 'block';
-      return;
+    if (!results.length) {
+      resultsEl.innerHTML = '<li style="padding:6px 8px;">Nenašlo sa nič.</li>';
+    } else {
+      results.forEach(r => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = r.url;
+        a.textContent = r.title;
+        li.appendChild(a);
+        resultsEl.appendChild(li);
+      });
     }
-    results.forEach(r => {
-      const li = document.createElement('li');
-      const a = document.createElement('a');
-      a.href = r.url;
-      a.textContent = r.title;
-      li.appendChild(a);
-      resultsEl.appendChild(li);
-    });
     resultsEl.style.display = 'block';
   }
 
   async function doSearch(query, resultsEl) {
     const q = (query || '').trim().toLowerCase();
-    if (!q) { clearResults(resultsEl); return; }
-    renderLoading(resultsEl);
+    if (!q) return clearResults(resultsEl);
+
     const posts = await loadIndex();
     const results = posts.filter(p => {
       const t = (p.title || '').toLowerCase();
@@ -65,38 +49,17 @@
     });
     renderResults(results, resultsEl);
   }
-/***
-  function positionResults(input, resultsEl) {
-    const rect = input.getBoundingClientRect();
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-    resultsEl.style.width = rect.width + 'px';
-    resultsEl.style.top = (rect.bottom + scrollTop) + 'px';
-    resultsEl.style.left = (rect.left + scrollLeft) + 'px';
-  
-  }
-***/
+
   function bindSearchInput(searchId, resultsId) {
     const input = document.getElementById(searchId);
     const resultsEl = document.getElementById(resultsId);
     if (!input || !resultsEl) return;
 
-    // initial positioning
-    positionResults(input, resultsEl);
+    input.addEventListener('input', () => doSearch(input.value, resultsEl));
 
-    // update on resize
-    window.addEventListener('resize', () => positionResults(input, resultsEl));
-
-    let debounce = null;
-    input.addEventListener('input', () => {
-      clearTimeout(debounce);
-      debounce = setTimeout(() => doSearch(input.value, resultsEl), 150);
-    });
-
-    input.addEventListener('keydown', async e => {
+    input.addEventListener('keydown', e => {
       if (e.key === 'Enter') {
         e.preventDefault();
-        await doSearch(input.value, resultsEl);
         const firstLink = resultsEl.querySelector('a');
         if (firstLink) window.location.href = firstLink.href;
       } else if (e.key === 'Escape') {
@@ -111,7 +74,5 @@
     });
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    bindSearchInput('searchBox','results');
-  });
+  document.addEventListener('DOMContentLoaded', () => bindSearchInput('searchBox','results'));
 })();
