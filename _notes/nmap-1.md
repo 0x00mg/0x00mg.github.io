@@ -223,3 +223,4 @@ Other Useful Nmap Commands
 |  nmap -iR 10 -sn -traceroute |  Traceroute na náhodné ciele, bez skenu portov |
 |  nmap 192.168.1.1-50 -sL --dns-server 192.168.1.1 &nbsp;|  Dopyt na interný DNS pre hostiteľov, len vypíše ciele |
 
+&nbsp;
