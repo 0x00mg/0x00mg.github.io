@@ -17,8 +17,8 @@ image: /images/posts/2025/mirai/mirai1.jpg
 
 Mirai je malware typu botnet, ktorý sa prvýkrát objavil v roku 2016.
 Vytvorila ho skupina mladých programátorov v USA (Paras Jha, Josiah White a Dalton Norman).
-Bol určený na infikovanie IoT zariadení (kamery, routery, DVR rekordéry a pod.), ktoré mali predvolené alebo slabé prihlasovacie údaje. 
-Po infikovaní zariadenie vstúpilo do botnetu ktorý útočníci využívali na DDoS útoky 
+Bol určený na infikovanie IoT zariadení (kamery, routery, DVR rekordéry a pod.) ktoré mali predvolené alebo slabé prihlasovacie údaje. 
+Po infikovaní zariadenie vstúpilo do botnetu ktorý útočníci využívali na DDoS útoky.
 Mirai automaticky skenoval internet a hľadal zariadenia prístupné cez Telnet alebo SSH. Potom skúšal zoznam známych predvolených používateľských mien a hesiel.
 Najznámejšie použitie Mirai botnetu bol masívny útok na DNS poskytovateľa Dyn v októbri 2016, ktorý spôsobil výpadky veľkých služieb ako Twitter, Netflix, Reddit či Spotify.
 [Mirai(Malware)](https://en.wikipedia.org/wiki/Mirai_(malware))
@@ -33,8 +33,8 @@ Vďaka tomu vieme určiť ďalší smer prieskumu a hľadať potenciálne zranit
 
 Na rýchle odhalenie všetkých portov použijem príkaz:
 
-`-p-`  skenujem všetkých 65 535 portov.
-`--min-rate 10000`  nastavuje minimálnu rýchlosť odosielania paketov (10 000 za sekundu), aby bol sken výrazne rýchlejší.
+`-p-`  skenujem všetkých 65 535 portov. 
+`--min-rate 10000`  nastavuje minimálnu rýchlosť odosielania paketov (10 000 za sekundu), aby bol sken výrazne rýchlejší. 
 
 
 
