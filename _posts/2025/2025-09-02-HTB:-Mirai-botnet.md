@@ -33,7 +33,7 @@ Vďaka tomu vieme určiť ďalší smer prieskumu a hľadať potenciálne zranit
 
 Na rýchle odhalenie všetkých portov použijem príkaz:
 
-`-p-`  skenujem všetkých 65 535 portov. 
+`-p-`  skenujem všetkých 65 535 portov.  
 `--min-rate 10000`  nastavuje minimálnu rýchlosť odosielania paketov (10 000 za sekundu), aby bol sken výrazne rýchlejší. 
 
 
