@@ -10,7 +10,7 @@ tags:
     - botnet
     - raspberry
    
-image: /images/posts/2025/htb-mirai/xxxx.jpg
+image: /images/posts/2025/mirai/mirai1.jpg
 ---
 
 ## Mirai Malware
@@ -28,8 +28,14 @@ Toto laboratórium demonštruje aké rizikové je ponechať zariadenie s predvol
 ### Prieskum
 
 Po prihlásení do laboratória a priradení cieľovej IP adresy je prvým krokom vždy získať prehľad o tom, aké služby stroj ponúka. 
-Na to je najjednoduchšie použiť nástroj 'nmap' ktorý nám umožní zistiť otvorené porty, spustené služby a aj ich verzie. 
+Na to je najjednoduchšie použiť nástroj `nmap` ktorý nám umožní zistiť otvorené porty, spustené služby a aj ich verzie. 
 Vďaka tomu vieme určiť ďalší smer prieskumu a hľadať potenciálne zraniteľnosti. Preto začnem skenom cieľa.
+
+Na rýchle odhalenie všetkých portov použijem príkaz:
+
+`-p-`  skenujem všetkých 65 535 portov.
+`--min-rate 10000`  nastavuje minimálnu rýchlosť odosielania paketov (10 000 za sekundu), aby bol sken výrazne rýchlejší.
+
 
 
 
