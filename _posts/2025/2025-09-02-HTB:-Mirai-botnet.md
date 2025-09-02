@@ -39,4 +39,7 @@ Na rýchle odhalenie všetkých portov použijem príkaz:
 
 
 
+
+
+
 (Na pokračovaní sa pracuje ... )
