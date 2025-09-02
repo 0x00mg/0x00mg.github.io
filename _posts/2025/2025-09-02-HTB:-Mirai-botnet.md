@@ -1,4 +1,17 @@
-
+---
+layout: post
+title:	"HTB: Mirai Botnet"
+date:	2025-09-02 10:00:00 +0200 
+author: "0x00mg"
+categories:
+    - blog
+tags:
+    - malware
+    - botnet
+    - raspberry
+   
+image: /images/posts/2025/htb/xxxx.jpg
+---
 
 
 
