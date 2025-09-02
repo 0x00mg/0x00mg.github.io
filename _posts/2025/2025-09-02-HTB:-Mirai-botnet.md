@@ -10,7 +10,7 @@ tags:
     - botnet
     - raspberry
    
-image: /images/posts/2025/htb/xxxx.jpg
+image: /images/posts/2025/htb-mirai/xxxx.jpg
 ---
 
 
