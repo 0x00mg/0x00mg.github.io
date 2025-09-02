@@ -5,26 +5,54 @@
     </footer>
 
     <div id="visit-line" style="margin-top:8px; font-size:0.95em; text-align:center;">
-      <span id="visit-count">Načítam počítadlo…</span>
-    </div>
-    <script>
-      (function(){
-        // CountAPI: simple, no-auth counter
-        var ns = "0x00mg.github.io"; // namespace — change if you want a shared counter
-        var key = "main_visits";
-        var url = "https://api.countapi.xyz/hit/" + encodeURIComponent(ns) + "/" + encodeURIComponent(key);
-        fetch(url).then(function(resp){ return resp.json() }).then(function(data){
-          if(data && data.value !== undefined){
-            document.getElementById("visit-count").textContent = "Návštev: " + data.value;
-          } else {
-            document.getElementById("visit-count").textContent = "Návštev: ? (chyba)";
-          }
-        }).catch(function(err){
-          console.log("CountAPI error", err);
-          document.getElementById("visit-count").textContent = "Návštev: ? (offline)";
-        });
-      })();
-    </script>
+  <span id="visit-count">Načítam počítadlo…</span>
+</div>
+
+<script>
+(function(){
+  const ns = "0x00mg.github.io";
+  const key = "main_visits";
+  const el = document.getElementById("visit-count");
+  if(!el) return;
+  const offlineKey = "local_visits_"+ns+"_"+key;
+
+  function show(text){ el.textContent = text; }
+
+  async function tryCount(){
+    const url = "https://api.countapi.xyz/hit/" + encodeURIComponent(ns) + "/" + encodeURIComponent(key);
+    try {
+      // timeout pomocou AbortController (5s)
+      const controller = new AbortController();
+      const t = setTimeout(()=>controller.abort(), 5000);
+      const resp = await fetch(url, { signal: controller.signal, cache: "no-store" });
+      clearTimeout(t);
+      if(!resp.ok) throw new Error("Status " + resp.status);
+      const data = await resp.json();
+      if(data && typeof data.value !== "undefined"){
+        const offline = parseInt(localStorage.getItem(offlineKey) || "0", 10);
+        if(offline > 0){
+          // zobraz serverovú hodnotu + počet offline záznamov
+          show("Návštev: " + data.value + " (+" + offline + " offline)");
+        } else {
+          show("Návštev: " + data.value);
+        }
+        return;
+      }
+      throw new Error("no value");
+    } catch(err) {
+      console.log("CountAPI failed or blocked:", err);
+      // fallback: inkrementujeme lokálny counter v localStorage
+      let v = parseInt(localStorage.getItem(offlineKey) || "0", 10);
+      v = v + 1;
+      localStorage.setItem(offlineKey, String(v));
+      show("Návštev (offline): " + v);
+    }
+  }
+
+  tryCount();
+})();
+</script>
+
     
   </div>
 </div>
