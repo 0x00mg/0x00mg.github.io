@@ -4,54 +4,8 @@
       {{ site.bye_message }}
     </footer>
 
-    <div id="visit-line" style="margin-top:8px; font-size:0.95em; text-align:center;">
-  <span id="visit-count">Načítam počítadlo…</span>
-</div>
-
-<script>
-(function(){
-  const ns = "0x00mg.github.io";
-  const key = "main_visits";
-  const el = document.getElementById("visit-count");
-  if(!el) return;
-  const offlineKey = "local_visits_"+ns+"_"+key;
-
-  function show(text){ el.textContent = text; }
-
-  async function tryCount(){
-    const url = "https://api.countapi.xyz/hit/" + encodeURIComponent(ns) + "/" + encodeURIComponent(key);
-    try {
-      // timeout pomocou AbortController (5s)
-      const controller = new AbortController();
-      const t = setTimeout(()=>controller.abort(), 5000);
-      const resp = await fetch(url, { signal: controller.signal, cache: "no-store" });
-      clearTimeout(t);
-      if(!resp.ok) throw new Error("Status " + resp.status);
-      const data = await resp.json();
-      if(data && typeof data.value !== "undefined"){
-        const offline = parseInt(localStorage.getItem(offlineKey) || "0", 10);
-        if(offline > 0){
-          // zobraz serverovú hodnotu + počet offline záznamov
-          show("Návštev: " + data.value + " (+" + offline + " offline)");
-        } else {
-          show("Návštev: " + data.value);
-        }
-        return;
-      }
-      throw new Error("no value");
-    } catch(err) {
-      console.log("CountAPI failed or blocked:", err);
-      // fallback: inkrementujeme lokálny counter v localStorage
-      let v = parseInt(localStorage.getItem(offlineKey) || "0", 10);
-      v = v + 1;
-      localStorage.setItem(offlineKey, String(v));
-      show("Návštev (offline): " + v);
-    }
-  }
-
-  tryCount();
-})();
-</script>
+    <a href='https://www.free-counters.org/'>free Hit Counter</a> <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=a7bf823fc09d85bee91981b1666043184e6b3eb5'></script>
+    <script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1384619/t/1"></script>
 
     
   </div>
