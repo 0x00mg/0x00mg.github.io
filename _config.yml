@@ -1,12 +1,12 @@
 # Site settings
-title: "0x4d47"
+title: "0x00mg"
 bye_message: "Thx!"
 baseurl: ""
 url: "https://0x4d47.github.io"
 disqus: setuid
 
 # Header settings
-nick: "0x4d47"
+nick: "0x00mg"
 fullname: "miroslav.gensor"
 hackthebox:
     server: "app.hackthebox.com"
@@ -19,10 +19,10 @@ mail:
     ext: "com"
 source_code:
     server: "github.com"
-    nick: "0x4d47"
+    nick: "0x00mg"
 blog:
     server: "wordpress.com"
-    nick: "0x4d47"
+    nick: "xxxx"
 fingerprint_key: "5E12 9ABC C2A9 564B C048  2DF9 D327 0D10 BC71 CF75"
 
 collections:
