@@ -33,9 +33,24 @@ Vďaka tomu vieme určiť ďalší smer prieskumu a hľadať potenciálne zranit
 
 Na rýchle odhalenie všetkých portov použijem príkaz:
 
+IMAGE
+
 `-p-`  skenujem všetkých 65 535 portov.  
 `--min-rate 10000`  nastavuje minimálnu rýchlosť odosielania paketov (10 000 za sekundu), aby bol sken výrazne rýchlejší. 
 
+Po ukončení skenu si otvorené porty oskenujem hlbšie:
+
+IMAGE
+
+´-sC´ spustí default NSE skripty (Nmap Scripting Engine).
+Tieto skripty skúšajú získať extra info o službách (verzia SSH, SSL certifikát, HTTP titulok, FTP info atď.).
+
+´-sV´ spustí detekciu verzií služieb na otvorených portoch.
+Nmap sa pokúsi zistiť presný softvér a verziu
+
+Poprípade môžme použiť hlbši sken hneď pomocou ´nmap -A -Pn -T4 -p- $IP´
+
+Popis o výsledkoch.....
 
 
 
