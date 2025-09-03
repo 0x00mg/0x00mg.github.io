@@ -62,7 +62,24 @@ Poprípade môžme použiť hlbši sken hneď pomocou `nmap -A -Pn -T4 -p- $IP`
 `-p-` skenuje všetky porty (1–65535), nie len default 1000.  
 
 #### 80/TCP
-Predtým ako sa pokúsime o zneužitie tak sa pokúsime otvoriť web (http://1.2.3.4:80)
+Predtým ako sa pokúsime o zneužitie tak sa pokúsime otvoriť web (http://1.2.3.4:80)  
+Stránka nám nič nevráti.  
+Hlavičky odpovede HTTP poskytujú niekoľko náznakov:  
+
+IMAGE
+
+Máme niekoľko možností ako zistiť viac informácií o webovej stránke, napr. pomocu: Gobuster, Nikto, feroxbuster...  
+Pre naše účely použijeme [gobuster](https://github.com/OJ/gobuster)
+
+IMAGE
+
+`-w` určuje wordlist, teda zoznam slov alebo názvov adresárov/súborov, ktoré bude nástroj skúšať.  
+`-u` je cieľová URL.  
+`-x` = prípony súborov, ktoré má skúšať.  
+`2>/dev/null` Presmerovanie chybných alebo varovných výstupov (stderr) do „temnoty“.  
+`-k` Tento prepínač hovorí Gobusteru ignorovať problémy s HTTPS certifikátmi, ak by bol cieľ HTTPS.
+&nbsp;&nbsp;&nbsp;&nbsp;V tomto prípade, hoci je URL HTTP, -k sa väčšinou neškodí, ale ak by bola HTTPS, zabezpečí, že certifikát self-signed neblokuje scan.
+
 
 
 Popis o výsledkoch.....
