@@ -58,7 +58,7 @@ Poprípade môžme použiť hlbši sken hneď pomocou `nmap -A -Pn -T4 -p- $IP`
 `-T4` časovanie/agresivita.  
 ⋅⋅⋅T0 = stealth, super pomalé,⋅⋅  
 ⋅⋅⋅T4 = rýchle skenovanie vhodné pre lokálne siete alebo keď vieš, že nechceš čakať,⋅⋅  
-⋅⋅⋅⋅T5 = extrémne rýchle, ale môže spôsobiť chybovosť.⋅⋅  
+⋅⋅⋅T5 = extrémne rýchle, ale môže spôsobiť chybovosť.⋅⋅  
 `-p-` skenuje všetky porty (1–65535), nie len default 1000.  
 
 
