@@ -116,6 +116,23 @@ IMAGE - prihlasenie s medusou
 `-p raspberry` Heslo ktoré sa skúša (raspberry – predvolené heslo pre používateľa pi).  
 `-M ssh` Modul Medusy ktorý určuje protokol: SSH v tomto prípade.
 
+Po úspešnom prihlásení vyhľadáme flag v user.txt
+Zistíme aké príkazy môžme používať ako užívateľ a ako root:
+`sudo -l` Zobrazí zoznam príkazov, ktoré môže aktuálny používateľ spustiť cez sudo bez zadania hesla alebo s heslom.  
+IMAGE  vzsledku sudo-l  
+`sudo su -` úplné root prostredie, vrátane PATH, domovského adresára (/root) a profilových premenných.  
+`find / -type f -name "user.txt" 2>/dev/null`  
+`cat user.txt` 
+IMAGE so skrztou vlajkou  
+
+Ďalej hľadáme root flag.
+`find / -type f -name "root.txt" 2>/dev/null`
+
+IMAGE so pokecom ye neuspech
+
+
+
+
 
 
 
