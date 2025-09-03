@@ -98,9 +98,9 @@ Pokúsim sa vyhľadať exploity pre túto verziu no nič nenájdem.
 
 IMAGE - Plex
 
-Port ##### 1877/tcp patrí historicky HP-UX WebQoS databáze, dnes už nepoužívanej, takže nemá zmysel sa ním ďalej zaoberať.  
+Port <h4>1877/tcp</h4> patrí historicky HP-UX WebQoS databáze, dnes už nepoužívanej, takže nemá zmysel sa ním ďalej zaoberať.  
 
-Port #### 53/tcp dnsmasq - ľahký DNS forwarder a DHCP server, často používaný v routeroch a IoT zariadeniach. (2.76 starý a zraniteľný)  
+Port <h4>53/tcp</h4> dnsmasq - ľahký DNS forwarder a DHCP server, často používaný v routeroch a IoT zariadeniach. (2.76 starý a zraniteľný)  
 Skúsim recursion test či DNS odpovedá na dotazy ktoré by nemal.
 `dig axfr @10.10.10.48 google.com ` mi nič nevracia.
 
