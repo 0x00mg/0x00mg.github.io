@@ -104,6 +104,24 @@ Port **53/tcp** dnsmasq - ľahký DNS forwarder a DHCP server, často používan
 Skúsim recursion test či DNS odpovedá na dotazy ktoré by nemal.
 `dig axfr @10.10.10.48 google.com ` mi nič nevracia.
 
+#### 22/tcp - SSH
+
+Banner prezrádza, že zariadenie alebo server používa Debian, konkrétne staršiu verziu Debian 8 čo umožňuje pripojenie buď s predvoleným heslom alebo cez brute-force nástroje ako Medusa, a predstavuje tak riziko napadnutia zariadenia.  
+medusa: medusa -h 10.10.10.48 -u pi -p raspberry -M ssh
+
+IMAGE - prihlasenie s medusou
+
+`-h 10.10.10.48` Cieľová IP adresa, na ktorú sa Medusa pripojí.  
+`-u pi` Používateľské meno, ktoré sa skúša (pi – typické pre Raspberry Pi alebo IoT zariadenia).  
+`-p raspberry` Heslo ktoré sa skúša (raspberry – predvolené heslo pre používateľa pi).  
+`-M ssh` Modul Medusy ktorý určuje protokol: SSH v tomto prípade.
+
+
+
+
+
+
+
 
 
 
