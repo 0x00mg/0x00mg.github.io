@@ -62,7 +62,7 @@ Poprípade môžme použiť hlbši sken hneď pomocou `nmap -A -Pn -T4 -p- $IP`
 `-p-` skenuje všetky porty (1–65535), nie len default 1000.  
 
 #### 80/TCP
-Predtým ako sa pokúsime o zneužitie tak sa pokúsime otvoriť web (http://1.2.3.4:80)  
+Predtým ako sa pokúsime o zneužitie tak sa pokúsime otvoriť web (http://<IP>:80)  
 Stránka nám nič nevráti.  
 Hlavičky odpovede HTTP poskytujú niekoľko náznakov:  
 
