@@ -43,22 +43,22 @@ Po ukončení skenu si otvorené porty oskenujem hlbšie:
 IMAGE
 
 `-sC` spustí default NSE skripty (Nmap Scripting Engine).  
-   Tieto skripty skúšajú získať extra info o službách (verzia SSH, SSL certifikát, HTTP titulok, FTP info atď.).  
+&nbsp;&nbsp;Tieto skripty skúšajú získať extra info o službách (verzia SSH, SSL certifikát, HTTP titulok, FTP info atď.).  
 `-sV` spustí detekciu verzií služieb na otvorených portoch.  
-   Nmap sa pokúsi zistiť presný softvér a verziu.
+&nbsp;&nbsp;Nmap sa pokúsi zistiť presný softvér a verziu.
 
 Poprípade môžme použiť hlbši sken hneď pomocou `nmap -A -Pn -T4 -p- $IP`  
 `-A` spustí default NSE skripty (Nmap Scripting Engine).  A zapne viacero pokročilých možností:  
-    * OS detection (skúsi uhádnuť operačný systém)  
-    * version detection (zistí verzie služieb)  
-    * script scanning (default NSE skripty)  
-    * traceroute  
+&nbsp;&nbsp;* OS detection (skúsi uhádnuť operačný systém)  
+&nbsp;&nbsp;* version detection (zistí verzie služieb)  
+&nbsp;&nbsp;* script scanning (default NSE skripty)  
+&nbsp;&nbsp;* traceroute  
 `-Pn` ignoruje ping (host discovery).   
-  Nmap sa bude tváriť, že host je živý a rovno skúsi porty (užitočné ak ICMP/ping je blokovaný firewallom).  
+&nbsp;&nbsp;Nmap sa bude tváriť, že host je živý a rovno skúsi porty (užitočné ak ICMP/ping je blokovaný firewallom).  
 `-T4` časovanie/agresivita.  
-   T0 = stealth, super pomalé,   
-   T4 = rýchle skenovanie vhodné pre lokálne siete alebo keď vieš, že nechceš čakať,  
-   T5 = extrémne rýchle, ale môže spôsobiť chybovosť.  
+&nbsp;&nbsp;T0 = stealth, super pomalé,   
+&nbsp;&nbsp;T4 = rýchle skenovanie vhodné pre lokálne siete alebo keď vieš, že nechceš čakať,  
+&nbsp;&nbsp;T5 = extrémne rýchle, ale môže spôsobiť chybovosť.  
 `-p-` skenuje všetky porty (1–65535), nie len default 1000.  
 
 
