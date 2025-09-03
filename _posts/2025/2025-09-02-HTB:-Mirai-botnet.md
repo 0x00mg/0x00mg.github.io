@@ -77,7 +77,7 @@ IMAGE
 `-u` je cieľová URL.  
 `-x` = prípony súborov, ktoré má skúšať.  
 `2>/dev/null` Presmerovanie chybných alebo varovných výstupov (stderr) do „temnoty“.  
-`-k` Tento prepínač hovorí Gobusteru ignorovať problémy s HTTPS certifikátmi, ak by bol cieľ HTTPS.
+`-k` Tento prepínač hovorí Gobusteru ignorovať problémy s HTTPS certifikátmi, ak by bol cieľ HTTPS.  
 &nbsp;&nbsp;&nbsp;&nbsp;V tomto prípade, hoci je URL HTTP, -k sa väčšinou neškodí, ale ak by bola HTTPS, zabezpečí, že certifikát self-signed neblokuje scan.
 
 
