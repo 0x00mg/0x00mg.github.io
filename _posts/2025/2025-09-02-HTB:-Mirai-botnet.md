@@ -33,14 +33,14 @@ Vďaka tomu vieme určiť ďalší smer prieskumu a hľadať potenciálne zranit
 
 Na rýchle odhalenie všetkých portov použijem príkaz:
 
-IMAGE - zakladny scan
+![Základný scan](/images/posts/2025/mirai/mirai2.jpg)
 
 `-p-`  skenujem všetkých 65 535 portov.  
 `--min-rate 10000`  nastavuje minimálnu rýchlosť odosielania paketov (10 000 za sekundu), aby bol sken výrazne rýchlejší. 
 
 Po ukončení skenu si otvorené porty oskenujem hlbšie:
 
-IMAGE - hlbsi scan
+![Hlboký scan](/images/posts/2025/mirai/mirai3.jpg)
 
 `-sC` spustí default NSE skripty (Nmap Scripting Engine).  
 &nbsp;&nbsp;&nbsp;&nbsp;Tieto skripty skúšajú získať extra info o službách (verzia SSH, SSL certifikát, HTTP titulok, FTP info atď.).  
@@ -66,7 +66,7 @@ Predtým ako sa pokúsime o zneužitie tak sa pokúsime otvoriť web http://cie�
 Stránka nám nič nevráti.  
 Hlavičky odpovede HTTP poskytujú niekoľko náznakov:  
 
-IMAGE - HTTP hlavicka
+![HTTP Hlavička](/images/posts/2025/mirai/mirai4.jpg)
 
 Zaujímavá je časť `X-Pi-hole`. Vraví nám že sa jedná o [Pi-hole](https://pi-hole.net/). Jedná sa o DNS server ktorý beží na Raspberry P, linuxoch alebo dockeroch.
 Používa sa na blokovanie reklám a celkovo ku zlepšeniu súkromia. 
@@ -74,7 +74,7 @@ Používa sa na blokovanie reklám a celkovo ku zlepšeniu súkromia.
 Máme niekoľko možností ako zistiť viac informácií o webovej stránke, napr. pomocu: Gobuster, Nikto, feroxbuster...  
 Pre naše účely použijeme [gobuster](https://github.com/OJ/gobuster)
 
-IMAGE - prikay gobuster
+![Gobuster výsledok](/images/posts/2025/mirai/mirai5.jpg)
 
 `-w` určuje wordlist, teda zoznam slov alebo názvov adresárov/súborov, ktoré bude nástroj skúšať.  
 `-u` je cieľová URL.  
@@ -87,7 +87,7 @@ Určite navštívime /admin panel.
 
 #### Site
 
-IMAGE - admin panelu
+![Admin panel pihole](/images/posts/2025/mirai/mirai6.jpg)
 
 Po preskúmaní admin panelu nevidíme nič nezvyčajné. Vyskúšame default login ktorý som našiel na officiálnej stránke Pi-hole. Neúspešne
 
@@ -96,7 +96,7 @@ Po preskúmaní admin panelu nevidíme nič nezvyčajné. Vyskúšame default lo
 Po pripojení na (http://cieľová_IP:36000) sa vyskúšame registrovať. Po prihlásení vidím verziu 3.9.1  
 Pokúsim sa vyhľadať exploity pre túto verziu no nič nenájdem.
 
-IMAGE - Plex
+![Plex](/images/posts/2025/mirai/mirai7.jpg)
 
 Port **1877/tcp** patrí historicky HP-UX WebQoS databáze, dnes už nepoužívanej, takže nemá zmysel sa ním ďalej zaoberať.  
 
@@ -109,7 +109,7 @@ Skúsim recursion test či DNS odpovedá na dotazy ktoré by nemal.
 Banner prezrádza, že zariadenie alebo server používa Debian, konkrétne staršiu verziu Debian 8 čo umožňuje pripojenie buď s predvoleným heslom alebo cez brute-force nástroje ako Medusa, a predstavuje tak riziko napadnutia zariadenia.  
 medusa: medusa -h 10.10.10.48 -u pi -p raspberry -M ssh
 
-IMAGE - prihlasenie s medusou
+![Medusa](/images/posts/2025/mirai/mirai8.jpg)
 
 `-h 10.10.10.48` Cieľová IP adresa, na ktorú sa Medusa pripojí.  
 `-u pi` Používateľské meno, ktoré sa skúša (pi – typické pre Raspberry Pi alebo IoT zariadenia).  
@@ -123,12 +123,11 @@ IMAGE  vzsledku sudo-l
 `sudo su -` úplné root prostredie, vrátane PATH, domovského adresára (/root) a profilových premenných.  
 `find / -type f -name "user.txt" 2>/dev/null`  
 `cat user.txt` 
-IMAGE so skrztou vlajkou  
+![flag user](/images/posts/2025/mirai/mirai9.jpg)  
 
 Ďalej hľadáme root flag.  
-`find / -type f -name "root.txt" 2>/dev/null`
-
-IMAGE so pokecom ye neuspech
+`find / -type f -name "root.txt" 2>/dev/null`  
+![root flag](/images/posts/2025/mirai/mirai10.jpg)
 
 
 
