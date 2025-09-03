@@ -61,6 +61,9 @@ Poprípade môžme použiť hlbši sken hneď pomocou `nmap -A -Pn -T4 -p- $IP`
 &nbsp;&nbsp;&nbsp;&nbsp;T5 = extrémne rýchle, ale môže spôsobiť chybovosť.  
 `-p-` skenuje všetky porty (1–65535), nie len default 1000.  
 
+#### 80/TCP
+Predtým ako sa pokúsime o zneužitie tak sa pokúsime otvoriť web (http://&IP:80)
+
 
 Popis o výsledkoch.....
 
