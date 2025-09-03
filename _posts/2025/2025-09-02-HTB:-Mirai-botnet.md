@@ -83,7 +83,7 @@ Pre naše účely použijeme [gobuster](https://github.com/OJ/gobuster)
 `-k` Tento prepínač hovorí Gobusteru ignorovať problémy s HTTPS certifikátmi, ak by bol cieľ HTTPS.  
 &nbsp;&nbsp;&nbsp;&nbsp;V tomto prípade, hoci je URL HTTP -k väčšinou neškodí ale ak by bol cieľ HTTPS, zabezpečí že certifikát self-signed neblokuje scan.
 
-Určite navštívime /admin panel.
+Určite navštívim /admin panel.
 
 #### Site
 
