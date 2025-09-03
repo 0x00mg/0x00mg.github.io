@@ -91,7 +91,7 @@ IMAGE - admin panelu
 
 Po preskúmaní admin panelu nevidíme nič nezvyčajné. Vyskúšame default login ktorý som našiel na officiálnej stránke Pi-hole. Neúspešne
 
-#### 36000/TCP - Plex Media Server
+##### 36000/TCP - Plex Media Server
 
 Po pripojení na (http://cieľová_IP:36000) sa vyskúšame registrovať. Po prihlásení vidím verziu 3.9.1  
 Pokúsim sa vyhľadať exploity pre túto verziu no nič nenájdem.
