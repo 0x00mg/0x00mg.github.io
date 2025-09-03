@@ -119,15 +119,15 @@ medusa: medusa -h 10.10.10.48 -u pi -p raspberry -M ssh
 Po úspešnom prihlásení vyhľadáme flag v user.txt  
 Zistíme aké príkazy môžme používať ako užívateľ a ako root:  
 `sudo -l` Zobrazí zoznam príkazov, ktoré môže aktuálny používateľ spustiť cez sudo bez zadania hesla alebo s heslom.  
-IMAGE  vzsledku sudo-l  
+![sudo -l](/images/posts/2025/mirai/mirai9.jpg)   
 `sudo su -` úplné root prostredie, vrátane PATH, domovského adresára (/root) a profilových premenných.  
 `find / -type f -name "user.txt" 2>/dev/null`  
 `cat user.txt` 
-![flag user](/images/posts/2025/mirai/mirai9.jpg)  
+![flag user](/images/posts/2025/mirai/mirai10.jpg)  
 
 Ďalej hľadáme root flag.  
 `find / -type f -name "root.txt" 2>/dev/null`  
-![root flag](/images/posts/2025/mirai/mirai10.jpg)
+![root flag](/images/posts/2025/mirai/mirai11.jpg)
 
 
 
