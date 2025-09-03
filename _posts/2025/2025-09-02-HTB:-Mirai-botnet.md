@@ -49,10 +49,10 @@ IMAGE
 
 Poprípade môžme použiť hlbši sken hneď pomocou `nmap -A -Pn -T4 -p- $IP`  
 `-A` spustí default NSE skripty (Nmap Scripting Engine).  A zapne viacero pokročilých možností:  
-...OS detection (skúsi uhádnuť operačný systém)  
-...version detection (zistí verzie služieb)  
-...script scanning (default NSE skripty)  
-...traceroute  
+...*OS detection (skúsi uhádnuť operačný systém)  
+...*version detection (zistí verzie služieb)  
+...*script scanning (default NSE skripty)  
+...*traceroute  
 `-Pn` ignoruje ping (host discovery).  
 ...Nmap sa bude tváriť, že host je živý a rovno skúsi porty (užitočné ak ICMP/ping je blokovaný firewallom).  
 `-T4` časovanie/agresivita.  
