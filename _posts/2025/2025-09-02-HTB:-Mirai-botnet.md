@@ -23,7 +23,7 @@ Mirai automaticky skenoval internet a hľadal zariadenia prístupné cez Telnet 
 Najznámejšie použitie Mirai botnetu bol masívny útok na DNS poskytovateľa Dyn v októbri 2016, ktorý spôsobil výpadky veľkých služieb ako Twitter, Netflix, Reddit či Spotify.
 [Mirai(Malware)](https://en.wikipedia.org/wiki/Mirai_(malware))
 
-Toto laboratórium demonštruje aké rizikové je ponechať zariadenie s predvolenými prihlasovacími údajmi bez zmeny.
+Toto [HTB Mirai](https://www.hackthebox.com/)laboratórium demonštruje aké rizikové je ponechať zariadenie s predvolenými prihlasovacími údajmi bez zmeny.
 
 ### <ins>Prieskum</ins>
 
