@@ -53,12 +53,12 @@ Poprípade môžme použiť hlbši sken hneď pomocou `nmap -A -Pn -T4 -p- $IP`
 ⋅⋅⋅⋅*version detection (zistí verzie služieb)  
 ⋅⋅⋅⋅*script scanning (default NSE skripty)  
 ⋅⋅⋅⋅*traceroute  
-`-Pn` ignoruje ping (host discovery).  
-⋅⋅⋅Nmap sa bude tváriť, že host je živý a rovno skúsi porty (užitočné ak ICMP/ping je blokovaný firewallom).  
+`-Pn` ignoruje ping (host discovery).   
+⋅⋅⋅Nmap sa bude tváriť, že host je živý a rovno skúsi porty (užitočné ak ICMP/ping je blokovaný firewallom).⋅⋅   
 `-T4` časovanie/agresivita.  
-⋅⋅⋅T0 = stealth, super pomalé,⋅⋅ 
-⋅⋅⋅T4 = rýchle skenovanie vhodné pre lokálne siete alebo keď vieš, že nechceš čakať, ⋅⋅ 
-⋅⋅⋅⋅T5 = extrémne rýchle, ale môže spôsobiť chybovosť.⋅⋅
+⋅⋅⋅T0 = stealth, super pomalé,⋅⋅  
+⋅⋅⋅T4 = rýchle skenovanie vhodné pre lokálne siete alebo keď vieš, že nechceš čakať,⋅⋅  
+⋅⋅⋅⋅T5 = extrémne rýchle, ale môže spôsobiť chybovosť.⋅⋅  
 `-p-` skenuje všetky porty (1–65535), nie len default 1000.  
 
 
