@@ -33,14 +33,14 @@ Vďaka tomu vieme určiť ďalší smer prieskumu a hľadať potenciálne zranit
 
 Na rýchle odhalenie všetkých portov použijem príkaz:
 
-IMAGE
+IMAGE - zakladny scan
 
 `-p-`  skenujem všetkých 65 535 portov.  
 `--min-rate 10000`  nastavuje minimálnu rýchlosť odosielania paketov (10 000 za sekundu), aby bol sken výrazne rýchlejší. 
 
 Po ukončení skenu si otvorené porty oskenujem hlbšie:
 
-IMAGE
+IMAGE - hlbsi scan
 
 `-sC` spustí default NSE skripty (Nmap Scripting Engine).  
 &nbsp;&nbsp;&nbsp;&nbsp;Tieto skripty skúšajú získať extra info o službách (verzia SSH, SSL certifikát, HTTP titulok, FTP info atď.).  
@@ -66,12 +66,15 @@ Predtým ako sa pokúsime o zneužitie tak sa pokúsime otvoriť web http://cie�
 Stránka nám nič nevráti.  
 Hlavičky odpovede HTTP poskytujú niekoľko náznakov:  
 
-IMAGE
+IMAGE - HTTP hlavicka
+
+Zaujímavá je časť `X-Pi-hole`. Vraví nám že sa jedná o [Pi-hole](https://pi-hole.net/). Jedná sa o DNS server ktorý beží na Raspberry P, linuxoch alebo dockeroch.
+Používa sa na blokovanie reklám a celkovo ku zlepšeniu súkromia. 
 
 Máme niekoľko možností ako zistiť viac informácií o webovej stránke, napr. pomocu: Gobuster, Nikto, feroxbuster...  
 Pre naše účely použijeme [gobuster](https://github.com/OJ/gobuster)
 
-IMAGE
+IMAGE - prikay gobuster
 
 `-w` určuje wordlist, teda zoznam slov alebo názvov adresárov/súborov, ktoré bude nástroj skúšať.  
 `-u` je cieľová URL.  
@@ -79,6 +82,31 @@ IMAGE
 `2>/dev/null` Presmerovanie chybných alebo varovných výstupov (stderr) do „temnoty“.  
 `-k` Tento prepínač hovorí Gobusteru ignorovať problémy s HTTPS certifikátmi, ak by bol cieľ HTTPS.  
 &nbsp;&nbsp;&nbsp;&nbsp;V tomto prípade, hoci je URL HTTP -k väčšinou neškodí ale ak by bol cieľ HTTPS, zabezpečí že certifikát self-signed neblokuje scan.
+
+Určite navštívime /admin panel.
+
+#### Site
+
+IMAGE - admin panelu
+
+Po preskúmaní admin panelu nevidíme nič nezvyčajné. Vyskúšame default login ktorý som našiel na officiálnej stránke Pi-hole. Neúspešne
+
+#### 36000/TCP - Plex Media Server
+
+Po pripojení na (http://cieľová_IP:36000) sa vyskúšame registrovať. Po prihlásení vidím verziu 3.9.1  
+Pokúsim sa vyhľadať exploity pre túto verziu no nič nenájdem.
+
+IMAGE - Plex
+
+Port ##### 1877/tcp patrí historicky HP-UX WebQoS databáze, dnes už nepoužívanej, takže nemá zmysel sa ním ďalej zaoberať.  
+
+Port #### 53/tcp dnsmasq - ľahký DNS forwarder a DHCP server, často používaný v routeroch a IoT zariadeniach. (2.76 starý a zraniteľný)  
+Skúsim recursion test či DNS odpovedá na dotazy ktoré by nemal.
+`dig axfr @10.10.10.48 google.com ` mi nič nevracia.
+
+
+
+
 
 
 
