@@ -122,7 +122,7 @@ Zistíme aké príkazy môžme používať ako užívateľ a ako root:
 ![sudo -l](/images/posts/2025/mirai/mirai9.jpg)   
 `sudo su -` úplné root prostredie, vrátane PATH, domovského adresára (/root) a profilových premenných.  
 `find / -type f -name "user.txt" 2>/dev/null`  
-`cat user.txt` 
+`cat user.txt`  
 ![flag user](/images/posts/2025/mirai/mirai10.jpg)  
 
 Ďalej hľadáme root flag.  
