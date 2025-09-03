@@ -44,7 +44,7 @@ IMAGE
 
 `-sC` spustí default NSE skripty (Nmap Scripting Engine).  
 ⋅⋅⋅Tieto skripty skúšajú získať extra info o službách (verzia SSH, SSL certifikát, HTTP titulok, FTP info atď.).⋅⋅  
-`-sV` spustí detekciu verzií služieb na otvorených portoch. 
+`-sV` spustí detekciu verzií služieb na otvorených portoch.  
 ⋅⋅⋅Nmap sa pokúsi zistiť presný softvér a verziu.
 
 Poprípade môžme použiť hlbši sken hneď pomocou `nmap -A -Pn -T4 -p- $IP`  
