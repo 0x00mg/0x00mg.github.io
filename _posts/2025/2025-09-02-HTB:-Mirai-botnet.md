@@ -25,7 +25,7 @@ Najznámejšie použitie Mirai botnetu bol masívny útok na DNS poskytovateľa 
 
 Toto laboratórium demonštruje aké rizikové je ponechať zariadenie s predvolenými prihlasovacími údajmi bez zmeny.
 
-### Prieskum
+### <ins>Prieskum</ins>
 
 Po prihlásení do laboratória a priradení cieľovej IP adresy je prvým krokom vždy získať prehľad o tom, aké služby stroj ponúka. 
 Na to je najjednoduchšie použiť nástroj `nmap` ktorý nám umožní zistiť otvorené porty, spustené služby a aj ich verzie. 
