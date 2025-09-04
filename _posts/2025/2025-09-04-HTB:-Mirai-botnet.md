@@ -1,7 +1,7 @@
 ---
 layout: post
 title:	"HTB: Mirai Botnet"
-date:	2025-09-02 10:00:00 +0200 
+date:	2025-09-04 10:00:00 +0200 
 author: "0x00mg"
 categories:
     - blog
