@@ -53,7 +53,7 @@ Samozrejme s pomocou AI som napísal jednoduchý kód v Arduine ([code MeteoGeM_
 
 **TPL5110** – malý čip, veľká záchrana batérie  
 Najväčšia výzva bola nastaviť TPL5110. Tento malý čip sa správa ako inteligentný „vypínač“ – drží ESP úplne vypnuté a prebúdza ho len v nastavených intervaloch. Nakonfigurovať ho na 15 minút bola celkom sranda.
-Po tom čo ESP odošle dáta musí ešte vyhlásiť: „Som hotový!“ – to je presne ten DONE signál. Tým dá TPL5110 najavo že môže zase odpojiť napájanie a čakať na ďalšie prebudenie.
+Po tom čo ESP odošle dáta musí ešte odoslať DONE signál. Tým dá TPL5110 najavo že môže zase odpojiť napájanie a čakať na ďalšie prebudenie.
 
 Vďaka tomu mám istotu že ESP medzi meraniami nežerie batériu v deep sleep režime ale je naozaj úplne odpojené.
 
