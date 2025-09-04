@@ -70,89 +70,117 @@ ESP sa prebudilo, pripojilo na WiFi, poslalo dáta a... ostalo zapnuté....
 Na NAS-e som si nastavil MQTT server a vizualizáciu dát. Teraz môžem sledovať históriu teplôt a vlhkosti a porovnávať byt vs. vonkajšie prostredie.  
 **(Popis nastavenia a testovanie v procese....)**
 
-Jedným z testov je aj určiť spotrebu a odhadnúť výdrž na 2× Li-Ion 18650 (2200 mAh, paralelne = 4400 mAh), pričom meteostanica sa prebúdza každých 15 minút, odosiela dáta cez MQTT a následne sa opäť vypne.
+## Testovanie a vyhodnotenie spotreby meteostanice
 
-**Parametre spotreby jednotlivých súčiastok**  
-| Komponent      | Stav                  | Prúd (mA)                 | Poznámka               |
-| -------------- | --------------------- | ------------------------- | ---------------------- |
-| WeMos D1 Mini  | aktívny (WiFi + MQTT) | 150                       | cca 5 s                |
-| BME280         | aktívny               | 0,2                       | počas 5 s čítania      |
-| TPL5110        | standby               | 0,000035                  | zanedbateľné           |
-| Pololu U1V11F3 | prevádzka             | zohľadnená cez efektivitu | cca 85–90 % efektivita |
+Po dokončení hardvéru bolo potrebné otestovať spotrebu a odhadnúť, ako dlho dokáže meteostanica fungovať na batérie.  
+Cieľ bol jasný – zistiť, či 2× Li-Ion 18650 (2200 mAh, paralelne = 4400 mAh) vydržia aspoň niekoľko mesiacov pri intervale odosielania dát každých 15 minút.
 
-## Výpočet spotreby meteostanice
+### Spotreba jednotlivých komponentov
 
-### 1. Aktívna fáza
+| Komponent        | Stav              | Prúd (mA)        | Poznámka |
+|------------------|-------------------|------------------|----------|
+| **WeMos D1 Mini**| aktívny           | ~150             | WiFi + MQTT, cca 5 s |
+| **BME280**       | meranie           | ~0.2             | zanedbateľné oproti WeMos |
+| **TPL5110**      | standby           | 0.000035         | len počas vypnutia, zanedbateľné |
+| **Pololu U1V11F3**| prevádzka         | –                | efektivita cca 85–90 % (zohľadnené vo výpočtoch) |
 
-Počas aktívnej fázy (WiFi + MQTT) berie WeMos približne **150 mA** po dobu **5 s**:
+> 💡 **Poznámka:**  
+> Počas „spánku“ je WeMos fyzicky odpojený od napájania pomocou TPL5110, takže spotreba v neaktívnej fáze je prakticky nulová.  
+> Hlavnú časť dennej spotreby teda tvorí krátka aktívna fáza každých 15 minút.
 
-$$
-I_{\text{active}} = 150 \,\text{mA}
-$$
+### Predpoklady a hodnoty použité vo výpočtoch
 
-Čas prebudenia v hodinách:
+- Prúd počas aktívnej fázy pri 3.3 V: \(I_{\text{active}} = 150.2\ \text{mA}\) (WeMos + BME280)  
+- Dĺžka aktívnej fázy: \(t_{\text{active}} = 5\ \text{s}\)  
+- Interval prebudenia: 15 min → \(n_{\text{cyklov}} = 96\ \text{cyklov/deň}\)  
+- DC/DC účinnosť: \(\eta_{\text{DC}} = 0.85\) (85 %)  
+- Batéria: 2×18650 2200 mAh paralelne → \(Q_{\text{bat}} = 4400\ \text{mAh}\)  
+- Použiteľná frakcia kapacity (derating): \(f_{\text{usable}} = 0.90\) (90 %)  
+- Samovybíjanie: približne 2 % mesačne → \(r_{\text{sd,day}} \approx \tfrac{0.02}{30} \approx 0.00067\ \text{(zlomok/deň)}\)
 
-$$
-t_{\text{active}} = \frac{5}{3600} \,\text{h} \approx 0.001389 \,\text{h}
-$$
+### Výpočet (krok po kroku)
 
-Spotreba na jeden cyklus:
+1. **Spotreba na 3.3 V strane počas jedného cyklu**  
+\[
+t_{\text{active}} = \frac{5}{3600}\ \text{h} \approx 0.001389\ \text{h}
+\]
+\[
+Q_{\text{cyklus,load}} = I_{\text{active}} \cdot t_{\text{active}}
+\]
+\[
+Q_{\text{cyklus,load}} = 150.2 \cdot 0.001389 \approx 0.208\ \text{mAh}
+\]
 
-$$
-Q_{\text{cyklus}} = I_{\text{active}} \cdot t_{\text{active}}
-$$
+2. **Prepočet na batériovú stranu (zohľadnenie DC/DC účinnosti)**  
+Energie/kapacitu odoberanú z batérie musíme zväčšiť o faktor \(1/\eta_{\text{DC}}\):
+\[
+Q_{\text{cyklus,batt}} = \frac{Q_{\text{cyklus,load}}}{\eta_{\text{DC}}}
+\]
+\[
+Q_{\text{cyklus,batt}} = \frac{0.208}{0.85} \approx 0.245\ \text{mAh}
+\]
 
-$$
-Q_{\text{cyklus}} = 150 \cdot 0.001389 \approx 0.208 \,\text{mAh}
-$$
+3. **Denná spotreba bez samovybíjania**  
+\[
+n_{\text{cyklov}} = \frac{24\cdot3600}{15\cdot60} = 96
+\]
+\[
+Q_{\text{deň}} = n_{\text{cyklov}} \cdot Q_{\text{cyklus,batt}}
+\]
+\[
+Q_{\text{deň}} = 96 \cdot 0.245 \approx 23.52\ \text{mAh}
+\]
 
-### 2. Korekcia na účinnosť DC/DC meniča
+4. **Pripočítanie samovybíjania batérie (denný príspevok)**  
+Denný úbytok kapacity samovybíjaním:
+\[
+Q_{\text{sd/day}} = Q_{\text{bat}} \cdot r_{\text{sd,day}}
+\]
+Príklad (pri 2 %/mesiac): \(r_{\text{sd,day}} \approx 0.00067\), takže
+\[
+Q_{\text{sd/day}} = 4400 \cdot 0.00067 \approx 2.95\ \text{mAh/day}
+\]
 
-Efektivita Pololu U1V11F3 je približne 85 %:
+Celková efektívna denná spotreba:
+\[
+Q_{\text{deň,efektívne}} = Q_{\text{deň}} + Q_{\text{sd/day}}
+\]
+\[
+Q_{\text{deň,efektívne}} \approx 23.52 + 2.95 \approx 26.47\ \text{mAh/day}
+\]
 
-$$
-Q_{\text{cyklus,real}} = \frac{Q_{\text{cyklus}}}{0.85}
-$$
+5. **Použiteľná kapacita batérií (derating)**  
+\[
+Q_{\text{bat,usable}} = Q_{\text{bat}} \cdot f_{\text{usable}} = 4400 \cdot 0.9 = 3960\ \text{mAh}
+\]
 
-$$
-Q_{\text{cyklus,real}} = \frac{0.208}{0.85} \approx 0.245 \,\text{mAh}
-$$
+6. **Odhad výdrže**  
+\[
+t_{\text{výdrž}} = \frac{Q_{\text{bat,usable}}}{Q_{\text{deň,efektívne}}}
+\]
+\[
+t_{\text{výdrž}} = \frac{3960}{26.47} \approx 149.6\ \text{dní} \approx 5.0\ \text{mesiacov}
+\]
 
-### 3. Spotreba za deň
+### Výsledok (približne)
 
-Počet cyklov za deň (prebudenie každých 15 minút):
+- **Denná spotreba (vrátane strát a samovybíjania):** ≈ **26.5 mAh/deň**  
+- **Odhad výdrže na 2×18650 (2200 mAh, paralelne):** ≈ **150 dní** (~5 mesiacov), pri predpokladoch vyššie.
 
-$$
-n_{\text{cyklov}} = \frac{24 \cdot 3600}{15 \cdot 60} = 96
-$$
+> ⚠️ Poznámky:  
+> - Ak by DC/DC účinnosť bola lepšia (napr. 90 %), alebo samovybíjanie menšie, výdrž by rástla.  
+> - V reálnom prostredí môže teplota výrazne ovplyvniť kapacitu batérie (nižšie teploty → nižšia použiteľná kapacita).  
+> - Ak by sa aktívny čas predĺžil (napr. dlhšie WiFi pripojenie), Q_cycle sa zvýši proporcionálne.
 
-Denná spotreba:
+### Graf
 
-$$
-Q_{\text{deň}} = n_{\text{cyklov}} \cdot Q_{\text{cyklus,real}}
-$$
+Nižšie sú súbory s grafom priebehu batériového prúdu (24 h, špičky každých 15 minút, 5 s):
 
-$$
-Q_{\text{deň}} = 96 \cdot 0.245 \approx 23.5 \,\text{mAh}
-$$
+- `battery_current_24h.png` — graf som vygeneroval a môžeš ho stiahnuť a vložiť do blogu.
 
-### 4. Výdrž batérie
 
-Kapacita dvoch 18650 (paralelne):
 
-$$
-Q_{\text{batéria}} = 2 \cdot 2200 = 4400 \,\text{mAh}
-$$
 
-Odhad výdrže v dňoch:
-
-$$
-t_{\text{výdrž}} = \frac{Q_{\text{batéria}}}{Q_{\text{deň}}}
-$$
-
-$$
-t_{\text{výdrž}} = \frac{4400}{23.5} \approx 187 \,\text{dní} \approx 6.2 \,\text{mesiaca}
-$$
 
 
 
