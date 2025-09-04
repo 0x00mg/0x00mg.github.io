@@ -32,37 +32,35 @@ Znie to jednoducho ale ako vždy... diabol je v detailoch.
 #### Výber komponentov
 
 **Po chvíľke premýšľania som skončil pri týchto súčiastkach:**  
-**ESP8266 (ESP-12E)** – lacný WiFi mikrokontrolér ktorý bez problémov zvládne MQTT.  
+**ESP8266** – lacný WiFi mikrokontrolér ktorý bez problémov zvládne MQTT.  
 **BME280** – senzor na teplotu, vlhkosť a tlak. Malý, presný a komunikuje cez I²C.  
 **TPL5110** – „super power timer“ od Texas Instruments, ktorý dokáže úplne odpojiť napájanie a prebudiť zariadenie v zadanom intervale.  
-**Pololu U1V11F3** – DC/DC menič na stabilné 3,3 V pre ESP. Regulátor zvyšuje napätie v rozsahu od 0,5 do 5,5 V na konštantnú hodnotu 3,3 V.  
+**Pololu U1V11F3** – DC/DC menič na stabilné 3,3V pre ESP. Regulátor zvyšuje napätie v rozsahu od 0,5 do 5,5 V na konštantnú hodnotu 3,3 V.  
 **2× Li-Ion 18650** – zdroj energie.
 
 
 #### Softvérová časť
 
-Samozrejme s pomocou AI som napísal jednoduchý kód v Arduine [code MeteoGeM_v1](https://github.com/0x00mg/C-language/tree/main/MeteoGeM). Funguje to takto:  
-1. Po zapnutí sa ESP pripojí na WiFi.
-2. Inicializuje BME280, ak ho nenájde, reštartuje sa.
-3. Získa aktuálny čas z NTP a prevedie ho na lokálny (vrátane letného/zimného času).
-4 .Pripojí sa na MQTT broker (bežiaci na NAS).
-5 .Zmeria teplotu, vlhkosť, tlak a napätie batérie.
-6 .Všetko odošle na príslušné MQTT topicy.
-7 .Vysiela DONE signál pre TPL5110 a čaká, kým sa zariadenie úplne vypne.
-8 .Ak sa čokoľvek pokazí (WiFi, MQTT, senzor), ESP sa jednoducho reštartuje a skúsi to znova.
+Samozrejme s pomocou AI som napísal jednoduchý kód v Arduine ([code MeteoGeM_v1](https://github.com/0x00mg/C-language/tree/main/MeteoGeM)). Funguje to takto:  
+1. Po zapnutí sa ESP pripojí na WiFi.  
+2. Inicializuje BME280, ak ho nenájde, reštartuje sa.  
+3. Získa aktuálny čas z NTP a prevedie ho na lokálny (vrátane letného/zimného času).  
+4 .Pripojí sa na MQTT broker (bežiaci na NAS).  
+5 .Zmeria teplotu, vlhkosť, tlak a napätie batérie.  
+6 .Všetko odošle na príslušné MQTT topicy.  
+7 .Vysiela DONE signál pre TPL5110 a čaká, kým sa zariadenie úplne vypne.  
+8 .Ak sa čokoľvek pokazí (WiFi, MQTT, senzor), ESP sa jednoducho reštartuje a skúsi to znova.  
 
-Tento prístup mi dáva pokoj na duši – aj keď niečo vypadne, najneskôr o 15 minút prebehne nový pokus.
-
-**TPL5110** – malý čip, veľká záchrana batérie
+**TPL5110** – malý čip, veľká záchrana batérie  
 Najväčšia výzva bola nastaviť TPL5110. Tento malý čip sa správa ako inteligentný „vypínač“ – drží ESP úplne vypnuté a prebúdza ho len v nastavených intervaloch. Nakonfigurovať ho na 15 minút bola celkom výzva.
-Po tom čo ESP odošle dáta musí ešte vyhlásiť: „Som hotový!“ – to je presne ten DONE signál. Tým dám TPL5110 najavo že môže zase odpojiť napájanie a čakať na ďalšie prebudenie.
+Po tom čo ESP odošle dáta musí ešte vyhlásiť: „Som hotový!“ – to je presne ten DONE signál. Tým dá TPL5110 najavo že môže zase odpojiť napájanie a čakať na ďalšie prebudenie.
 
-Vďaka tomu mám istotu, že ESP medzi meraniami nežerie batériu v deep sleep režime ale je naozaj úplne odpojené.
+Vďaka tomu mám istotu že ESP medzi meraniami nežerie batériu v deep sleep režime ale je naozaj úplne odpojené.
 
 #### Testovanie a výsledky
 
 Keď som to prvýkrát spustil, bol to krásny moment... nič nefungovalo. :)  
-ESP sa prebudilo, pripojilo na WiFi, poslalo dáta a ostalo zapnuté....  
+ESP sa prebudilo, pripojilo na WiFi, poslalo dáta a... ostalo zapnuté....  
 **(Popis problému v procese....)**
 
 Na NAS-e som si nastavil MQTT server a vizualizáciu dát. Teraz môžem sledovať históriu teplôt a vlhkosti a porovnávať byt vs. vonkajšie prostredie.  
