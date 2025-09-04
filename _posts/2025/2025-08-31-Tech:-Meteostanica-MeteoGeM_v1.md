@@ -86,10 +86,10 @@ Cieľ bol jasný – zistiť, či 2× Li-Ion 18650 (2200 mAh, paralelne = 4400 m
 
 | Komponent        | Stav              | Prúd (mA)        | Poznámka |
 |------------------|-------------------|------------------|----------|
-| **WeMos D1 Mini**| aktívny           | ~150             | WiFi + MQTT, cca 5 s |
-| **BME280**       | meranie           | ~0.2             | zanedbateľné oproti WeMos |
-| **TPL5110**      | standby           | 0.000035         | len počas vypnutia, zanedbateľné |
-| **Pololu U1V11F3**| prevádzka         | –                | efektivita cca 85–90 % (zohľadnené vo výpočtoch) |
+| **WeMos D1 Mini**| aktívny            | ~150             | WiFi + MQTT, cca 5 s  |
+| **BME280**       | meranie            | ~0.2             | zanedbateľné oproti WeMos  |
+| **TPL5110**      | standby            | 0.000035          | len počas vypnutia, zanedbateľné  |
+| **Pololu U1V11F3** | prevádzka          | –                | efektivita cca 85–90 % (zohľadnené vo výpočtoch)  |
 
 **Poznámka:**  
 Počas „spánku“ je WeMos fyzicky odpojený od napájania pomocou TPL5110, takže spotreba v neaktívnej fáze je prakticky nulová.  
