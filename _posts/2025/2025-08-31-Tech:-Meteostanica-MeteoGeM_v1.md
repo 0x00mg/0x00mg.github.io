@@ -27,6 +27,7 @@ A tak sa zrodil nápad na dvojicu meteostaníc: jednu do bytu a druhú von s tý
 2. Odosielanie dát na NAS cez MQTT aby som ich mohol ďalej spracovávať.  
 3. Zariadenia musia byť úplne autonómne a napájané z Li-Ion batérií.  
 4. Medzi meraniami sa má celé zariadenie vypnúť aby batérie vydržali čo najdlhšie. (žiadny deep sleep mode)
+5. Sledovanie stavu batérie
 
 Znie to jednoducho ale ako vždy... diabol je v detailoch.  
 
