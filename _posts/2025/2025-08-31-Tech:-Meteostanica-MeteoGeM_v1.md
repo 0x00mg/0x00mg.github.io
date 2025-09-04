@@ -98,8 +98,8 @@ Cieľ bol jasný – zistiť, či 2× Li-Ion 18650 (2200 mAh, paralelne = 4400 m
   I_{\text{active}} = 150.2\ \text{mA}
   $$
   
-- **Dĺžka aktívnej fázy:**  
-
+- **Dĺžka aktívnej fázy:**
+  
   $$
   t_{\text{active}} = 5\ \text{s}
   $$
