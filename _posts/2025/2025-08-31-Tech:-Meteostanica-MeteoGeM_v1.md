@@ -17,7 +17,7 @@ image: /images/posts/2025/meteo/meteo1.jpg
 ### Ako som postavil vlastnú batériovú meteostanicu s ESP8266 a MQTT
 
 Už dlho ma lákala myšlienka mať prehľad o tom, aká je teplota a vlhkosť nielen v byte, ale aj vonku. Chcel som si to ale riešiť po svojom žiadne hotové IoT hračky ale vlastný projekt ktorý si sám zladím a prispôsobím.  
-A tak sa zrodil nápad na dvojicu meteostaníc: jednu do bytu a druhú von, s tým, že vonkajšia bude napájaná z batérie a čo najviac úsporná.
+A tak sa zrodil nápad na dvojicu meteostaníc: jednu do bytu a druhú von s tým že obidve budú napájané z batérie a čo najviac úsporné.
 
 #### Nápad a požiadavky
 
