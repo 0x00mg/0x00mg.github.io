@@ -45,11 +45,11 @@ Samozrejme s pomocou AI som napísal jednoduchý kód v Arduine ([code MeteoGeM_
 1. Po zapnutí sa ESP pripojí na WiFi.  
 2. Inicializuje BME280, ak ho nenájde, reštartuje sa.  
 3. Získa aktuálny čas z NTP a prevedie ho na lokálny (vrátane letného/zimného času).  
-4 .Pripojí sa na MQTT broker (bežiaci na NAS).  
-5 .Zmeria teplotu, vlhkosť, tlak a napätie batérie.  
-6 .Všetko odošle na príslušné MQTT topicy.  
-7 .Vysiela DONE signál pre TPL5110 a čaká, kým sa zariadenie úplne vypne.  
-8 .Ak sa čokoľvek pokazí (WiFi, MQTT, senzor), ESP sa jednoducho reštartuje a skúsi to znova.  
+4. Pripojí sa na MQTT broker (bežiaci na NAS).  
+5. Zmeria teplotu, vlhkosť, tlak a napätie batérie.  
+6. Všetko odošle na príslušné MQTT topicy.  
+7. Vysiela DONE signál pre TPL5110 a čaká, kým sa zariadenie úplne vypne.  
+8. Ak sa čokoľvek pokazí (WiFi, MQTT, senzor), ESP sa jednoducho reštartuje a skúsi to znova.  
 
 **TPL5110** – malý čip, veľká záchrana batérie  
 Najväčšia výzva bola nastaviť TPL5110. Tento malý čip sa správa ako inteligentný „vypínač“ – drží ESP úplne vypnuté a prebúdza ho len v nastavených intervaloch. Nakonfigurovať ho na 15 minút bola celkom výzva.
