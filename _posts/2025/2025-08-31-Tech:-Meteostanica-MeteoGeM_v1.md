@@ -209,6 +209,7 @@ Plánujem:
 
 Pridať webové rozhranie alebo integráciu do Home Assistanta.  
 Vytlačiť elegantnú krabičku.  
+Otestovat spotrebu v reálnych podmienkach.
 
 
 #### Záver
