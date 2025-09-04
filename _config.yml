@@ -29,13 +29,10 @@ collections:
   notes:
     output: true
     permalink: /notes/:title/
-markdown: kramdown
-kramdown:
-  math_engine: mathjax
-  math_engine_opts:
-    preview: false
 
 
 # Build settings
 markdown: kramdown
 permalink: /:categories/:title/
+  math_engine_opts:
+    preview: false
