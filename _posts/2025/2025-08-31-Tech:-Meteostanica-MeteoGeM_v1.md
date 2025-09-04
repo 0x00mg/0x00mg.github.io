@@ -13,6 +13,12 @@ tags:
 image: /images/posts/2025/meteo/meteo1.jpg
 ---
 
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+
 **.......článok je ešte v procese.......**
 
 ### Ako som postavil vlastnú batériovú meteostanicu s ESP8266 a MQTT
