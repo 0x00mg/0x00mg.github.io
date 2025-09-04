@@ -68,7 +68,7 @@ Hlavičky odpovede HTTP poskytujú niekoľko náznakov:
 
 <img src="{{ site.baseurl }}/images/posts/2025/mirai/mirai4.jpg" alt="HTTP header" style="width:100%; max-width:700px; height:auto; margin-bottom:20px; border-radius:4px;">
 
-Zaujímavá je časť `X-Pi-hole`. Vraví nám že sa jedná o [Pi-hole](https://pi-hole.net/). Jedná sa o DNS server ktorý beží na Raspberry P, linuxoch alebo dockeroch.
+Zaujímavá je časť `X-Pi-hole`. Vraví nám že sa jedná o [Pi-hole](https://pi-hole.net/). Jedná sa o DNS server ktorý beží na Raspberry Pi, linuxoch alebo dockeroch.
 Používa sa na blokovanie reklám a celkovo ku zlepšeniu súkromia. 
 
 Máme niekoľko možností ako zistiť viac informácií o webovej stránke, napr. pomocu: Gobuster, Nikto, feroxbuster...  
@@ -93,7 +93,7 @@ Po preskúmaní admin panelu nevidím nič nezvyčajné. Vyskúšam default logi
 
 ##### 32400/TCP - Plex Media Server
 
-Po pripojení na (http://cieľová_IP:36000) sa vyskúšame registrovať. Po prihlásení vidím verziu 3.9.1  
+Po pripojení na (http://cieľová_IP:32400) sa vyskúšame registrovať. Po prihlásení vidím verziu 3.9.1  
 Pokúsim sa vyhľadať exploity pre túto verziu no nič nenájdem.
 
 <img src="{{ site.baseurl }}/images/posts/2025/mirai/mirai7.jpg" alt="plex" style="width:100%; max-width:700px; height:auto; margin-bottom:20px; border-radius:4px;">
@@ -107,7 +107,6 @@ Skúsim recursion test či DNS odpovedá na dotazy ktoré by nemal.
 #### 22/tcp - SSH
 
 Banner prezrádza, že zariadenie alebo server používa Debian, konkrétne staršiu verziu Debian 8 čo umožňuje pripojenie buď s predvoleným heslom alebo cez brute-force nástroje ako Medusa a predstavuje tak riziko napadnutia zariadenia.  
-medusa: medusa -h 10.10.10.48 -u pi -p raspberry -M ssh
 
 <img src="{{ site.baseurl }}/images/posts/2025/mirai/mirai8.jpg" alt="medusa" style="width:100%; max-width:700px; height:auto; margin-bottom:20px; border-radius:4px;">
 
@@ -155,29 +154,3 @@ To viedlo k vzniku desiatok klonov a mutácií Mirai ktoré dodnes útočia na n
 Ukázalo sa že hoci pôvodní autori boli chytení zverejnenie kódu rozšírilo problém a dnes je Mirai základom mnohých botnetov využívaných na kybernetický zločin.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Popis o výsledkoch.....
-
-
-
-
-
-
-(Na pokračovaní sa pracuje ... )
