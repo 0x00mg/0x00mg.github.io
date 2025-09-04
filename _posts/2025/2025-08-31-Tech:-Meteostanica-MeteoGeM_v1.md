@@ -91,17 +91,28 @@ Cieľ bol jasný – zistiť, či 2× Li-Ion 18650 (2200 mAh, paralelne = 4400 m
 #### Výpočet spotreby a odhad výdrže batérie
 
 **Predpoklady a hodnoty použité vo výpočtoch**
-$$
-\begin{aligned}
-- Prúd počas aktívnej fázy pri 3.3 V: \(I_{\text{active}} = 150.2\ \text{mA}\) (WeMos + BME280)  
-- Dĺžka aktívnej fázy: \(t_{\text{active}} = 5\ \text{s}\)  
-- Interval prebudenia: 15 min → \(n_{\text{cyklov}} = 96\ \text{cyklov/deň}\)  
-- DC/DC účinnosť: \(\eta_{\text{DC}} = 0.85\) (85 %)  
-- Batéria: 2×18650 2200 mAh paralelne → \(Q_{\text{bat}} = 4400\ \text{mAh}\)  
-- Použiteľná frakcia kapacity (derating): \(f_{\text{usable}} = 0.90\) (90 %)  
-- Samovybíjanie: približne 2 % mesačne → \(r_{\text{sd,day}} \approx \tfrac{0.02}{30} \approx 0.00067\ \text{(zlomok/deň)}\)
-\end{aligned}
-$$
+
+- **Prúd počas aktívnej fázy pri 3.3 V:** WeMos + BME280  
+  $$I_{\text{active}} = 150.2\ \text{mA}$$
+
+- **Dĺžka aktívnej fázy:**  
+  $$t_{\text{active}} = 5\ \text{s}$$
+
+- **Interval prebudenia:** 15 min  
+  $$n_{\text{cyklov}} = 96\ \text{cyklov/deň}$$
+
+- **DC/DC účinnosť:**  
+  $$\eta_{\text{DC}} = 0.85 \ (\text{85 %})$$
+
+- **Batéria:** 2×18650 2200 mAh paralelne  
+  $$Q_{\text{bat}} = 4400\ \text{mAh}$$
+
+- **Použiteľná frakcia kapacity (derating):**  
+  $$f_{\text{usable}} = 0.90 \ (\text{90 %})$$
+
+- **Samovybíjanie:** približne 2 % mesačne  
+  $$r_{\text{sd,day}} \approx \frac{0.02}{30} \approx 0.00067\ \text{(zlomok/deň)}$$
+
 
 **1) Spotreba počas jedného cyklu na 3.3 V strane**
 
