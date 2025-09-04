@@ -91,7 +91,7 @@ Určite navštívim /admin panel.
 
 Po preskúmaní admin panelu nevidím nič nezvyčajné. Vyskúšam default login ktorý som našiel na officiálnej stránke Pi-hole. Neúspešne
 
-##### 36000/TCP - Plex Media Server
+##### 32400/TCP - Plex Media Server
 
 Po pripojení na (http://cieľová_IP:36000) sa vyskúšame registrovať. Po prihlásení vidím verziu 3.9.1  
 Pokúsim sa vyhľadať exploity pre túto verziu no nič nenájdem.
@@ -128,6 +128,23 @@ Zistíme aké príkazy môžme používať ako užívateľ a ako root:
 Ďalej hľadáme root flag.  
 `find / -type f -name "root.txt" 2>/dev/null`  
 ![root flag](/images/posts/2025/mirai/mirai11.jpg)
+
+Súbor root.txt je stratený a zrejme bude na USB kľúči.  
+Použijeme príkay `df -h` alebo `mount`
+
+![root flag](/images/posts/2025/mirai/mirai12.jpg)  
+
+:) súbory sú vymazané. Šťastie že sme v linuxe. Skúsime použiť grep alebo string.  
+`grep --binary-files=text --context=100 'root' /dev/sdb > /tmp/root.txt`
+`strings /dev/sbd/`
+
+Pomocou obidvoch príkazov sa mi podarilo vytiahnúť root flag.  
+
+![root flag](/images/posts/2025/mirai/mirai13.jpg) 
+
+
+
+
 
 
 
