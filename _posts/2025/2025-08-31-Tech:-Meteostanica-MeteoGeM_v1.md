@@ -14,12 +14,12 @@ image: /images/posts/2025/meteo/meteo1.jpg
 
 
 
-###Ako som postavil vlastnú batériovú meteostanicu s ESP8266 a MQTT
+### Ako som postavil vlastnú batériovú meteostanicu s ESP8266 a MQTT
 
 Už dlho ma lákala myšlienka mať prehľad o tom, aká je teplota a vlhkosť nielen v byte, ale aj vonku. Chcel som si to ale riešiť po svojom žiadne hotové IoT hračky ale vlastný projekt ktorý si sám zladím a prispôsobím.  
 A tak sa zrodil nápad na dvojicu meteostaníc: jednu do bytu a druhú von, s tým, že vonkajšia bude napájaná z batérie a čo najviac úsporná.
 
-####Nápad a požiadavky
+#### Nápad a požiadavky
 
 **Moje požiadavky boli jasné:**  
 1. Meranie teploty, vlhkosti a tlaku každých 15 minút.  
@@ -29,7 +29,7 @@ A tak sa zrodil nápad na dvojicu meteostaníc: jednu do bytu a druhú von, s t�
 
 Znie to jednoducho ale ako vždy... diabol je v detailoch.  
 
-####Výber komponentov
+#### Výber komponentov
 
 **Po chvíľke premýšľania som skončil pri týchto súčiastkach:**  
 **ESP8266 (ESP-12E)** – lacný WiFi mikrokontrolér ktorý bez problémov zvládne MQTT.  
@@ -39,7 +39,7 @@ Znie to jednoducho ale ako vždy... diabol je v detailoch.
 **2× Li-Ion 18650** – zdroj energie.
 
 
-####Softvérová časť
+#### Softvérová časť
 
 Samozrejme s pomocou AI som napísal jednoduchý kód v Arduine [code MeteoGeM_v1](https://github.com/0x00mg/C-language/tree/main/MeteoGeM). Funguje to takto:  
 1. Po zapnutí sa ESP pripojí na WiFi.
@@ -59,7 +59,7 @@ Po tom čo ESP odošle dáta musí ešte vyhlásiť: „Som hotový!“ – to j
 
 Vďaka tomu mám istotu, že ESP medzi meraniami nežerie batériu v deep sleep režime ale je naozaj úplne odpojené.
 
-####Testovanie a výsledky
+#### Testovanie a výsledky
 
 Keď som to prvýkrát spustil, bol to krásny moment... nič nefungovalo. :)  
 ESP sa prebudilo, pripojilo na WiFi, poslalo dáta a ostalo zapnuté....  
@@ -70,7 +70,7 @@ Na NAS-e som si nastavil MQTT server a vizualizáciu dát. Teraz môžem sledova
 
 <img src="{{ site.baseurl }}/images/posts/2025/meteo-meteo1" alt="Broadboard" style="width:100%; max-width:600px; height:auto; margin-bottom:20px; border-radius:4px;">
 
-####Čo ďalej?
+#### Čo ďalej?
 
 Plánujem:
 
@@ -78,6 +78,6 @@ Pridať webové rozhranie alebo integráciu do Home Assistanta.
 Vytlačiť elegantnú krabičku.  
 
 
-####Záver
+#### Záver
 Tento projekt mi ukázal, že aj relatívne jednoduchá myšlienka (merať teplotu každých 15 minút) sa dá spraviť elegantne a efektívne – ak si človek dá pozor na spotrebu energie.
 ESP8266, BME280 a TPL5110 sa ukázali ako ideálna kombinácia pre lacnú a úspornú meteostanicu, ktorá dokáže fungovať na batériu veľmi dlho.
