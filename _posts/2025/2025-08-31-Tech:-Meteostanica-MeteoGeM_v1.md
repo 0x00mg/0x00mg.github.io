@@ -92,30 +92,38 @@ Cieľ bol jasný – zistiť, či 2× Li-Ion 18650 (2200 mAh, paralelne = 4400 m
 
 **Predpoklady a hodnoty použité vo výpočtoch**
 
-- **Prúd počas aktívnej fázy pri 3.3 V:** WeMos + BME280
-  $$I_{\text{active}} = 150.2\ \text{mA}$$
+- **Prúd počas aktívnej fázy pri 3.3 V:** WeMos + BME280  
+  $$
+  I_{\text{active}} = 150.2\ \text{mA}
+  $$
+- **Dĺžka aktívnej fázy:**  
+  $$
+  t_{\text{active}} = 5\ \text{s}
+  $$
+- **Interval prebudenia:** 15 min  
+  $$
+  n_{\text{cyklov}} = 96\ \text{cyklov/deň}
+  $$
+- **DC/DC účinnosť:**  
+  $$
+  \eta_{\text{DC}} = 0.85 \ (\text{85 %})
+  $$
+- **Batéria:** 2×18650 2200 mAh paralelne  
+  $$
+  Q_{\text{bat}} = 4400\ \text{mAh}
+  $$
+- **Použiteľná frakcia kapacity (derating):**  
+  $$
+  f_{\text{usable}} = 0.90 \ (\text{90 %})
+  $$
+- **Samovybíjanie:** približne 2 % mesačne  
+  $$
+  r_{\text{sd,day}} \approx \frac{0.02}{30} \approx 0.00067\ \text{(zlomok/deň)}
+  $$
 
-- **Dĺžka aktívnej fázy:**
-  $$t_{\text{active}} = 5\ \text{s}$$
+**Výpočet**
 
-- **Interval prebudenia:** 15 min
-  $$n_{\text{cyklov}} = 96\ \text{cyklov/deň}$$
-
-- **DC/DC účinnosť:**
-  $$\eta_{\text{DC}} = 0.85 \ (\text{85 %})$$
-
-- **Batéria:** 2×18650 2200 mAh paralelne
-  $$Q_{\text{bat}} = 4400\ \text{mAh}$$
-
-- **Použiteľná frakcia kapacity (derating):**
-  $$f_{\text{usable}} = 0.90 \ (\text{90 %})$$
-
-- **Samovybíjanie:** približne 2 % mesačne
-  $$r_{\text{sd,day}} \approx \frac{0.02}{30} \approx 0.00067\ \text{(zlomok/deň)}$$
-
-#### Výpočet 
-
-**1) Spotreba počas jedného cyklu na 3.3 V strane**
+**1) Spotreba počas jedného cyklu na 3.3 V strane**  
 
 $$
 t_{\text{active}} = \frac{5}{3600}\ \text{h} \approx 0.001389\ \text{h}
@@ -126,45 +134,46 @@ Q_{\text{cyklus,load}} = I_{\text{active}} \cdot t_{\text{active}}
 \approx 150.2 \cdot 0.001389 \approx 0.208\ \text{mAh}
 $$
 
-**2) Prepočet na batériovú stranu (zohľadnenie DC/DC účinnosti)**
+**2) Prepočet na batériovú stranu (zohľadnenie DC/DC účinnosti)**  
 
 $$
 Q_{\text{cyklus,batt}} = \frac{Q_{\text{cyklus,load}}}{\eta_{\text{DC}}} 
 \approx \frac{0.208}{0.85} \approx 0.245\ \text{mAh}
 $$
 
-**3) Denná spotreba bez samovybíjania**
+**3) Denná spotreba bez samovybíjania**  
 
 $$
 Q_{\text{den}} = n_{\text{cyklov}} \cdot Q_{\text{cyklus,batt}} 
 = 96 \cdot 0.245 \approx 23.52\ \text{mAh/deň}
 $$
 
-**4) Pripočítanie samovybíjania batérie (denný príspevok)**
+**4) Pripočítanie samovybíjania batérie (denný príspevok)**  
 
 $$
 Q_{\text{sd/day}} = Q_{\text{bat}} \cdot r_{\text{sd,day}} 
 = 4400 \cdot 0.00067 \approx 2.95\ \text{mAh/deň}
 $$
 
-**Celková denná spotreba:**
+**Celková denná spotreba:**  
 
 $$
 Q_{\text{den,eff}} = Q_{\text{den}} + Q_{\text{sd/day}} \approx 23.52 + 2.95 \approx 26.47\ \text{mAh/deň}
 $$
 
-**5) Použiteľná kapacita batérií (derating)**
+**5) Použiteľná kapacita batérií (derating)**  
 
 $$
 Q_{\text{bat,usable}} = Q_{\text{bat}} \cdot f_{\text{usable}} = 4400 \cdot 0.9 = 3960\ \text{mAh}
 $$
 
-**6) Odhad výdrže**
+**6) Odhad výdrže**  
 
 $$
 t_{\text{vydrz}} = \frac{Q_{\text{bat,usable}}}{Q_{\text{den,eff}}} 
 = \frac{3960}{26.47} \approx 149.6\ \text{dní} \approx 5.0\ \text{mesiacov}
 $$
+
 
 
 Poznámky:  
