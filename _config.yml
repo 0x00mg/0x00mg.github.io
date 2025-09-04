@@ -34,5 +34,8 @@ collections:
 # Build settings
 markdown: kramdown
 permalink: /:categories/:title/
+
+kramdown:
+  math_engine: mathjax
   math_engine_opts:
     preview: false
