@@ -12,7 +12,7 @@ tags:
 image: /images/posts/2025/meteo/meteo1.jpg
 ---
 
-
+**.......článok je ešte v procese.......**
 
 ### Ako som postavil vlastnú batériovú meteostanicu s ESP8266 a MQTT
 
