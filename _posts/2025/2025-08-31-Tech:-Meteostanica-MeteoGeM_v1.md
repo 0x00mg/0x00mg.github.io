@@ -40,6 +40,8 @@ Znie to jednoducho ale ako vždy... diabol je v detailoch.
 **Pololu U1V11F3** – DC/DC menič na stabilné 3,3V pre ESP. Regulátor zvyšuje napätie v rozsahu od 0,5 do 5,5 V na konštantnú hodnotu 3,3 V.  
 **2× Li-Ion 18650** – zdroj energie.
 
+<img src="{{ site.baseurl }}/images/posts/2025/meteo/meteo2.jpg" alt="Broadboard" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;">
+
 
 #### Softvérová časť
 
