@@ -6,8 +6,9 @@ author: "0x4d47"
 categories:
     - blog
 tags:
-    - elektronika
+    - elektro
     - esp8266
+    - MQTT
    
 image: /images/posts/2025/meteo/meteo1.jpg
 ---
