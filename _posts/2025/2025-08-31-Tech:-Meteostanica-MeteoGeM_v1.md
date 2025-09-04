@@ -70,12 +70,12 @@ ESP sa prebudilo, pripojilo na WiFi, poslalo dáta a... ostalo zapnuté....
 Na NAS-e som si nastavil MQTT server a vizualizáciu dát. Teraz môžem sledovať históriu teplôt a vlhkosti a porovnávať byt vs. vonkajšie prostredie.  
 **(Popis nastavenia a testovanie v procese....)**
 
-## Testovanie a vyhodnotenie spotreby meteostanice
+#### Testovanie a vyhodnotenie spotreby meteostanice
 
 Po dokončení hardvéru bolo potrebné otestovať spotrebu a odhadnúť, ako dlho dokáže meteostanica fungovať na batérie.  
 Cieľ bol jasný – zistiť, či 2× Li-Ion 18650 (2200 mAh, paralelne = 4400 mAh) vydržia aspoň niekoľko mesiacov pri intervale odosielania dát každých 15 minút.
 
-### Spotreba jednotlivých komponentov
+#### Spotreba jednotlivých komponentov
 
 | Komponent        | Stav              | Prúd (mA)        | Poznámka |
 |------------------|-------------------|------------------|----------|
@@ -113,6 +113,7 @@ Cieľ bol jasný – zistiť, či 2× Li-Ion 18650 (2200 mAh, paralelne = 4400 m
 - **Samovybíjanie:** približne 2 % mesačne
   $$r_{\text{sd,day}} \approx \frac{0.02}{30} \approx 0.00067\ \text{(zlomok/deň)}$$
 
+#### Výpočet 
 
 **1) Spotreba počas jedného cyklu na 3.3 V strane**
 
