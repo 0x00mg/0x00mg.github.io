@@ -48,6 +48,7 @@ A tak sa zrodil nápad na dvojicu meteostaníc: jednu do bytu a druhú von s tý
 
 <img src="{{ site.baseurl }}/images/posts/2025/meteo/meteo2.jpg" alt="Broadboard" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;">
 
+**(....kompletný zoznam súčiastok a schéma budú doplnené.......)**
 
 #### Softvérová časť
 
