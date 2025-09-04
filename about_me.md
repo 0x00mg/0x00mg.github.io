@@ -13,18 +13,19 @@ const lines = [
   "Initializing profile...",
   "----------------------------------------",
   "Username: Miroslav Gensor",
-  "Education: Mechanik elektrotechnik, cislicova a riadiaca technika",
-  "Location: Bratislava",
+  "Education: Mechanik elektrotechnik, cislicova a riadiaca technika",  
   "Company: IFT - InForm Technologies a.s.",
+  "Location: Bratislava",
   "----------------------------------------",
   "Loading profession modules...",
   "[OK] RIS & SCADA systems specialist loaded",
   "[OK] Daily operations initialized",
   "----------------------------------------",
   "Scanning hobbies...",
-  "[*] Plastikove modelarstvo",
-  "[*] Hľadanie vlajok na Hack The Box",
-  "[*] Elektronika a technicke experimenty",
+  "[*] Plastic Modeling",
+  "[*] CTF Hack The Box",
+  "[*] Electronics and technical experiments",
+  "[*] MTB, SNB",
   "----------------------------------------",
   "Profile loaded successfully.",
   "Type 'help' for commands or 'exit' to logout..."
@@ -58,7 +59,7 @@ function typeNextLine() {
   if (lineIndex < lines.length) {
     typeLine(lines[lineIndex], () => {
       lineIndex++;
-      setTimeout(typeNextLine, 200);
+      setTimeout(typeNextLine, 100);
     });
   } else {
     enableInput(); // po dokončení animácie zapneme vstup
