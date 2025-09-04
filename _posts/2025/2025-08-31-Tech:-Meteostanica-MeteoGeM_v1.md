@@ -91,8 +91,8 @@ Cieľ bol jasný – zistiť, či 2× Li-Ion 18650 (2200 mAh, paralelne = 4400 m
 | **Pololu U1V11F3**| prevádzka         | –                | efektivita cca 85–90 % (zohľadnené vo výpočtoch) |
 
 **Poznámka:**  
-> Počas „spánku“ je WeMos fyzicky odpojený od napájania pomocou TPL5110, takže spotreba v neaktívnej fáze je prakticky nulová.  
-> Hlavnú časť dennej spotreby teda tvorí krátka aktívna fáza každých 15 minút.
+Počas „spánku“ je WeMos fyzicky odpojený od napájania pomocou TPL5110, takže spotreba v neaktívnej fáze je prakticky nulová.  
+Hlavnú časť dennej spotreby teda tvorí krátka aktívna fáza každých 15 minút.
 
 #### Výpočet spotreby a odhad výdrže batérie
 
