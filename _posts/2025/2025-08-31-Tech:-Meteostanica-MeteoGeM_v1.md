@@ -68,6 +68,7 @@ ESP sa prebudilo, pripojilo na WiFi, poslalo dáta a ostalo zapnuté....
 Na NAS-e som si nastavil MQTT server a vizualizáciu dát. Teraz môžem sledovať históriu teplôt a vlhkosti a porovnávať byt vs. vonkajšie prostredie.  
 **(Popis nastavenia a testovanie v procese....)**
 
+![Hlboký scan](/images/posts/2025/meteo/meteo1.jpg)
 
 ####Čo ďalej?
 
