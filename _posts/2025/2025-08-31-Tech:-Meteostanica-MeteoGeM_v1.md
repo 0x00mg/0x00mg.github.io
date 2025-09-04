@@ -100,83 +100,48 @@ Cieľ bol jasný – zistiť, či 2× Li-Ion 18650 (2200 mAh, paralelne = 4400 m
 
 ### Výpočet (krok po kroku)
 
-1. **Spotreba na 3.3 V strane počas jedného cyklu**  
-\[
-t_{\text{active}} = \frac{5}{3600}\ \text{h} \approx 0.001389\ \text{h}
-\]
-\[
-Q_{\text{cyklus,load}} = I_{\text{active}} \cdot t_{\text{active}}
-\]
-\[
-Q_{\text{cyklus,load}} = 150.2 \cdot 0.001389 \approx 0.208\ \text{mAh}
-\]
+### Výpočty spotreby a odhad výdrže
 
-2. **Prepočet na batériovú stranu (zohľadnenie DC/DC účinnosti)**  
-Energie/kapacitu odoberanú z batérie musíme zväčšiť o faktor \(1/\eta_{\text{DC}}\):
-\[
-Q_{\text{cyklus,batt}} = \frac{Q_{\text{cyklus,load}}}{\eta_{\text{DC}}}
-\]
-\[
-Q_{\text{cyklus,batt}} = \frac{0.208}{0.85} \approx 0.245\ \text{mAh}
-\]
+```text
+1) Spotreba na 3.3 V strane počas jedného cyklu:
+t_active = 5 / 3600 h ≈ 0.001389 h
+Q_cyklus_load = I_active * t_active
+Q_cyklus_load = 150.2 * 0.001389 ≈ 0.208 mAh
 
-3. **Denná spotreba bez samovybíjania**  
-\[
-n_{\text{cyklov}} = \frac{24\cdot3600}{15\cdot60} = 96
-\]
-\[
-Q_{\text{deň}} = n_{\text{cyklov}} \cdot Q_{\text{cyklus,batt}}
-\]
-\[
-Q_{\text{deň}} = 96 \cdot 0.245 \approx 23.52\ \text{mAh}
-\]
+2) Prepočet na batériovú stranu (zohľadnenie DC/DC účinnosti):
+Q_cyklus_batt = Q_cyklus_load / η_DC
+Q_cyklus_batt = 0.208 / 0.85 ≈ 0.245 mAh
 
-4. **Pripočítanie samovybíjania batérie (denný príspevok)**  
-Denný úbytok kapacity samovybíjaním:
-\[
-Q_{\text{sd/day}} = Q_{\text{bat}} \cdot r_{\text{sd,day}}
-\]
-Príklad (pri 2 %/mesiac): \(r_{\text{sd,day}} \approx 0.00067\), takže
-\[
-Q_{\text{sd/day}} = 4400 \cdot 0.00067 \approx 2.95\ \text{mAh/day}
-\]
+3) Denná spotreba bez samovybíjania:
+n_cyklov = (24*3600) / (15*60) = 96
+Q_den = n_cyklov * Q_cyklus_batt
+Q_den = 96 * 0.245 ≈ 23.52 mAh
 
-Celková efektívna denná spotreba:
-\[
-Q_{\text{deň,efektívne}} = Q_{\text{deň}} + Q_{\text{sd/day}}
-\]
-\[
-Q_{\text{deň,efektívne}} \approx 23.52 + 2.95 \approx 26.47\ \text{mAh/day}
-\]
+4) Pripočítanie samovybíjania batérie (denný príspevok):
+Q_sd/day = Q_bat * r_sd/day
+r_sd/day ≈ 0.00067 (pri 2 % mesačne)
+Q_sd/day = 4400 * 0.00067 ≈ 2.95 mAh/deň
 
-5. **Použiteľná kapacita batérií (derating)**  
-\[
-Q_{\text{bat,usable}} = Q_{\text{bat}} \cdot f_{\text{usable}} = 4400 \cdot 0.9 = 3960\ \text{mAh}
-\]
+Celková denná spotreba:
+Q_den_eff = Q_den + Q_sd/day
+Q_den_eff ≈ 23.52 + 2.95 ≈ 26.47 mAh/deň
 
-6. **Odhad výdrže**  
-\[
-t_{\text{výdrž}} = \frac{Q_{\text{bat,usable}}}{Q_{\text{deň,efektívne}}}
-\]
-\[
-t_{\text{výdrž}} = \frac{3960}{26.47} \approx 149.6\ \text{dní} \approx 5.0\ \text{mesiacov}
-\]
+5) Použiteľná kapacita batérií (derating):
+Q_bat_usable = Q_bat * f_usable
+Q_bat_usable = 4400 * 0.9 = 3960 mAh
 
-### Výsledok (približne)
+6) Odhad výdrže:
+t_vydrz = Q_bat_usable / Q_den_eff
+t_vydrz = 3960 / 26.47 ≈ 149.6 dní ≈ 5.0 mesiacov
 
-- **Denná spotreba (vrátane strát a samovybíjania):** ≈ **26.5 mAh/deň**  
-- **Odhad výdrže na 2×18650 (2200 mAh, paralelne):** ≈ **150 dní** (~5 mesiacov), pri predpokladoch vyššie.
+```
 
-> ⚠️ Poznámky:  
+Poznámky:  
 > - Ak by DC/DC účinnosť bola lepšia (napr. 90 %), alebo samovybíjanie menšie, výdrž by rástla.  
-> - V reálnom prostredí môže teplota výrazne ovplyvniť kapacitu batérie (nižšie teploty → nižšia použiteľná kapacita).  
+> - V reálnom prostredí môže teplota výrazne ovplyvniť kapacitu batérie (nižšie teploty = nižšia použiteľná kapacita).  
 > - Ak by sa aktívny čas predĺžil (napr. dlhšie WiFi pripojenie), Q_cycle sa zvýši proporcionálne.
 
-### Graf
 
-Nižšie sú súbory s grafom priebehu batériového prúdu (24 h, špičky každých 15 minút, 5 s):
-
-- `battery_current_24h.png` — graf som vygeneroval a môžeš ho stiahnuť a vložiť do blogu.
 
 
 
