@@ -35,7 +35,7 @@ A tak sa zrodil nápad na dvojicu meteostaníc: jednu do bytu a druhú von s tý
 4. Medzi meraniami sa má celé zariadenie vypnúť aby batérie vydržali čo najdlhšie. (žiadny deep sleep mode)
 5. Sledovanie stavu batérie
 
-Znie to jednoducho ale ako vždy... diabol je v detailoch.  
+> Znie to jednoducho ale ako vždy... diabol je v detailoch.  
 
 #### Výber komponentov
 
@@ -65,7 +65,7 @@ Samozrejme s pomocou AI som napísal jednoduchý kód v Arduine ([code MeteoGeM_
 Najväčšia výzva bola nastaviť TPL5110. Tento malý čip sa správa ako inteligentný „vypínač“ – drží ESP úplne vypnuté a prebúdza ho len v nastavených intervaloch. Nakonfigurovať ho na 15 minút bola celkom sranda.
 Po tom čo ESP odošle dáta musí ešte odoslať DONE signál. Tým dá TPL5110 najavo že môže zase odpojiť napájanie a čakať na ďalšie prebudenie.
 
-Vďaka tomu mám istotu že ESP medzi meraniami nežerie batériu v deep sleep režime ale je naozaj úplne odpojené.
+> Vďaka tomu mám istotu že ESP medzi meraniami nežerie batériu v deep sleep režime ale je naozaj úplne odpojené.
 
 #### Testovanie a výsledky
 
@@ -140,9 +140,7 @@ $$
 r_{\text{sd,day}} \approx \frac{0.02}{30} \approx 0.00067\ \text{(zlomok/deň)}
 $$
 
----
-
-## Výpočet
+#### Výpočet
 
 **1) Spotreba počas jedného cyklu na 3.3 V strane**  
 
@@ -196,13 +194,10 @@ t_{\text{vydrz}} = \frac{Q_{\text{bat,usable}}}{Q_{\text{den,eff}}}
 $$
 
 
-
-
-
 Poznámky:  
-> - Ak by DC/DC účinnosť bola lepšia (napr. 90 %), alebo samovybíjanie menšie, výdrž by rástla.  
-> - V reálnom prostredí môže teplota výrazne ovplyvniť kapacitu batérie (nižšie teploty = nižšia použiteľná kapacita).  
-> - Ak by sa aktívny čas predĺžil (napr. dlhšie WiFi pripojenie), Q_cycle sa zvýši proporcionálne.
+Ak by DC/DC účinnosť bola lepšia (napr. 90 %), alebo samovybíjanie menšie, výdrž by rástla.  
+V reálnom prostredí môže teplota výrazne ovplyvniť kapacitu batérie (nižšie teploty = nižšia použiteľná kapacita).  
+Ak by sa aktívny čas predĺžil (napr. dlhšie WiFi pripojenie), Q_cycle sa zvýši proporcionálne.
 
 <img src="{{ site.baseurl }}/images/posts/2025/meteo/meteo1.jpg" alt="Broadboard" style="width:100%; max-width:600px; height:auto; margin-bottom:20px; border-radius:4px;">
 
