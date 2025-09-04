@@ -33,14 +33,14 @@ Vďaka tomu vieme určiť ďalší smer prieskumu a hľadať potenciálne zranit
 
 Na rýchle odhalenie všetkých portov použijem príkaz:
 
-<img src="{{ site.baseurl }}/images/posts/2025/meteo/mirai2.jpg" alt="basic scan" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;">
+<img src="{{ site.baseurl }}/images/posts/2025/mirai/mirai2.jpg" alt="basic scan" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;">
 
 `-p-`  skenujem všetkých 65 535 portov.  
 `--min-rate 10000`  nastavuje minimálnu rýchlosť odosielania paketov (10 000 za sekundu), aby bol sken výrazne rýchlejší. 
 
 Po ukončení skenu si otvorené porty oskenujem hlbšie:
 
-<img src="{{ site.baseurl }}/images/posts/2025/meteo/mirai3.jpg" alt="deep scan" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;">
+<img src="{{ site.baseurl }}/images/posts/2025/mirai/mirai3.jpg" alt="deep scan" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;">
 
 `-sC` spustí default NSE skripty (Nmap Scripting Engine).  
 &nbsp;&nbsp;&nbsp;&nbsp;Tieto skripty skúšajú získať extra info o službách (verzia SSH, SSL certifikát, HTTP titulok, FTP info atď.).  
@@ -66,7 +66,7 @@ Predtým ako sa pokúsime o zneužitie tak sa pokúsime otvoriť web http://cie�
 Stránka nám nič nevráti.  
 Hlavičky odpovede HTTP poskytujú niekoľko náznakov:  
 
-<img src="{{ site.baseurl }}/images/posts/2025/meteo/mirai4.jpg" alt="HTTP header" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;">
+<img src="{{ site.baseurl }}/images/posts/2025/mirai/mirai4.jpg" alt="HTTP header" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;">
 
 Zaujímavá je časť `X-Pi-hole`. Vraví nám že sa jedná o [Pi-hole](https://pi-hole.net/). Jedná sa o DNS server ktorý beží na Raspberry P, linuxoch alebo dockeroch.
 Používa sa na blokovanie reklám a celkovo ku zlepšeniu súkromia. 
@@ -74,7 +74,7 @@ Používa sa na blokovanie reklám a celkovo ku zlepšeniu súkromia.
 Máme niekoľko možností ako zistiť viac informácií o webovej stránke, napr. pomocu: Gobuster, Nikto, feroxbuster...  
 Pre naše účely použijeme [gobuster](https://github.com/OJ/gobuster)
 
-<img src="{{ site.baseurl }}/images/posts/2025/meteo/mirai5.jpg" alt="gobuster" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;">
+<img src="{{ site.baseurl }}/images/posts/2025/mirai/mirai5.jpg" alt="gobuster" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;">
 
 `-w` určuje wordlist, teda zoznam slov alebo názvov adresárov/súborov ktoré bude nástroj skúšať.  
 `-u` je cieľová URL.  
@@ -87,7 +87,7 @@ Určite navštívim /admin panel.
 
 #### Site
 
-<img src="{{ site.baseurl }}/images/posts/2025/meteo/mirai6.jpg" alt="admin pi hole" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;">
+<img src="{{ site.baseurl }}/images/posts/2025/mirai/mirai6.jpg" alt="admin pi hole" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;">
 
 Po preskúmaní admin panelu nevidím nič nezvyčajné. Vyskúšam default login ktorý som našiel na officiálnej stránke Pi-hole. Neúspešne
 
@@ -96,7 +96,7 @@ Po preskúmaní admin panelu nevidím nič nezvyčajné. Vyskúšam default logi
 Po pripojení na (http://cieľová_IP:36000) sa vyskúšame registrovať. Po prihlásení vidím verziu 3.9.1  
 Pokúsim sa vyhľadať exploity pre túto verziu no nič nenájdem.
 
-<img src="{{ site.baseurl }}/images/posts/2025/meteo/mirai7.jpg" alt="plex" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;">
+<img src="{{ site.baseurl }}/images/posts/2025/mirai/mirai7.jpg" alt="plex" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;">
 
 Port **1877/tcp** patrí historicky HP-UX WebQoS databáze, dnes už nepoužívanej takže nemá zmysel sa ním ďalej zaoberať.  
 
@@ -109,7 +109,7 @@ Skúsim recursion test či DNS odpovedá na dotazy ktoré by nemal.
 Banner prezrádza, že zariadenie alebo server používa Debian, konkrétne staršiu verziu Debian 8 čo umožňuje pripojenie buď s predvoleným heslom alebo cez brute-force nástroje ako Medusa a predstavuje tak riziko napadnutia zariadenia.  
 medusa: medusa -h 10.10.10.48 -u pi -p raspberry -M ssh
 
-<img src="{{ site.baseurl }}/images/posts/2025/meteo/mirai8.jpg" alt="medusa" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;">
+<img src="{{ site.baseurl }}/images/posts/2025/mirai/mirai8.jpg" alt="medusa" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;">
 
 `-h 10.10.10.48` Cieľová IP adresa, na ktorú sa Medusa pripojí.  
 `-u pi` Používateľské meno.    
@@ -119,20 +119,20 @@ medusa: medusa -h 10.10.10.48 -u pi -p raspberry -M ssh
 Po úspešnom prihlásení vyhľadám flag v user.txt  
 Zistíme aké príkazy môžme používať ako užívateľ a ako root:  
 `sudo -l` Zobrazí zoznam príkazov ktoré môže aktuálny používateľ spustiť cez sudo bez zadania hesla alebo s heslom.  
-<img src="{{ site.baseurl }}/images/posts/2025/meteo/mirai9.jpg" alt="sudo" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;">   
+<img src="{{ site.baseurl }}/images/posts/2025/mirai/mirai9.jpg" alt="sudo" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;">   
 `sudo su -` úplné root prostredie, vrátane PATH, domovského adresára (/root) a profilových premenných.  
 `find / -type f -name "user.txt" 2>/dev/null`  
 `cat user.txt`  
-<img src="{{ site.baseurl }}/images/posts/2025/meteo/mirai10.jpg" alt="flag user" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;">  
+<img src="{{ site.baseurl }}/images/posts/2025/mirai/mirai10.jpg" alt="flag user" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;">  
 
 Ďalej hľadáme root flag.  
 `find / -type f -name "root.txt" 2>/dev/null`  
-<img src="{{ site.baseurl }}/images/posts/2025/meteo/mirai11.jpg" alt="flag root" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;">  
+<img src="{{ site.baseurl }}/images/posts/2025/mirai/mirai11.jpg" alt="flag root" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;">  
 
 Súbor root.txt je stratený a zrejme bude na USB kľúči.  
 Použijeme príkay `df -h` alebo `mount`
 
-<img src="{{ site.baseurl }}/images/posts/2025/meteo/mirai12.jpg" alt="flag root" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;">  
+<img src="{{ site.baseurl }}/images/posts/2025/mirai/mirai12.jpg" alt="flag root" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;">  
 
 :) súbory sú vymazané. Šťastie že sme v linuxe. Skúsime použiť grep alebo string.  
 `grep --binary-files=text --context=100 'root' /dev/sdb > /tmp/root.txt`
@@ -140,7 +140,7 @@ Použijeme príkay `df -h` alebo `mount`
 
 Pomocou obidvoch príkazov sa mi podarilo vytiahnúť root flag.  
 
-<img src="{{ site.baseurl }}/images/posts/2025/meteo/mirai13.jpg" alt="flag root" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;"> 
+<img src="{{ site.baseurl }}/images/posts/2025/mirai/mirai13.jpg" alt="flag root" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;"> 
 
 ####Záver
 
