@@ -84,11 +84,13 @@ Cieľ bol jasný – zistiť, či 2× Li-Ion 18650 (2200 mAh, paralelne = 4400 m
 
 #### Spotreba jednotlivých komponentov
 
-Komponent       Stav         Prúd (mA)  Poznámka                                     
-WeMos D1 Mini   aktívny           ~150  WiFi + MQTT, cca 5 s                         
-BME280          meranie           ~0.2  zanedbateľné oproti WeMos                    
-TPL5110         standby       0.000035  len počas vypnutia, zanedbateľné             
-Pololu U1V11F3  prevádzka            -  efektivita cca 85–90 % (zohľadnené vo výpočtoch) 
+| Komponent       | Stav      |   Prúd (mA) | Poznámka                                     |
+|-----------------|-----------|------------:|----------------------------------------------|
+| WeMos D1 Mini   &nbsp;&nbsp;|&nbsp; aktívny   |        ~150 | WiFi + MQTT, cca 5 s                         |
+| BME280          &nbsp;&nbsp;|&nbsp; meranie   |        ~0.2 | zanedbateľné oproti WeMos                    |
+| TPL5110         &nbsp;&nbsp;|&nbsp; standby   |    0.000035 | len počas vypnutia, zanedbateľné             |
+| Pololu U1V11F3  &nbsp;&nbsp;|&nbsp; prevádzka &nbsp;&nbsp;|&nbsp;           – |&nbsp; efektivita cca 85–90 % (zohľadnené vo výpočtoch) |
+ 
 
 
 
@@ -99,7 +101,7 @@ Hlavnú časť dennej spotreby teda tvorí krátka aktívna fáza každých 15 m
 
 #### Výpočet spotreby a odhad výdrže batérie
 
-**Predpoklady a hodnoty použité vo výpočtoch**
+**Predpoklady a hodnoty použité vo výpočtoch**  &nbsp;
 
 - **Prúd počas aktívnej fázy pri 3.3 V:** WeMos + BME280  
 
