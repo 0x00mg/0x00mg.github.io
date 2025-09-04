@@ -33,14 +33,14 @@ Vďaka tomu vieme určiť ďalší smer prieskumu a hľadať potenciálne zranit
 
 Na rýchle odhalenie všetkých portov použijem príkaz:
 
-<img src="{{ site.baseurl }}/images/posts/2025/mirai/mirai2.jpg" alt="basic scan" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;">
+<img src="{{ site.baseurl }}/images/posts/2025/mirai/mirai2.jpg" alt="basic scan" style="width:100%; max-width:600px; height:auto; margin-bottom:20px; border-radius:4px;">
 
 `-p-`  skenujem všetkých 65 535 portov.  
 `--min-rate 10000`  nastavuje minimálnu rýchlosť odosielania paketov (10 000 za sekundu), aby bol sken výrazne rýchlejší. 
 
 Po ukončení skenu si otvorené porty oskenujem hlbšie:
 
-<img src="{{ site.baseurl }}/images/posts/2025/mirai/mirai3.jpg" alt="deep scan" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;">
+<img src="{{ site.baseurl }}/images/posts/2025/mirai/mirai3.jpg" alt="deep scan" style="width:100%; max-width:600px; height:auto; margin-bottom:20px; border-radius:4px;">
 
 `-sC` spustí default NSE skripty (Nmap Scripting Engine).  
 &nbsp;&nbsp;&nbsp;&nbsp;Tieto skripty skúšajú získať extra info o službách (verzia SSH, SSL certifikát, HTTP titulok, FTP info atď.).  
@@ -130,7 +130,7 @@ Zistíme aké príkazy môžme používať ako užívateľ a ako root:
 <img src="{{ site.baseurl }}/images/posts/2025/mirai/mirai11.jpg" alt="flag root" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;">  
 
 Súbor root.txt je stratený a zrejme bude na USB kľúči.  
-Použijeme príkay `df -h` alebo `mount`
+Použijeme príkazy `df -h` alebo `mount`
 
 <img src="{{ site.baseurl }}/images/posts/2025/mirai/mirai12.jpg" alt="flag root" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;">  
 
@@ -142,7 +142,7 @@ Pomocou obidvoch príkazov sa mi podarilo vytiahnúť root flag.
 
 <img src="{{ site.baseurl }}/images/posts/2025/mirai/mirai13.jpg" alt="flag root" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;"> 
 
-####Záver
+#### Záver
 
 Cieľom tohto cvičenia bolo ukázať aké jednoduché je kompromitovať zariadenie s predvolenými prihlasovacími údajmi alebo so zraniteľnými službami.
 Na príklade Mirai sme si pripomenuli že:  
