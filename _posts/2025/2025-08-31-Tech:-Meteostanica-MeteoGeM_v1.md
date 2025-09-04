@@ -70,6 +70,92 @@ ESP sa prebudilo, pripojilo na WiFi, poslalo dáta a... ostalo zapnuté....
 Na NAS-e som si nastavil MQTT server a vizualizáciu dát. Teraz môžem sledovať históriu teplôt a vlhkosti a porovnávať byt vs. vonkajšie prostredie.  
 **(Popis nastavenia a testovanie v procese....)**
 
+Jedným z testov je aj určiť spotrebu a odhadnúť výdrž na 2× Li-Ion 18650 (2200 mAh, paralelne = 4400 mAh), pričom meteostanica sa prebúdza každých 15 minút, odosiela dáta cez MQTT a následne sa opäť vypne.
+
+**Parametre spotreby jednotlivých súčiastok**  
+| Komponent      | Stav                  | Prúd (mA)                 | Poznámka               |
+| -------------- | --------------------- | ------------------------- | ---------------------- |
+| WeMos D1 Mini  | aktívny (WiFi + MQTT) | 150                       | cca 5 s                |
+| BME280         | aktívny               | 0,2                       | počas 5 s čítania      |
+| TPL5110        | standby               | 0,000035                  | zanedbateľné           |
+| Pololu U1V11F3 | prevádzka             | zohľadnená cez efektivitu | cca 85–90 % efektivita |
+
+## Výpočet spotreby meteostanice
+
+### 1. Aktívna fáza
+
+Počas aktívnej fázy (WiFi + MQTT) berie WeMos približne **150 mA** po dobu **5 s**:
+
+$$
+I_{\text{active}} = 150 \,\text{mA}
+$$
+
+Čas prebudenia v hodinách:
+
+$$
+t_{\text{active}} = \frac{5}{3600} \,\text{h} \approx 0.001389 \,\text{h}
+$$
+
+Spotreba na jeden cyklus:
+
+$$
+Q_{\text{cyklus}} = I_{\text{active}} \cdot t_{\text{active}}
+$$
+
+$$
+Q_{\text{cyklus}} = 150 \cdot 0.001389 \approx 0.208 \,\text{mAh}
+$$
+
+### 2. Korekcia na účinnosť DC/DC meniča
+
+Efektivita Pololu U1V11F3 je približne 85 %:
+
+$$
+Q_{\text{cyklus,real}} = \frac{Q_{\text{cyklus}}}{0.85}
+$$
+
+$$
+Q_{\text{cyklus,real}} = \frac{0.208}{0.85} \approx 0.245 \,\text{mAh}
+$$
+
+### 3. Spotreba za deň
+
+Počet cyklov za deň (prebudenie každých 15 minút):
+
+$$
+n_{\text{cyklov}} = \frac{24 \cdot 3600}{15 \cdot 60} = 96
+$$
+
+Denná spotreba:
+
+$$
+Q_{\text{deň}} = n_{\text{cyklov}} \cdot Q_{\text{cyklus,real}}
+$$
+
+$$
+Q_{\text{deň}} = 96 \cdot 0.245 \approx 23.5 \,\text{mAh}
+$$
+
+### 4. Výdrž batérie
+
+Kapacita dvoch 18650 (paralelne):
+
+$$
+Q_{\text{batéria}} = 2 \cdot 2200 = 4400 \,\text{mAh}
+$$
+
+Odhad výdrže v dňoch:
+
+$$
+t_{\text{výdrž}} = \frac{Q_{\text{batéria}}}{Q_{\text{deň}}}
+$$
+
+$$
+t_{\text{výdrž}} = \frac{4400}{23.5} \approx 187 \,\text{dní} \approx 6.2 \,\text{mesiaca}
+$$
+
+
+
 <img src="{{ site.baseurl }}/images/posts/2025/meteo/meteo1.jpg" alt="Broadboard" style="width:100%; max-width:600px; height:auto; margin-bottom:20px; border-radius:4px;">
 
 #### Čo ďalej?
@@ -81,5 +167,5 @@ Vytlačiť elegantnú krabičku.
 
 
 #### Záver
-Tento projekt mi ukázal, že aj relatívne jednoduchá myšlienka (merať teplotu každých 15 minút) sa dá spraviť elegantne a efektívne – ak si človek dá pozor na spotrebu energie.
-ESP8266, BME280 a TPL5110 sa ukázali ako ideálna kombinácia pre lacnú a úspornú meteostanicu, ktorá dokáže fungovať na batériu veľmi dlho.
+Tento projekt mi ukázal, že aj relatívne jednoduchá myšlienka (merať teplotu každých 15 minút) sa dá spraviť elegantne a efektívne ak si človek dá pozor na spotrebu energie.
+ESP8266, BME280 a TPL5110 sa ukázali ako ideálna kombinácia pre lacnú a úspornú meteostanicu ktorá dokáže fungovať na batériu veľmi dlho.
