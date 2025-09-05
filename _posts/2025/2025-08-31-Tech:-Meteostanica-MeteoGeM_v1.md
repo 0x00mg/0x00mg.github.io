@@ -47,6 +47,7 @@ A tak sa zrodil nápad na dvojicu meteostaníc: jednu do bytu a druhú von s tý
 **2× Li-Ion 18650** – zdroj energie.
 
 <img src="{{ site.baseurl }}/images/posts/2025/meteo/meteo2.jpg" alt="Broadboard" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;">
+<img src="{{ site.baseurl }}/images/posts/2025/meteo/meteo5.jpg" alt="Broadboard" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;">
 
 **(....kompletný zoznam súčiastok a schéma budú doplnené.......)**
 
