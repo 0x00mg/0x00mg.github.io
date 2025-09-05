@@ -13,7 +13,7 @@ tags:
 image: /images/posts/2025/htb/htb1.jpg
 ---
 
-
+>Agent Smith: “For me, the world is just code that I must control.”
 
 Kybernetická bezpečnosť už dávno nie je témou len pre veľké technologické firmy alebo štátne inštitúcie. Dnes sa dotýka každého od malých firiem ktoré spracúvajú citlivé dáta až po jednotlivcov ktorí chcú ochrániť svoje online účty.
 S rastúcim počtom útokov a hrozieb je dopyt po odborníkoch na bezpečnosť väčší než kedykoľvek predtým. Ale ako sa vlastne stať cybersecurity špecialistom? Teória z kníh a online kurzov je dôležitá no bez praktických skúseností sa ďaleko nedostaneš.
