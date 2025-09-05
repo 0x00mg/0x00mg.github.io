@@ -94,6 +94,12 @@ Tento systém prináša prirodzenú motiváciu, zdravú súťaživosť a pocit p
 HTB Labs sú jedinečné v tom že na rozdiel od Academy ťa nikto nevedie za ruku. Nedostaneš presný návod ale iba cieľ: dostať sa dnu a získať "flags". 
 To ťa núti spájať vedomosti z rôznych oblastí. Byť kreatívny a naučiť sa myslieť ako skutočný útočník. Vďaka tomu sa Labs stávajú neoceniteľným tréningovým priestorom pre každého kto to s kyberbezpečnosťou myslí vážne.
 
+### Záver
+
+Hack The Box nie je len o učení je to vstupenka do sveta kde pravidlá reality neplatia a tvoje schopnosti sú jedinou hranicou. Každá úloha, každý stroj a každý modul ťa posúva bližšie k pochopeniu čo znamená myslieť ako hacker. Ak si pripravený prekročiť hranice a odhaliť, čo sa skrýva za ilúziou, HTB čaká.
+
+>Morpheus: “You have a choice: stay in the illusion or face the truth.”
+
 [How to play](https://help.hackthebox.com/en/collections/2919918-content)
 
 
