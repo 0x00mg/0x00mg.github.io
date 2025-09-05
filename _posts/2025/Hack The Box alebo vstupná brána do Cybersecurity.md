@@ -1,4 +1,17 @@
-
+---
+layout: post
+title:	"Hack The Box alebo vstupná brána do Cybersecurity"
+date:	2025-08-15 10:00:00 +0200 
+author: "0x00mg"
+categories:
+    - blog
+tags:
+    - htb
+    - labs
+    - academy
+   
+image: /images/posts/2025/ah-6/xxx.jpg
+---
 
 
 
