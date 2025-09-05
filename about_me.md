@@ -292,3 +292,5 @@ document.addEventListener('DOMContentLoaded', typeNextLine);
   50% { background-color: transparent; }
 }
 </style>
+
+-->
