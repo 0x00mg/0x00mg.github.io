@@ -62,27 +62,38 @@ function typeNextLine() {
   }
 }
 
-// jednoduchý shell
+// Vytvorenie nového riadku pre vstup
 function enableInput() {
-  const input = document.createElement('div'); // div je stabilnejší
+  createInputLine();
+}
+
+function createInputLine() {
+  const input = document.createElement('div');
   input.setAttribute('contenteditable', 'true');
   input.className = 'terminal-input';
   terminal.appendChild(input);
   input.focus();
-
   terminal.scrollTop = terminal.scrollHeight;
 
   input.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
       const command = input.textContent.trim();
+
+      // Presunieme príkaz do starého riadku
+      const commandLine = document.createElement('div');
+      commandLine.textContent = command;
+      commandLine.className = 'terminal-command';
+      terminal.insertBefore(commandLine, input);
+
       processCommand(command);
-      input.textContent = '';
-      input.focus(); // zachová fokus po Enter
+
+      // Odstránime starý input a vytvoríme nový riadok
+      input.remove();
+      createInputLine();
     }
   });
 
-  // zabezpečíme, že fokus sa nestratí aj po kliknutí mimo
   input.addEventListener('blur', () => input.focus());
 }
 
@@ -96,11 +107,12 @@ function processCommand(cmd) {
       output = "Miroslav Gensor";
       break;
     case 'exit':
-      output = "Logging out... goodbye!\n";
+      output = "Logging out... goodbye...\n";
       terminal.insertAdjacentText('beforeend', output);
       terminal.scrollTop = terminal.scrollHeight;
       setTimeout(() => {
         terminal.textContent = '';
+        lineIndex = 0;
         typeNextLine(); // reštart terminálu
       }, 3000);
       return;
@@ -111,7 +123,7 @@ function processCommand(cmd) {
   terminal.insertAdjacentText('beforeend', output + '\n');
   terminal.scrollTop = terminal.scrollHeight;
 }
-
+  
 document.addEventListener('DOMContentLoaded', typeNextLine);
 </script>
 
@@ -136,7 +148,13 @@ document.addEventListener('DOMContentLoaded', typeNextLine);
   min-width: 100%;
   color: #00cc66;
 }
+
+.terminal-command {
+  color: #00cc66;
+  white-space: pre-wrap;
+}
 </style>
+
 
 
 <!--
