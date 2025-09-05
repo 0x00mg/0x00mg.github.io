@@ -50,7 +50,7 @@ Ak chceš prístup k modulom vyššej úrovne (Easy, Medium, Hard/Tier I, II, II
 #### 4. Certifikácie
 <a href="https://academy.hackthebox.com" target="_blank" rel="noopener noreferrer">HTB Academy</a> ponúka viaceré priemyselne uznávané certifikácie, ktoré súvisia s konkrétnymi rolami:
 
-<a href="https://academy.hackthebox.com/preview/certifications/htb-certified-junior-cybersecurity-associate" target="_blank" rel="noopener noreferrer">Junior Cybersecurity Associate (JCA)</a>  
+<a href="https://academy.hackthebox.com/preview/certifications/htb-certified-junior-cybersecurity-associate" target="_blank" rel="noopener noreferrer">Junior Cybersecurity Associate (CJCA)</a>  
 <a href="https://academy.hackthebox.com/preview/certifications/htb-certified-penetration-testing-specialist" target="_blank" rel="noopener noreferrer">Penetration Testing Specialist (CPTS)</a>  
 <a href="https://academy.hackthebox.com/preview/certifications/htb-certified-bug-bounty-hunter" target="_blank" rel="noopener noreferrer">Bug Bounty Hunter (CBBH)</a>  
 <a href="https://academy.hackthebox.com/preview/certifications/htb-certified-defensive-security-analyst" target="_blank" rel="noopener noreferrer">Defensive Security Analyst (CDSA)</a>  
