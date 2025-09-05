@@ -48,7 +48,7 @@ Ak chceš prístup k modulom vyššej úrovne (Easy, Medium, Hard/Tier I, II, II
 >Môžeš získať 20 extra cubes ak sa registruješ cez môj <a href="https://referral.hackthebox.com/mzFKQuj" target="_blank" rel="noopener noreferrer">referral link</a>.
 
 #### 4. Certifikácie
-[HTB Academy](https://academy.hackthebox.com) ponúka viaceré priemyselne uznávané certifikácie, ktoré súvisia s konkrétnymi rolami:
+<a href="https://academy.hackthebox.com" target="_blank" rel="noopener noreferrer">HTB Academy</a> ponúka viaceré priemyselne uznávané certifikácie, ktoré súvisia s konkrétnymi rolami:
 
 <a href="https://academy.hackthebox.com/preview/certifications/htb-certified-junior-cybersecurity-associate" target="_blank" rel="noopener noreferrer">Junior Cybersecurity Associate (JCA)</a>  
 <a href="https://academy.hackthebox.com/preview/certifications/htb-certified-penetration-testing-specialist" target="_blank" rel="noopener noreferrer">Penetration Testing Specialist (CPTS)</a>  
