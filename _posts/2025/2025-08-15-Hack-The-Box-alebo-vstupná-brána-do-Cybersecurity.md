@@ -17,7 +17,7 @@ image: /images/posts/2025/htb/htb1.jpg
 
 Kybernetická bezpečnosť už dávno nie je témou len pre veľké technologické firmy alebo štátne inštitúcie. Dnes sa dotýka každého od malých firiem ktoré spracúvajú citlivé dáta až po jednotlivcov ktorí chcú ochrániť svoje online účty.
 S rastúcim počtom útokov a hrozieb je dopyt po odborníkoch na bezpečnosť väčší než kedykoľvek predtým. Ale ako sa vlastne stať cybersecurity špecialistom? Teória z kníh a online kurzov je dôležitá no bez praktických skúseností sa ďaleko nedostaneš.
-Potrebuješ miesto kde si môžeš vyskúšať reálne útoky naučiť sa rozmýšľať ako útočník a pritom nikoho neohroziť. A práve na to vznikla platforma [Hack The Box (HTB)](https://www.hackthebox.com/).
+Potrebuješ miesto kde si môžeš vyskúšať reálne útoky naučiť sa rozmýšľať ako útočník a pritom nikoho neohroziť. A práve na to vznikla platforma <a href="https://www.hackthebox.com/" target="_blank" rel="noopener noreferrer">Hack The Box (HTB)</a>.
 
 <img src="{{ site.baseurl }}/images/posts/2025/htb/htb2.jpg" alt="HTB" style="width:100%; max-width:700px; height:auto; margin-bottom:20px; border-radius:4px;">
 
