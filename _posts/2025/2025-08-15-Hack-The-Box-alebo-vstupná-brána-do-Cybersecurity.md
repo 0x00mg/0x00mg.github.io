@@ -50,12 +50,12 @@ Ak chceš prístup k modulom vyššej úrovne (Easy, Medium, Hard/Tier I, II, II
 #### 4. Certifikácie
 [HTB Academy](https://academy.hackthebox.com) ponúka viaceré priemyselne uznávané certifikácie, ktoré súvisia s konkrétnymi rolami:
 
-<a href="https://academy.hackthebox.com/preview/certifications/htb-certified-junior-cybersecurity-associate" target="_blank" rel="noopener noreferrer">Junior Cybersecurity Associate (JCA)</a>
-<a href="https://academy.hackthebox.com/preview/certifications/htb-certified-penetration-testing-specialist" target="_blank" rel="noopener noreferrer">Penetration Testing Specialist (CPTS)</a>
-<a href="https://academy.hackthebox.com/preview/certifications/htb-certified-bug-bounty-hunter" target="_blank" rel="noopener noreferrer">Bug Bounty Hunter (CBBH)</a>
-<a href="https://academy.hackthebox.com/preview/certifications/htb-certified-defensive-security-analyst" target="_blank" rel="noopener noreferrer">Defensive Security Analyst (CDSA)</a>
-<a href="https://academy.hackthebox.com/preview/certifications/htb-certified-web-exploitation-expert" target="_blank" rel="noopener noreferrer">Web Exploitation Expert (CWEE)</a>
-<a href="https://academy.hackthebox.com/preview/certifications/htb-certified-active-directory-pentesting-expert" target="_blank" rel="noopener noreferrer">Active Directory Pentesting Expert (CAPE)</a>
+<a href="https://academy.hackthebox.com/preview/certifications/htb-certified-junior-cybersecurity-associate" target="_blank" rel="noopener noreferrer">Junior Cybersecurity Associate (JCA)</a>  
+<a href="https://academy.hackthebox.com/preview/certifications/htb-certified-penetration-testing-specialist" target="_blank" rel="noopener noreferrer">Penetration Testing Specialist (CPTS)</a>  
+<a href="https://academy.hackthebox.com/preview/certifications/htb-certified-bug-bounty-hunter" target="_blank" rel="noopener noreferrer">Bug Bounty Hunter (CBBH)</a>  
+<a href="https://academy.hackthebox.com/preview/certifications/htb-certified-defensive-security-analyst" target="_blank" rel="noopener noreferrer">Defensive Security Analyst (CDSA)</a>  
+<a href="https://academy.hackthebox.com/preview/certifications/htb-certified-web-exploitation-expert" target="_blank" rel="noopener noreferrer">Web Exploitation Expert (CWEE)</a>  
+<a href="https://academy.hackthebox.com/preview/certifications/htb-certified-active-directory-pentesting-expert" target="_blank" rel="noopener noreferrer">Active Directory Pentesting Expert (CAPE)</a>  
  
 Tieto certifikáty sa získavajú po absolvovaní celej cesty a úspešnom absolvovaní skúšky (vyžaduje voucher dostupný napríklad s ročným členstvom).  
 Podľa recenzií užívateľov zíkať jeden z týchto certifikátov je celkom výzva.
