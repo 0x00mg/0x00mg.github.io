@@ -45,7 +45,7 @@ Ak chceš, môžeš tiež používať svoj vlastný počítač – jednoducho si
 Každý, kto sa zaregistruje získa 30 bezplatných „Cubes“, ktoré slúžia na odomknutie modulov. Po dokončení modulov dostávaš ďalšie Cubes ktoré môžeš použiť ďalej.  
 Ak chceš prístup k modulom vyššej úrovne (Easy, Medium, Hard/Tier I, II, III), potrebuješ kúpiť Cubes alebo predplatenú verziu
 
->Môžeš získať 20 extra cubes ak sa registruješ cez môj [referral link](https://referral.hackthebox.com/mzFKQuj).
+>Môžeš získať 20 extra cubes ak sa registruješ cez môj <a href="https://referral.hackthebox.com/mzFKQuj" target="_blank" rel="noopener noreferrer">referral link</a>.
 
 #### 4. Certifikácie
 [HTB Academy](https://academy.hackthebox.com) ponúka viaceré priemyselne uznávané certifikácie, ktoré súvisia s konkrétnymi rolami:
