@@ -10,7 +10,7 @@ tags:
     - labs
     - academy
    
-image: /images/posts/2025/ah-6/xxx.jpg
+image: /images/posts/2025/htb/htb1.jpg
 ---
 
 
