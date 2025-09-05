@@ -9,7 +9,7 @@ title: "OSCP, HTB Enumeration"
 
 Toto je ťahák na enumeráciu bol vytvorený užívateľom [oncybersec](https://github.com/oncybersec/oscp-enumeration-cheat-sheet?tab=readme-ov-file#nmap) počas štúdia OSCP. Zahŕňa aj príkazy, ktoré používal na platformách ako Vulnhub a Hack the Box. Niektoré z týchto príkazov sú založené na príkazoch vykonávaných nástrojom [Autorecon](https://github.com/Tib3rius/AutoRecon) tool. 
 
-## Vyhlásenie o odmietnutí zodpovednosti
+#### Vyhlásenie o odmietnutí zodpovednosti
 Tieto príkazy by sa mali používať iba na vzdelávacie účely alebo na autorizované testovanie.   
 
 
