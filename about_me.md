@@ -106,16 +106,19 @@ function processCommand(cmd) {
     case 'whoami':
       output = "Miroslav Gensor";
       break;
-    case 'exit':
-      output = "Logging out... goodbye...\n";
-      terminal.insertAdjacentText('beforeend', output);
-      terminal.scrollTop = terminal.scrollHeight;
-      setTimeout(() => {
-        terminal.textContent = '';
-        lineIndex = 0;
-        typeNextLine(); // reštart terminálu
-      }, 3000);
-      return;
+      case 'exit':
+        output = "Logging out... goodbye...\n";
+        terminal.insertAdjacentText('beforeend', output);
+        terminal.scrollTop = terminal.scrollHeight;
+      
+        setTimeout(() => {
+          // vymažeme obsah terminálu
+          terminal.textContent = '';
+      
+          // vytvoríme nový blinkajúci input kurzor vľavo hore
+          createInputLine();
+        }, 3000);
+        return;
     default:
       output = "Unknown command: " + cmd;
   }
