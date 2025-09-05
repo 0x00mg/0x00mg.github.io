@@ -31,6 +31,8 @@ Platforma je rozdelená do dvoch hlavných častí:
 HTB Academy je samostatná vzdelávacia platforma vytvorená tímom Hack The Box navrhnutá ako „University for Hackers“. Jej účelom je zhromaždiť poznatky ktoré komunita HTB roky zbierala a sprostredkovať ich v interaktívnom krok-za-krokom prostredí.
 Hlavná myšlienka spočíva v tom aby sa používatelia naučili nielen „ako hackovať“ ale aj ako myslieť ako hacker, čo je kľúčové pri hodnotení aj zabezpečovaní systémov.
 
+<img src="{{ site.baseurl }}/images/posts/2025/htb/htb3.jpg" alt="HTB" style="width:100%; max-width:700px; height:auto; margin-bottom:20px; border-radius:4px;">
+
 #### 1. Moduly a cesty (Modules & Paths)
 Moduly sú samostatné kurzy rozdelené na tematické kapitoly ("sections") v ktorých nájdeš teóriu aj praktické ukážky, príkazy s výstupmi, interaktívne cvičenia (tzv. „checkpoints“) i hodnotiace úlohy (Skills Assessments).  
 Cesty (Paths) sú zostavy modulov zamerané na konkrétne cieľové role či oblasti – napríklad penetračné testovanie, Android pentesting, incident management, Active Directory či forenznú analýzu.
@@ -79,6 +81,8 @@ Okrem strojov sú tu aj Challenges menšie úlohy zamerané na konkrétne oblast
 
 Pre skutočne náročných sú pripravené [Pro Labs a Endgames](https://www.hackthebox.com/blog/new-pro-labs-offerings). Ide o rozsiahle scenáre ktoré simulujú celé firemné prostredie s viacerými sieťami, servermi a doménovou infraštruktúrou. 
 Tu už nejde len o hacknutie jedného počítača, ale o systematický prienik do siete, eskaláciu práv a kompletné ovládnutie infraštruktúry. Presne tak ako by to vyzeralo pri reálnom penetračnom teste.
+
+<img src="{{ site.baseurl }}/images/posts/2025/htb/htb4.jpg" alt="HTB" style="width:100%; max-width:700px; height:auto; margin-bottom:20px; border-radius:4px;">
 
 Aby učenie nebolo len osamelým bojom HTB pridalo viacero herných a komunitných prvkov. Jedným z nich je Sherlocks: krátke incident response scenáre kde riešiš konkrétnu bezpečnostnú udalosť a analyzuješ čo sa v systéme stalo.
 Je to skvelý spôsob ako si precvičiť forenziku a obranný pohľad na bezpečnosť. Ďalším prvkom sú [Tracks](https://www.hackthebox.com/blog/new-and-updated-tracks), teda tematické kolekcie strojov a úloh zamerané na špecifickú oblasť (napríklad Windows exploitation, Active Directory alebo webové aplikácie). 
