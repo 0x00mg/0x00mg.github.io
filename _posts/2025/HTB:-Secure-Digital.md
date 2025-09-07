@@ -10,7 +10,7 @@ tags:
     - challenge
     - spi
    
-image: /images/posts/2025/htb/xxxx.jpg
+image: /images/posts/2025/htb/spi.jpg
 ---
 
 
