@@ -25,7 +25,7 @@ Musíme získať hlavný kľúč uložený na microSD karte v prístupovom syst�
 Operatívny technik ich preto mohol prerušiť a vložiť medzi ne zariadenie ktoré zachytáva signály. Potom spustili čítanie kľúča ktorý sa prenášal cez nezabezpečené sériové rozhranie. 
 Našou úlohou je zistiť čo zariadenie prečítalo.
 
-<OBRAZOK HACK SPI>
+<img src="{{ site.baseurl }}/images/posts/2025/htb/spi1.jpg" alt="SPI" style="width:100%; max-width:500px; height:auto; margin-bottom:20px; border-radius:4px;">
 
 #### SPI protokol
 SPI, teda Serial Peripheral Interface je sériový komunikačný protokol ktorý sa často používa na prepojenie mikroprocesorov alebo mikrokontrolérov s rôznymi periférnymi zariadeniami ako sú senzory, pamäťové čipy, displeje alebo prevodníky signálu. Tento protokol umožňuje priamu výmenu dát medzi zariadeniami pričom jedna strana – master – riadi celú komunikáciu a druhá strana – slave – reaguje na jeho príkazy.
@@ -38,7 +38,7 @@ Jednou z veľkých výhod SPI je jeho vysoká rýchlosť a jednoduchosť čo ho 
 
 Celkovo je SPI protokol výkonným a efektívnym riešením pre pripojenie periférií k mikrokontrolérom najmä tam kde je potrebná vysoká rýchlosť a jednoduchá implementácia.
 
-<OBRAZOK SPI>
+<img src="{{ site.baseurl }}/images/posts/2025/htb/spi2.jpg" alt="SPI" style="width:100%; max-width:400px; height:auto; margin-bottom:20px; border-radius:4px;">
 
 #### Postup
 K dispozícií máme 4 súbory
