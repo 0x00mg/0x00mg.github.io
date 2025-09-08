@@ -58,7 +58,7 @@ Máme hneď niekoľko možností ako získať vlajku. Najjednoduchší spôsob j
 <img src="{{ site.baseurl }}/images/posts/2025/htb/spi3.jpg" alt="SPI" style="width:100%; max-width:700px; height:auto; margin-bottom:20px; border-radius:4px;">
 
 2. Následne je možné identifikovať prenosy dát a hľadať špecifické vzory alebo reťazce, ktoré môžu naznačovať prítomnosť flagu.
-3. Ja som súbor exportoval do csv formátu, rozdelil jednotlivé dáta do stĺpcov a dekódoval pomocou scriptu. (csv bez prekladu ascii z analyzatora)
+3. Ja som súbor exportoval do csv formátu, rozdelil jednotlivé dáta do stĺpcov a dekódoval pomocou scriptu. (csv export bez prekladu ascii/hex iba binary)
    
 ```python
 # Načítanie CSV súboru z logického analyzátora
@@ -130,6 +130,12 @@ celý script nájdete na:  <a href="https://github.com/0x00mg/Python/blob/main/H
 `cut -d';' -f4` – vezme 4. stĺpec (MOSI).  
 `tr -d '\n'` – poskladá všetky znaky do jedného riadku. 
 `grep -o "HTB{[^}]*}"` – nájde a vypíše samotný flag vo formáte HTB{...}  
+
+#### Záver
+
+Výzva Secure Digital ukázala že SPI prenosy je možné jednoducho zachytiť a dekódovať či už v Logic 2, Pythonom alebo pomocou príkazov v linuxe. Keďže SPI nemá vstavané zabezpečenie MOSI/MISO linky prenášajú dáta v čitateľnej podobe a útočníkovi stačí správne mapovať kanály.
+
+Poučenie je jednoznačné: SPI je rýchly a jednoduchý protokol ale nie bezpečný. Prenos citlivých údajov preto musí byť doplnený o šifrovanie alebo aplikačnú ochranu, inak je odpočúvanie triviálne.
 
 
 
