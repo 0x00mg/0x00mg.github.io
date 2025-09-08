@@ -42,7 +42,7 @@ Celkovo je SPI protokol výkonným a efektívnym riešením pre pripojenie perif
 
 #### Postup
 K dispozícií máme súbor s názvom trace_captured.sal.  
-je to binárny záznam zachytený pomocou logického analyzátora ktorý monitoruje komunikáciu medzi zariadeniami cez SPI. Ako sme spomenuli vyššie tento záznam obsahuje štyri digitálne kanály ktoré reprezentujú:
+je to binárny záznam zachytený pomocou logického analyzátora (saleae Logic) ktorý monitoruje komunikáciu medzi zariadeniami cez SPI. Ako sme spomenuli vyššie tento záznam obsahuje štyri digitálne kanály ktoré reprezentujú:
 
 **MOSI** (Master Out Slave In) – dáta posielané z master zariadenia do slave zariadenia.  
 **MISO** (Master In Slave Out) – dáta posielané zo slave zariadenia do master zariadenia.  
@@ -51,15 +51,18 @@ je to binárny záznam zachytený pomocou logického analyzátora ktorý monitor
 
 Máme hneď niekoľko možností ako získať vlajku. Najjednoduchší spôsob je zobrať súbor a dekódovať na stránke <a href="https://gchq.github.io/CyberChef/" target="_blank" rel="noopener noreferrer">CyberChef</a>. Ďaľším spôsobom je analyzovať dáta pomocou programu <a href="https://www.saleae.com/pages/downloads" target="_blank" rel="noopener noreferrer">Logic 2</a>.
 
-1. Po otvorení súboru si pridáme SPI analyzér a vyberieme jednotlivé kanály
+1. Pre otvorenie súboru použijeme Logic 2 a v menu si pridáme SPI analyzér kde vyberieme jednotlivé kanály
 
 <img src="{{ site.baseurl }}/images/posts/2025/htb/spi3.jpg" alt="SPI" style="width:100%; max-width:700px; height:auto; margin-bottom:20px; border-radius:4px;">
 
 2. Následne je možné identifikovať prenosy dát a hľadať špecifické vzory alebo reťazce, ktoré môžu naznačovať prítomnosť flagu.
 3. Ja som súbor exportoval do csv formátu a dekódoval som dáta pomocou scriptu.
-4.   pomocou linux cat awk
 
+   <markdown kod vysvetlenie>
+   
+4. Súbor vieme tiež elegantne dekódovať v linuxe pomocou príkazov cat, awk alebo grep
 
+   <obrazok linux prikazy>
 
 
 
