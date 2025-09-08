@@ -1,4 +1,4 @@
-/*
+
 code {
   padding: 2px 4px;
   font-size: 90%;
@@ -10,9 +10,9 @@ code {
 pre code {
   display: block;
   padding: 10px;
-  color: #7ad010 !important;
+  /*color: #7ad010 !important; */
   background-color: #2f2d2d !important;
   border-radius: 6px;
   overflow-x: auto;
 }
-*/
+
