@@ -37,6 +37,7 @@ permalink: /:categories/:title/
 highlighter: rouge
 
 kramdown:
+  input: GFM
   syntax_highlighter: rouge
   math_engine: mathjax
   math_engine_opts:
