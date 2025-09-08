@@ -10,7 +10,7 @@ blog in progress....
   <h1>Najnovšie články</h1>
 
   <ul class="post-list">
-    {% for post in site.posts limit:5 %}
+    {% for post in site.posts limit:10 %}
       <li style="margin-bottom: 40px;">
         
         <!-- Nadpis -->
