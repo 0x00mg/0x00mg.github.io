@@ -26,7 +26,7 @@ const lines = [
   "[*] CTF Hack The Box",
   "[*] Electronics and technical experiments",
   "[*] MTB, SNB",
-  "[*] Chess,
+  "[*] Chess",
   "----------------------------------------",
   "Profile loaded successfully.",
   "Type 'help' for commands or 'exit' to logout..."
