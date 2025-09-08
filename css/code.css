@@ -14,3 +14,7 @@ pre code {
   border-radius: 6px;
   overflow-x: auto;
 }
+
+pre code, code {
+  color: inherit !important;
+}
