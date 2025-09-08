@@ -126,6 +126,7 @@ celý script nájdete na:  <a href="https://github.com/0x00mg/Python/blob/main/H
 4. Súbor vieme tiež elegantne dekódovať v linuxe pomocou príkazov `cut` ale data som vytiahol aj s HEX
 
 <img src="{{ site.baseurl }}/images/posts/2025/htb/spi4.jpg" alt="SPI" style="width:100%; max-width:700px; height:auto; margin-bottom:20px; border-radius:4px;">
+
 `cut -d';' -f4` – vezme 4. stĺpec (MOSI).  
 `tr -d '\n'` – poskladá všetky znaky do jedného riadku. 
 `grep -o "HTB{[^}]*}"` – nájde a vypíše samotný flag vo formáte HTB{...}  
