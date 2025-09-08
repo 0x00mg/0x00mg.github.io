@@ -14,7 +14,7 @@ const lines = [
   "----------------------------------------",
   "Username: Miroslav Gensor",
   "Education: Mechanik elektrotechnik, cislicova a riadiaca technika",  
-  "Company: IFT - InForm Technologies a.s.",
+  "Company: IFT - InForm Technologies a.s.", 
   "Location: Bratislava",
   "----------------------------------------",
   "Loading profession modules...",
