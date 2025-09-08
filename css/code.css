@@ -2,8 +2,8 @@
 code {
   padding: 2px 4px;
   font-size: 90%;
-  color: #7ad010 !important;  
-  background-color: #2f2d2d !important;
+  color: #7ad010 /*!important;  */
+  background-color: #2f2d2d /*!important;*/
   border-radius: 4px;
 }
 
@@ -11,8 +11,33 @@ pre code {
   display: block;
   padding: 10px;
   /*color: #7ad010 !important; */
-  background-color: #2f2d2d !important;
+  background-color: #2f2d2d /*!important;*/
   border-radius: 6px;
   overflow-x: auto;
 }
+
+/* --- INLINE code ostáva zelený --- */
+:where(p, li, blockquote, h1, h2, h3, h4, h5, h6) > code {
+  color: #7ad010;
+  background-color: #2f2d2d;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+/* --- BLOKY kódu: nechaj Rouge farbiť tokeny --- */
+.highlighter-rouge .highlight,
+.highlighter-rouge pre,
+.highlighter-rouge code {
+  background-color: #2f2d2d !important;
+  color: #d8dee9; /* základná farba pre „netokeny“ (medzery, interpunkcia) */
+}
+
+/* --- Minimalistické farby pre Rouge tokeny --- */
+.highlight .c  { color: #616e88; font-style: italic; }  /* komentáre */
+.highlight .k  { color: #81a1c1; font-weight: 600; }    /* kľúčové slová */
+.highlight .s, .highlight .s1, .highlight .s2 { color: #a3be8c; }  /* stringy */
+.highlight .m, .highlight .mi, .highlight .mf { color: #b48ead; }  /* čísla */
+.highlight .o  { color: #d08770; }                     /* operátory */
+.highlight .nf, .highlight .na { color: #88c0d0; }     /* názvy funkcií/atribútov */
+.highlight .nc { color: #ebcb8b; font-weight: 600; }   /* názvy tried/typov */
 
