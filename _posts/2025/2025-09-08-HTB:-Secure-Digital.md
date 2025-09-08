@@ -16,7 +16,7 @@ image: /images/posts/2025/htb/spi.jpg
 
 
 ### HTB: Secure Digital
-type: hardware
+type: hardware  
 difficulty: very easy
 
 V rámci série výziev Hack The Box (HTB) sa objavila výzva Secure Digital ktorá sa zameriava na analýzu <a href="https://en.wikipedia.org/wiki/Serial_Peripheral_Interface" target="_blank" rel="noopener noreferrer">SPI (Serial Peripheral Interface)</a> protokolu a extrakciu dát z microSD karty. 
