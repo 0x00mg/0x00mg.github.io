@@ -60,10 +60,10 @@ Máme hneď niekoľko možností ako získať vlajku. Najjednoduchší spôsob j
 2. Následne je možné identifikovať prenosy dát a hľadať špecifické vzory alebo reťazce, ktoré môžu naznačovať prítomnosť flagu.
 3. Ja som súbor exportoval do csv formátu, rozdelil jednotlivé dáta do stĺpcov a dekódoval pomocou scriptu. (csv export bez prekladu ascii/hex iba binary)
    
-{% highlight python %}
+```python
 # Načítanie CSV súboru z logického analyzátora
 df = pd.read_csv("digital.csv")
-{% endhighlight %}
+```
 ```python
 # Mapovanie kanálov podľa CSV
 # Predpoklad: Channel 0 = MOSI, Channel 1 = MISO, Channel 2 = CS, Channel 3 = SCK
