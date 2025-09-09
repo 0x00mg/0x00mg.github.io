@@ -28,6 +28,6 @@ Ako cieľovú doménu použijeme megacorpone.com ide o fiktívnu spoločnosť kt
 Vďaka tomu si môžeme bezpečne precvičiť techniky bez rizika že zasiahneme reálne produkčné služby.
 
 ##### Základné DNS dotazy
-Na začiatok nám postačí jednoduchý príkaz `host`, ktorý je bežne dostupný v Linuxových distribúciách. Tento nástroj umožňuje rýchlo zisťovať rôzne druhy DNS záznamov.
+Na začiatok nám postačí jednoduchý príkaz `host`, ktorý je bežne dostupný v Linuxových distribúciách. Tento nástroj umožňuje rýchlo zisťovať rôzne druhy DNS záznamov.  
 <img src="{{ site.baseurl }}/images/posts/2025/dns/dns1.jpg" alt="dns host" style="width:100%; max-width:700px; height:auto; margin-bottom:20px; border-radius:4px;">
 
