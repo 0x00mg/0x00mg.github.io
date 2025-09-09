@@ -61,12 +61,13 @@ poprípade vytvoríme/stiahneme hotový zoznam:
 ```bash
 for ip in $(cat list.txt); do host $ip.megacorpone.com; done
 ```
-<img src="{{ site.baseurl }}/images/posts/2025/dns/dns6.jpg" alt="dns" style="width:100%; max-width:700px; height:auto; margin-bottom:20px; border-radius:4px;">    
+<img src="{{ site.baseurl }}/images/posts/2025/dns/dns6.jpg" alt="dns" style="width:100%; max-width:700px; height:auto; margin-bottom:20px; border-radius:4px;">   
+
 Oveľa komplexnejšie zoznamy slov sú k dispozícii ako súčasť projektu SecLists. Tieto zoznamy slov môžu byť nainštalované do adresára /usr/share/seclists pomocou príkazu `sudo apt install seclists` 
 Vidíme že niekoľko subdomén je aktívnych a ukazuje na konkrétne IP adresy. To nám rozširuje pohľad na infraštruktúru.  
 Brute force enumerácia odhalila súbor IP adries v približne rovnakom rozsahu (167.114.21.X).  
-Ak by správca DNS pre doménu megacorpone.com nastavil aj PTR záznamy, mohli by sme využiť reverse DNS lookup na odhalenie hostiteľov patriacich k jednotlivým IP adresám. V praxi by sme si vedeli prejsť celý rozsah IP adries – napríklad od 167.114.21.200 po 167.114.21.254 a pre každú z nich sa pokúsili zistiť či existuje priradený názov hostiteľa. Aby sme odstránili nepotrebný šum použijeme filter `grep -v` ktorý skryje všetky odpovede obsahujúce hlášku `not found`.  
-`for ip in $(seq 200 254); do host 167.114.21.$ip; done | grep -v "not found" `  
+Ak by správca DNS pre doménu megacorpone.com nastavil aj PTR záznamy, mohli by sme využiť reverse DNS lookup na odhalenie hostiteľov patriacich k jednotlivým IP adresám. V praxi by sme si vedeli prejsť celý rozsah IP adries – napríklad od 167.114.21.60 po 167.114.21.80 a pre každú z nich sa pokúsili zistiť či existuje priradený názov hostiteľa. Aby sme odstránili nepotrebný šum použijeme filter `grep -v` ktorý skryje všetky odpovede obsahujúce hlášku `not found`.  
+`for ip in $(seq 60 80); do host 167.114.21.$ip; done | grep -v "not found" `  
 <img src="{{ site.baseurl }}/images/posts/2025/dns/dns7.jpg" alt="dns" style="width:100%; max-width:700px; height:auto; margin-bottom:20px; border-radius:4px;">  
 
 
