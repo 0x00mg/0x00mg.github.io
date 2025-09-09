@@ -71,6 +71,17 @@ Ak by správca DNS pre doménu megacorpone.com nastavil aj PTR záznamy, mohli b
 <img src="{{ site.baseurl }}/images/posts/2025/dns/dns7.jpg" alt="dns" style="width:100%; max-width:700px; height:auto; margin-bottom:20px; border-radius:4px;">  
 
 
+DNSRECON
+
+DNSENUM
+
+NMAP
+
+DIRBUSTER
+
+
+
+
 
 
 
