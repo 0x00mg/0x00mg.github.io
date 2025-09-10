@@ -1,6 +1,6 @@
 ---
 layout: post
-title:	"  "
+title:	"DNS Enumeration"
 date:	2025-09-10 10:00:00 +0200 
 author: "0x00mg"
 categories:
