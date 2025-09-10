@@ -33,7 +33,8 @@ Každá doména môže obsahovať rôzne typy záznamov ktoré odhaľujú ako je
 | **MX (Mail Exchange)** | Servery, ktoré spracúvajú e-mail pre doménu. |
 | **PTR (Pointer)** | Používa sa pri reverznom DNS lookup-e (IP → doménové meno). |
 | **CNAME (Canonical Name)** | Alias pre iný záznam (napr. mail → mailserver.example.com). |
-| **TXT** | Textové záznamy, často pre overenie domény (napr. Google, SPF, DKIM). | 
+| **TXT** | Textové záznamy, často pre overenie domény (napr. Google, SPF, DKIM). |   
+
 
 Práve tieto záznamy predstavujú bohatý zdroj informácií pre útočníkov aj administrátorov. Správna správa DNS je preto kľúčová nielen pre funkčnosť služieb ale aj pre bezpečnosť celej organizácie.
 DNS funguje na modeli klient-server, pričom resolver odosiela požiadavky na DNS servery ktoré potom odpovedajú požadovanými informáciami.
