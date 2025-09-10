@@ -11,7 +11,7 @@ tags:
     - dnsrecon
     - dnsenum
    
-image: /images/posts/2025/dns/xxx.jpg
+image: /images/posts/2025/dns/dns.jpg
 ---
 
 
