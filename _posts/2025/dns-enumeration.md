@@ -1,4 +1,18 @@
-
+---
+layout: post
+title:	"  "
+date:	2025-09-10 10:00:00 +0200 
+author: "0x00mg"
+categories:
+    - blog
+tags:
+    - Active Information Gathering
+    - dns
+    - dnsrecon
+    - dnsenum
+   
+image: /images/posts/2025/dns/xxx.jpg
+---
 
 
 ### Úvod do DNS
