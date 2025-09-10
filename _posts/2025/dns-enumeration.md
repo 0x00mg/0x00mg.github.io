@@ -37,6 +37,8 @@ DNS funguje na modeli klient-server, pričom resolver odosiela požiadavky na DN
 
 #### DNS enumerácia v praxi
 
+<table><tr><td> <br> Zrieknutie sa zodpovednosti: Autor neberie žiadnu zodpovednosť za prípadné zneužitie uvedených príkazov či nástrojov. Všetky príklady sú určené výhradne na vzdelávacie účely a testovanie v legálnych, kontrolovaných prostrediach. <br> </td></tr></table>
+
 V tomto článku si ukážeme ako sa vykonáva DNS enumerácia, teda zhromažďovanie informácií z DNS záznamov. 
 Ako cieľovú doménu použijeme megacorpone.com ide o fiktívnu spoločnosť ktorá bola vytvorená pre tréning a testovacie účely v oblasti kybernetickej bezpečnosti.
 Vďaka tomu si môžeme bezpečne precvičiť techniky bez rizika že zasiahneme reálne produkčné služby.
@@ -125,24 +127,48 @@ Na Windows systémoch máme vstavaný príkaz nslookup ktorý je ideálny na rý
 výstup často obsahuje overenia (SPF, DKIM, Google site verification) alebo iné metadáta
 nslookup je menej výkonný než nástroje v linuxe ale má výhodu že je predinštalovaný na každom Windows systéme. Dá sa ľahko kombinovať aj s PowerShell alebo batch skriptami pre automatizáciu
 
+##### DNS enumerácia pomocou Nmap NSE skriptov
+Okrem samostatných nástrojov ako DNSRecon a DNSEnum môžeme DNS enumeráciu vykonávať aj priamo cez Nmap. 
+Nmap obsahuje množstvo NSE skriptov (Nmap Scripting Engine), ktoré nám umožňujú cielene spúšťať rozšírené skeny vrátane DNS.
+
+Základný DNS brute force  
+`nmap --script dns-brute megacorpone.com`
+Ak chceme väčší wordlist (napr. z projektu SecLists) môžeme pridať parameter:  
+`nmap --script dns-brute --script-args dns-brute.domain=megacorpone.com,dns-brute.hostlist=/usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt`  
+`dns-brute.domain` - cieľová doména  
+`dns-brute.hostlist` - vlastný zoznam subdomén  
+Takto dosiahneme výsledky porovnateľné s DNSRecon či DNSEnum, ale priamo v rámci Nmapu.  
+
+Ďalší užitočný skript je dns-zone-transfer ktorý sa pokúša o AXFR prenos celej DNS zóny:  
+`nmap --script dns-zone-transfer -p 53 ns1.megacorpone.com`  
+`-p 53` - špecifikujeme DNS port  
+`dns-zone-transfer` - pokus o získanie celej zóny z name servera   
+V praxi je zóna len málokedy nesprávne nakonfigurovaná no ak sa nám podarí úspešne vykonať transfer získame kompletný zoznam všetkých subdomén.
+
+Rovnako zaujímavý je aj dns-reverse skript ktorý sa snaží zisťovať názvy hostiteľov pre IP adresy v rozsahu:  
+`nmap -sL --script dns-reverse 167.114.21.60-80`  
+`-sL` - list scan (Nmap neodosiela pakety iba spracováva mená)  
+`dns-reverse` - reverzný lookup v danom rozsahu  
+Tento príkaz je praktický ak už máme podozrenie že infraštruktúra beží v určitom rozsahu IP adries (napr. podľa výstupu DNSEnum).
+
+#### Záver
+
+DNS enumerácia predstavuje jeden z najdôležitejších krokov pri aktívnom získavaní informácií. Aj keď na prvý pohľad pôsobí nenápadne ale správne vykonaný prieskum dokáže odhaliť podstatné časti infraštruktúry
+od autoritatívnych name serverov cez mailové brány až po testovacie či VPN subdomény.  
+Získané informácie tvoria základ pre ďalšie kroky najmä mapovanie siete, identifikáciu služieb a následnú web enumeráciu ktorej sa budeme venovať v samostatnom článku.  
+Správne zvládnutá DNS enumerácia je preto neoceniteľnou výhodou nielen pre penetračných testerov ale aj pre administrátorov ktorí chcú lepšie porozumieť vlastnej infraštruktúre a odhaliť slabé miesta skôr než útočníci.
+
+**Zdroje:**
+- OSCP
+- HTB
+- Parrot
+- InfoSec
 
 
 
 
 
 
-
-
-
-
-
-DNSRECON
-
-DNSENUM
-
-NMAP
-
-DIRBUSTER
 
 
 
