@@ -67,8 +67,59 @@ Oveľa komplexnejšie zoznamy slov sú k dispozícii ako súčasť projektu SecL
 Vidíme že niekoľko subdomén je aktívnych a ukazuje na konkrétne IP adresy. To nám rozširuje pohľad na infraštruktúru.  
 Brute force enumerácia odhalila súbor IP adries v približne rovnakom rozsahu (167.114.21.X).  
 Ak by správca DNS pre doménu megacorpone.com nastavil aj PTR záznamy, mohli by sme využiť reverse DNS lookup na odhalenie hostiteľov patriacich k jednotlivým IP adresám. V praxi by sme si vedeli prejsť celý rozsah IP adries – napríklad od 167.114.21.60 po 167.114.21.80 a pre každú z nich sa pokúsili zistiť či existuje priradený názov hostiteľa. Aby sme odstránili nepotrebný šum použijeme filter `grep -v` ktorý skryje všetky odpovede obsahujúce hlášku `not found`.  
-`for ip in $(seq 60 80); do host 167.114.21.$ip; done | grep -v "not found" `  
+`for ip in $(seq 60 80); do host 167.114.21.$ip; done | grep -v "not found" `   
 <img src="{{ site.baseurl }}/images/posts/2025/dns/dns7.jpg" alt="dns" style="width:100%; max-width:700px; height:auto; margin-bottom:20px; border-radius:4px;">  
+
+#### Automatizovaná DNS enumerácia
+
+Doteraz sme skúšali základné dotazy manuálne no v reálnej praxi si väčšinu týchto krokov vieme zautomatizovať pomocou nástrojov. 
+V Linuxe máme k dispozícii viacero utilít ktoré umožňujú rýchle a systematické získavanie DNS informácií. Medzi najčastejšie používané patria DNSRecon a DNSEnum.
+
+##### DNSRecon
+DNSRecon je pokročilý Python skript ktorý dokáže kombinovať viacero techník od bežného zisťovania záznamov cez brute force subdomén až po reverse lookup celé rozsahy IP adries.
+Skúsme spustiť základný scan na doméne megacorpone.com:  
+`dnsrecon -d megacorpone.com -t std`  
+<SCREEN>  
+`-d` - špecifikujeme cieľovú doménu  
+`-t std` - typ enumerácie v tomto prípade standard (základné záznamy ako A, MX, NS, SOA, TXT)  
+Výstup nám zobrazí zoznam autoritatívnych name serverov, poštové servery a prípadné TXT záznamy. V praxi vieme hneď získať informácie o infraštruktúre a často aj náznaky o technológiách alebo službách.
+
+Okrem štandardného zberu údajov vie DNSRecon aj brute force subdomén. Ak máme pripravený wordlist (list.txt) použijeme:
+`dnsrecon -d megacorpone.com -D list.txt -t brt`  
+<SCREEN>  
+`-D list.txt` - wordlist so zoznamom subdomén  
+`-t brt` - brute force režim  
+Nástroj takto automaticky prejde celý zoznam a vráti len tie subdomény ktoré existujú a sú priradené k IP adrese. Vďaka tomu môžeme rýchlo odhaliť servery ako vpn.megacorpone.com, router.megacorpone.com či testovacie prostredia.
+
+##### DNSEnum  
+Ďalší veľmi obľúbený nástroj je dnsenum ktorý kombinuje viacero techník do jedného príkazu. Stačí mu zadať cieľovú doménu a nástroj automaticky spustí brute force so zabudovaným zoznamom.
+`dnsenum megacorpone.com`  
+<SCREEN>  
+DNSEnum často odhalí väčší počet hostov než náš manuálny brute force pretože pracuje s rozsiahlejšími wordlistami a získa informácie o IP rozsahoch ktoré daná doména používa.
+V typickom výstupe tak môžeme vidieť subdomény ako admin.megacorpone.com, intranet.megacorpone.com, vpn.megacorpone.com a podobne.
+Navyše nástroj sa pokúsi zistiť celé C-class siete ktoré sú pridelené organizácii. To nám poskytuje ďalší priestor pre rozšírenie enumerácie kde môžeme neskôr preskenovať celý rozsah týchto IP adries nástrojmi ako `nmap.`  
+
+Odporúčam bližšie sa zoznámiť s nástrojmi DNSRecon a DNSEnum keďže výrazne uľahčujú a automatizujú proces DNS enumerácie.
+
+##### NSLookup (Windows)
+Na Windows systémoch máme vstavaný príkaz nslookup ktorý je ideálny na rýchle testy bez potreby inštalovať externé nástroje.
+`nslookup mail.megacorptwo.com`   
+<SCREEN>  
+`nslookup -type=TXT info.megacorptwo.com`  
+<SCREEN>  
+`-type=TXT` - zisťujeme špecificky textové záznamy
+výstup často obsahuje overenia (SPF, DKIM, Google site verification) alebo iné metadáta
+nslookup je menej výkonný než nástroje v linuxe ale má výhodu že je predinštalovaný na každom Windows systéme. Dá sa ľahko kombinovať aj s PowerShell alebo batch skriptami pre automatizáciu
+
+
+
+
+
+
+
+
+
+
 
 
 DNSRECON
