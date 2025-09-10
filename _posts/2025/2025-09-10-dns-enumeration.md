@@ -24,6 +24,7 @@ DNS má hierarchickú štruktúru ktorá sa začína na root zóne. Pokračuje c
 Každá doména môže obsahovať rôzne typy záznamov ktoré odhaľujú ako je infraštruktúra nastavená.
 
 **Najčastejšie DNS záznamy**  
+
 | Typ záznamu | Popis |
 |-------------|-------|
 | **NS (Name Server)** | Určuje autoritatívne DNS servery pre danú doménu. |
