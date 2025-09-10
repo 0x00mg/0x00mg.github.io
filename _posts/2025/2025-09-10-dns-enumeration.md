@@ -24,20 +24,22 @@ DNS má hierarchickú štruktúru ktorá sa začína na root zóne. Pokračuje c
 Každá doména môže obsahovať rôzne typy záznamov ktoré odhaľujú ako je infraštruktúra nastavená.
 
 **Najčastejšie DNS záznamy**  
-**NS (Name Server)** – určuje autoritatívne DNS servery pre danú doménu.  
-**A** – IPv4 adresa hostiteľa (napr. www.megacorpone.com → 149.56.244.87).  
-**AAAA** – IPv6 adresa hostiteľa.  
-**MX (Mail Exchange)** – servery, ktoré spracúvajú e-mail pre doménu.  
-**PTR (Pointer)** – používa sa pri reverznom DNS lookup-e (IP → doménové meno).  
-**CNAME (Canonical Name)** – alias pre iný záznam (napr. mail → mailserver.example.com).  
-**TXT** – textové záznamy, často pre overenie domény (napr. Google, SPF, DKIM).  
+| Typ záznamu | Popis |
+|-------------|-------|
+| **NS (Name Server)** | Určuje autoritatívne DNS servery pre danú doménu. |
+| **A** | IPv4 adresa hostiteľa (napr. www.megacorpone.com → 149.56.244.87). |
+| **AAAA** | IPv6 adresa hostiteľa. |
+| **MX (Mail Exchange)** | Servery, ktoré spracúvajú e-mail pre doménu. |
+| **PTR (Pointer)** | Používa sa pri reverznom DNS lookup-e (IP → doménové meno). |
+| **CNAME (Canonical Name)** | Alias pre iný záznam (napr. mail → mailserver.example.com). |
+| **TXT** | Textové záznamy, často pre overenie domény (napr. Google, SPF, DKIM). | 
 
 Práve tieto záznamy predstavujú bohatý zdroj informácií pre útočníkov aj administrátorov. Správna správa DNS je preto kľúčová nielen pre funkčnosť služieb ale aj pre bezpečnosť celej organizácie.
 DNS funguje na modeli klient-server, pričom resolver odosiela požiadavky na DNS servery ktoré potom odpovedajú požadovanými informáciami.
 
 #### DNS enumerácia v praxi
 
-<table><tr><td> <br> Zrieknutie sa zodpovednosti: Autor neberie žiadnu zodpovednosť za prípadné zneužitie uvedených príkazov či nástrojov. Všetky príklady sú určené výhradne na vzdelávacie účely a testovanie v legálnych, kontrolovaných prostrediach. <br> </td></tr></table>
+<sub>_Zrieknutie sa zodpovednosti: Autor neberie žiadnu zodpovednosť za prípadné zneužitie uvedených príkazov či nástrojov. Všetky príklady sú určené výhradne na vzdelávacie účely a testovanie v legálnych, kontrolovaných prostrediach._</sub>
 
 V tomto článku si ukážeme ako sa vykonáva DNS enumerácia, teda zhromažďovanie informácií z DNS záznamov. 
 Ako cieľovú doménu použijeme megacorpone.com ide o fiktívnu spoločnosť ktorá bola vytvorená pre tréning a testovacie účely v oblasti kybernetickej bezpečnosti.
