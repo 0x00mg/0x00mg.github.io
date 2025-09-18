@@ -71,7 +71,7 @@ Hlavičky odpovede HTTP poskytujú niekoľko náznakov:
 Zaujímavá je časť `X-Pi-hole`. Vraví nám že sa jedná o [Pi-hole](https://pi-hole.net/). Jedná sa o DNS server ktorý beží na Raspberry Pi, linuxoch alebo dockeroch.
 Používa sa na blokovanie reklám a celkovo ku zlepšeniu súkromia. 
 
-Máme niekoľko možností ako zistiť viac informácií o webovej stránke, napr. pomocu: Gobuster, Nikto, feroxbuster...  
+Máme niekoľko možností ako zistiť viac informácií o webovej stránke napr. pomocu: Gobuster, Nikto, feroxbuster...  
 Pre naše účely použijeme [gobuster](https://github.com/OJ/gobuster)
 
 <img src="{{ site.baseurl }}/images/posts/2025/mirai/mirai5.jpg" alt="gobuster" style="width:100%; max-width:700px; height:auto; margin-bottom:20px; border-radius:4px;">
@@ -106,7 +106,7 @@ Skúsim recursion test či DNS odpovedá na dotazy ktoré by nemal.
 
 #### 22/tcp - SSH
 
-Banner prezrádza, že zariadenie alebo server používa Debian, konkrétne staršiu verziu Debian 8 čo umožňuje pripojenie buď s predvoleným heslom alebo cez brute-force nástroje ako Medusa a predstavuje tak riziko napadnutia zariadenia.  
+Banner prezrádza že zariadenie alebo server používa Debian, konkrétne staršiu verziu Debian 8 čo umožňuje pripojenie buď s predvoleným heslom alebo cez brute-force nástroje ako Medusa a predstavuje tak riziko napadnutia zariadenia.  
 
 <img src="{{ site.baseurl }}/images/posts/2025/mirai/mirai8.jpg" alt="medusa" style="width:100%; max-width:700px; height:auto; margin-bottom:20px; border-radius:4px;">
 
@@ -147,10 +147,10 @@ Cieľom tohto cvičenia bolo ukázať aké jednoduché je kompromitovať zariade
 Na príklade Mirai sme si pripomenuli že:  
 1. Malware využíva automatizované skenovanie internetu a hľadá slabé miesta (Telnet/SSH, default login).  
 2. Raspberry Pi alebo iné IoT zariadenia sú častým cieľom pretože používatelia často nemenia predvolené heslá.  
-3. Aj keď súbory zmažeme, v Linuxe sa dajú forenzne obnoviť priamo čítaním z disku.
+3. Aj keď súbory zmažeme tak v Linuxe sa dajú forenzne obnoviť priamo čítaním z disku.
 
 Mirai botnet sa stal známym nielen tým že spôsobil masívne DDoS útoky (napr. na DNS poskytovateľa Dyn v roku 2016) ale aj tým že jeho zdrojový kód bol neskôr zverejnený na internete.
 To viedlo k vzniku desiatok klonov a mutácií Mirai ktoré dodnes útočia na nezabezpečené IoT zariadenia.  
-Ukázalo sa že hoci pôvodní autori boli chytení zverejnenie kódu rozšírilo problém a dnes je Mirai základom mnohých botnetov využívaných na kybernetický zločin.
+Ukázalo sa že hoci pôvodní autori boli chytení, zverejnenie kódu rozšírilo problém a dnes je Mirai základom mnohých botnetov využívaných na kybernetický zločin.
 
 
