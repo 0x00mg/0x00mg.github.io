@@ -218,5 +218,5 @@ Otestovat spotrebu v reálnych podmienkach.
 
 
 #### Záver
-Tento projekt mi ukázal, že aj relatívne jednoduchá myšlienka (merať teplotu každých 15 minút) sa dá spraviť elegantne a efektívne ak si človek dá pozor na spotrebu energie.
+Tento projekt mi ukázal že aj relatívne jednoduchá myšlienka (merať teplotu každých 15 minút) sa dá spraviť elegantne a efektívne ak si človek dá pozor na spotrebu energie.
 ESP8266, BME280 a TPL5110 sa ukázali ako ideálna kombinácia pre lacnú a úspornú meteostanicu ktorá dokáže fungovať na batériu veľmi dlho.
