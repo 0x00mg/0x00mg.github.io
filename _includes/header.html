@@ -1,5 +1,230 @@
 <header class="row">
   <div class="col-lg-8 col-lg-offset-2" style="display:flex; align-items:flex-end; gap:20px;">
+    <!-- Terminal Animation Section (Left) -->
+    <div class="header-text" style="flex:1;">
+      <h1 class="">miroslav.gensor</h1>
+      
+      <!-- Terminal Widget Container -->
+      <div id="terminal-container" class="terminal-style">
+        <div id="source-code-container"></div>
+        <div id="compilation-section"></div>
+        <div id="execution-section"></div>
+      </div>
+    </div>
+
+    <!-- Photo (Right) - Kept exactly as original -->
+    <div class="header-image profile-photo" style="transform: translateX(-30px);">
+      <img src="{{ site.baseurl }}/images/p4.jpg" alt="Miroslav Gensor" 
+           style="width:120px; height:120px; object-fit:cover; border-radius:50%;
+          box-shadow: 0 0 20px rgba(0,0,0,0.3)">
+    </div>
+  </div>
+</header>
+
+{% include menu.html %}
+
+<style>
+    /* Minimal terminal styles to fit into existing header */
+    .terminal-style {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 14px; /* Adjust size to match your original design */
+        line-height: 1.5;
+        color: #333; /* Default text color matching your theme */
+        text-align: left;
+        min-height: 250px; /* Prevent layout jump */
+    }
+
+    /* Syntax Highlighting Colors */
+    .keyword { color: #a71d5d; font-weight: bold; } /* Jekyll/Rouge style keywords */
+    .string { color: #183691; } /* Jekyll/Rouge style strings */
+    .function { color: #0086b3; } 
+    .number { color: #0086b3; }
+    .reserved { color: #a71d5d; } 
+    
+    .cursor {
+        display: inline-block;
+        width: 8px;
+        height: 15px;
+        background-color: #333;
+        animation: blink 1s step-end infinite;
+        vertical-align: middle;
+        margin-left: 2px;
+    }
+
+    @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+
+    /* Link styles in terminal */
+    .terminal-link {
+        color: #183691; /* Match string color or link color */
+        text-decoration: none;
+        border-bottom: 1px dotted #183691;
+    }
+    
+    .prompt {
+        color: #27c93f;
+        font-weight: bold;
+        display: none; /* Hidden by default, shown during compilation phase */
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Data from Jekyll variables
+    const nick = "{{ site.nick }}";
+    const fullname = "{{ site.fullname }}";
+    const htbServer = "{{ site.hackthebox.server }}";
+    const htbProfile = "{{ site.hackthebox.profile }}";
+    const linkedinServer = "{{ site.linkedin.server }}";
+    const linkedinProfile = "{{ site.linkedin.profile }}";
+    const githubServer = "{{ site.source_code.server }}";
+    const githubNick = "{{ site.source_code.nick }}";
+    const mailDomain = "{{ site.mail.domain }}";
+    const mailExt = "{{ site.mail.ext }}";
+    const pubKeyUrl = "{{ site.baseurl }}misc/pubkey.gpg.txt";
+
+    const sourceCode = [
+        { text: 'char', class: 'keyword' },
+        { text: ' nick[', class: '' },
+        { text: '6', class: 'number' },
+        { text: '] = ', class: '' },
+        { text: '"' + nick + '"', class: 'string' },
+        { text: ';\n', class: '' },
+        
+        { text: 'char', class: 'keyword' },
+        { text: ' fullname[', class: '' },
+        { text: '15', class: 'number' },
+        { text: '] = ', class: '' },
+        { text: '"' + fullname + '"', class: 'string' },
+        { text: ';\n\n', class: '' },
+        
+        { text: 'printf', class: 'function' },
+        { text: '( ', class: '' },
+        { text: '"https://' + htbServer + '/%s\\n"', class: 'string' },
+        { text: ' ,nick);\n', class: '' },
+        
+        { text: 'printf', class: 'function' },
+        { text: '( ', class: '' },
+        { text: '"https://' + linkedinServer + '/in/%s\\n"', class: 'string' },
+        { text: ' ,fullname);\n', class: '' },
+        
+        { text: 'printf', class: 'function' },
+        { text: '( ', class: '' },
+        { text: '"https://' + githubServer + '/%s\\n"', class: 'string' },
+        { text: ' ,nick);\n', class: '' },
+        
+        { text: 'printf', class: 'function' },
+        { text: '( ', class: '' },
+        { text: '"https://chess.com/%s\\n"', class: 'string' },
+        { text: ', nick);\n', class: '' },
+        
+        { text: 'printf', class: 'function' },
+        { text: '(', class: '' },
+        { text: '" %s\\x40' + mailDomain + '\\x2e' + mailExt + '\\n"', class: 'string' },
+        { text: ' ,fullname );\n', class: '' },
+        
+        { text: 'puts', class: 'function' },
+        { text: '(', class: '' },
+        { text: '"5E12 9ABC C2A9 564B C048 2DF9 D327 0D10 BC71 CF75"', class: 'string' },
+        { text: ');', class: '' }
+    ];
+
+    const outputs = [
+        { text: 'https://' + htbServer + '/' + nick, url: 'https://' + htbServer + '/profile/' + htbProfile },
+        { text: 'https://' + linkedinServer + '/in/' + fullname, url: 'https://' + linkedinServer + '/in/' + linkedinProfile },
+        { text: 'https://' + githubServer + '/' + nick, url: 'https://' + githubServer + '/' + githubNick },
+        { text: 'https://chess.com/' + nick, url: 'https://www.chess.com/member/setuid_m' },
+        { text: ' ' + fullname + '@' + mailDomain + '.' + mailExt, url: 'mailto:' + fullname + '@' + mailDomain + '.' + mailExt },
+        { text: '5E12 9ABC C2A9 564B C048 2DF9 D327 0D10 BC71 CF75', url: pubKeyUrl }
+    ];
+
+    const sourceContainer = document.getElementById('source-code-container');
+    const compilationContainer = document.getElementById('compilation-section');
+    const executionContainer = document.getElementById('execution-section');
+    
+    const createCursor = () => {
+        const cursor = document.createElement('span');
+        cursor.className = 'cursor';
+        return cursor;
+    };
+
+    let currentCursor = createCursor();
+    sourceContainer.appendChild(currentCursor);
+
+    const typeText = async (element, text, className = '', speed = 20) => {
+        const span = document.createElement('span');
+        if (className) span.className = className;
+        element.insertBefore(span, currentCursor);
+        
+        for (let i = 0; i < text.length; i++) {
+            span.textContent += text[i];
+            await new Promise(r => setTimeout(r, speed));
+        }
+    };
+
+    const runSequence = async () => {
+        // 1. Type Source Code
+        for (const segment of sourceCode) {
+            await typeText(sourceContainer, segment.text, segment.class, 15);
+        }
+        
+        await new Promise(r => setTimeout(r, 300));
+        
+        // Move cursor to compilation
+        currentCursor.remove();
+        currentCursor = createCursor();
+        compilationContainer.appendChild(currentCursor);
+        
+        // Compilation command
+        const prompt = document.createElement('span');
+        prompt.className = 'prompt';
+        prompt.style.display = 'inline';
+        prompt.textContent = '$ ';
+        compilationContainer.insertBefore(prompt, currentCursor);
+        
+        await typeText(compilationContainer, 'gcc info.c -o info && ./info\n', '', 30);
+        await new Promise(r => setTimeout(r, 500));
+
+        // Move cursor to execution
+        currentCursor.remove();
+        currentCursor = createCursor();
+        executionContainer.appendChild(currentCursor);
+
+        // Output results
+        for (const line of outputs) {
+            if (line.url) {
+                const link = document.createElement('a');
+                link.href = line.url;
+                link.className = 'terminal-link';
+                link.target = '_blank';
+                executionContainer.insertBefore(link, currentCursor);
+                
+                for (let i = 0; i < line.text.length; i++) {
+                    link.textContent += line.text[i];
+                    await new Promise(r => setTimeout(r, 5));
+                }
+            } else {
+                await typeText(executionContainer, line.text, '', 5);
+            }
+            
+            executionContainer.insertBefore(document.createElement('br'), currentCursor);
+            await new Promise(r => setTimeout(r, 50));
+        }
+    };
+
+    // Start animation
+    setTimeout(runSequence, 500);
+});
+</script>
+
+
+
+
+<!--
+<header class="row">
+  <div class="col-lg-8 col-lg-offset-2" style="display:flex; align-items:flex-end; gap:20px;">
     <div class="header-text" style="flex:1;">
       <h1 class="">miroslav.gensor</h1>
       <p><span class="reserved">char</span> nick[<span class="number">6</span>] = <span class="string">"{{ site.nick }}"</span>;</p>
@@ -13,6 +238,7 @@
     </div>
 
     <!-- Fotka napravo -->
+<!--
     <div class="header-image profile-photo" style="transform: translateX(-30px)";>
       <img src="{{ site.baseurl }}/images/p4.jpg" alt="Miroslav Gensor" 
            style="width:120px; height:120px; object-fit:cover; border-radius:50%;
