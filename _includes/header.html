@@ -31,6 +31,21 @@ document.addEventListener("DOMContentLoaded", function() {
   // Nájde všetky elementy s triedou 'string' v hlavičke
   const strings = document.querySelectorAll('.header-text .string');
   
+  // Pripravíme si pole objektov, kde si uložíme element a jeho obsah
+  const queue = [];
+  
+  // 1. FÁZA: OKAMŽITE všetko vymazať a uložiť si obsah
+  strings.forEach(s => {
+    // Uložíme si kópiu obsahu (aby sme vedeli, čo tam bolo)
+    queue.push({
+      element: s,
+      content: s.cloneNode(true)
+    });
+    
+    // Hneď vymažeme obsah elementu na stránke
+    s.innerHTML = '';
+  });
+  
   // Rekurzívna funkcia na vypisovanie obsahu
   async function typeNode(sourceNode, targetNode) {
     const childNodes = Array.from(sourceNode.childNodes);
@@ -41,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Vypisuje text znak po znaku
         for (let i = 0; i < text.length; i++) {
           targetNode.appendChild(document.createTextNode(text[i]));
-          // Rýchlosť písania (ms) - náhodná odchýlka pre realistickejší efekt
+          // Rýchlosť písania (ms)
           const delay = 30 + Math.random() * 30;
           await new Promise(r => setTimeout(r, delay));
         }
@@ -49,38 +64,29 @@ document.addEventListener("DOMContentLoaded", function() {
         // Ak je to element (napr. span class="reserved"), vytvoríme ho
         const newEl = document.createElement(child.tagName);
         
-        // Skopírujeme všetky atribúty (class, style, atď.)
+        // Skopírujeme všetky atribúty
         Array.from(child.attributes).forEach(attr => {
           newEl.setAttribute(attr.name, attr.value);
         });
         
         targetNode.appendChild(newEl);
         
-        // Rekurzívne vypisujeme do vnútra tohto elementu
+        // Rekurzívne vypisujeme do vnútra
         await typeNode(child, newEl);
       }
     }
   }
   
   async function startTyping() {
-    // Prechádzame všetky stringy jeden po druhom (alebo naraz, ak odstránime await v loope)
-    for (const s of strings) {
-        // Klonujeme pôvodný obsah, aby sme vedeli, čo máme vypísať
-        const clone = s.cloneNode(true);
-        
-        // Vyčistíme aktuálny element
-        s.innerHTML = '';
-        // Zabezpečíme, aby element mal výšku (aby stránka neskákala), ak je to potrebné, 
-        // ale pri inline elementoch to zvyčajne nie je nutné riešiť špeciálne.
-        
-        // Spustíme písanie
-        await typeNode(clone, s);
-        
-        // Voliteľné: pauza medzi riadkami
+    // 2. FÁZA: Postupne prechádzame uložené položky a vypisujeme ich
+    for (const item of queue) {
+        await typeNode(item.content, item.element);
+        // Pauza medzi riadkami
         await new Promise(r => setTimeout(r, 100)); 
     }
   }
   
+  // Spustíme animáciu
   startTyping();
 });
 </script>
