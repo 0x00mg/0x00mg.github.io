@@ -1,5 +1,12 @@
 
 <header class="row">
+  <!-- Pridany styl pre skrytie textu na zaciatku -->
+  <style>
+    .header-text .string {
+      visibility: hidden;
+    }
+  </style>
+
   <div class="col-lg-8 col-lg-offset-2" style="display:flex; align-items:flex-end; gap:20px;">
     <div class="header-text" style="flex:1;">
       <h1 class="">miroslav.gensor</h1>
@@ -30,21 +37,19 @@
 document.addEventListener("DOMContentLoaded", function() {
   // Nájde všetky elementy s triedou 'string' v hlavičke
   const strings = document.querySelectorAll('.header-text .string');
+  const STORAGE_KEY = 'header_typewriter_played';
   
-  // Pripravíme si pole objektov, kde si uložíme element a jeho obsah
-  const queue = [];
-  
-  // 1. FÁZA: OKAMŽITE všetko vymazať a uložiť si obsah
-  strings.forEach(s => {
-    // Uložíme si kópiu obsahu (aby sme vedeli, čo tam bolo)
-    queue.push({
-      element: s,
-      content: s.cloneNode(true)
+  // 1. KROK: Kontrola, či už animácia prebehla v tejto relácii
+  if (sessionStorage.getItem(STORAGE_KEY)) {
+    // Ak áno, okamžite zobrazíme text (prepíšeme visibility: hidden) a ukončíme skript
+    strings.forEach(s => {
+      s.style.visibility = 'visible';
     });
-    
-    // Hneď vymažeme obsah elementu na stránke
-    s.innerHTML = '';
-  });
+    return; // Ukončenie - animácia sa nespustí
+  }
+  
+  // Ak nie, nastavíme príznak, že animácia sa práve spustí
+  sessionStorage.setItem(STORAGE_KEY, 'true');
   
   // Rekurzívna funkcia na vypisovanie obsahu
   async function typeNode(sourceNode, targetNode) {
@@ -56,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Vypisuje text znak po znaku
         for (let i = 0; i < text.length; i++) {
           targetNode.appendChild(document.createTextNode(text[i]));
-          // Rýchlosť písania (ms)
+          // Rýchlosť písania (ms) - náhodná odchýlka pre realistickejší efekt
           const delay = 30 + Math.random() * 30;
           await new Promise(r => setTimeout(r, delay));
         }
@@ -64,29 +69,39 @@ document.addEventListener("DOMContentLoaded", function() {
         // Ak je to element (napr. span class="reserved"), vytvoríme ho
         const newEl = document.createElement(child.tagName);
         
-        // Skopírujeme všetky atribúty
+        // Skopírujeme všetky atribúty (class, style, atď.)
         Array.from(child.attributes).forEach(attr => {
           newEl.setAttribute(attr.name, attr.value);
         });
         
         targetNode.appendChild(newEl);
         
-        // Rekurzívne vypisujeme do vnútra
+        // Rekurzívne vypisujeme do vnútra tohto elementu
         await typeNode(child, newEl);
       }
     }
   }
   
   async function startTyping() {
-    // 2. FÁZA: Postupne prechádzame uložené položky a vypisujeme ich
-    for (const item of queue) {
-        await typeNode(item.content, item.element);
-        // Pauza medzi riadkami
+    // Prechádzame všetky stringy jeden po druhom
+    for (const s of strings) {
+        // Klonujeme pôvodný obsah, aby sme vedeli, čo máme vypísať
+        const clone = s.cloneNode(true);
+        
+        // Vyčistíme aktuálny element
+        s.innerHTML = '';
+        
+        // Zviditeľníme element práve teraz, keď doň ideme písať
+        s.style.visibility = 'visible';
+        
+        // Spustíme písanie
+        await typeNode(clone, s);
+        
+        // Voliteľné: pauza medzi riadkami
         await new Promise(r => setTimeout(r, 100)); 
     }
   }
   
-  // Spustíme animáciu
   startTyping();
 });
 </script>
