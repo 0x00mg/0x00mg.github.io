@@ -8,6 +8,9 @@ disqus: setuid
 # Header settings
 nick: "0x00mg"
 fullname: "miroslav.gensor"
+tryhackme:
+    server: "tryhackme.com"
+    profile: "TheOldOne"
 hackthebox:
     server: "app.hackthebox.com"
     profile: "1002284"
