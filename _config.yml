@@ -1,12 +1,12 @@
 # Site settings
-title: "TheOldOne"
+title: "TheOld0ne"
 bye_message: "Thx!"
 baseurl: ""
-url: "https://theoldone.github.io"
+url: "https://theold0ne.github.io"
 disqus: setuid
 
 # Header settings
-nick: "TheOldOne"
+nick: "TheOld0ne"
 fullname: "miroslav.gensor"
 tryhackme:
     server: "tryhackme.com"
@@ -22,7 +22,7 @@ mail:
     ext: "com"
 source_code:
     server: "github.com"
-    nick: "TheOldOne"
+    nick: "TheOld0ne"
 blog:
     server: "wordpress.com"
     nick: "xxxx"
