@@ -1,12 +1,12 @@
 # Site settings
-title: "0x00mg"
+title: "TheOldOne"
 bye_message: "Thx!"
 baseurl: ""
-url: "https://0x4d47.github.io"
+url: "https://theoldone.github.io"
 disqus: setuid
 
 # Header settings
-nick: "0x00mg"
+nick: "TheOldOne"
 fullname: "miroslav.gensor"
 tryhackme:
     server: "tryhackme.com"
